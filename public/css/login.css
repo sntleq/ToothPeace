@@ -227,3 +227,48 @@ footer p{
     color: #004aad;
     font: bold .8rem 'Montserrat', sans-serif;
 }
+
+.alert-console {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: slideDownAndFade 5s ease-in-out forwards;
+}
+
+.alert-console.success {
+    background-color: #e7f3ff;
+    color: #0066cc;
+    border: 1px solid #b3d7ff;
+}
+
+.alert-console.error {
+    background-color: #ffe7e7;
+    color: #cc0000;
+    border: 1px solid #ffb3b3;
+}
+
+@keyframes slideDownAndFade {
+    0% {
+        top: -50px;
+        opacity: 0;
+    }
+    10% {
+        top: 10px;
+        opacity: 1;
+    }
+    90% {
+        top: 10px;
+        opacity: 1;
+    }
+    100% {
+        top: 10px;
+        opacity: 0;
+        visibility: hidden;
+    }
+}

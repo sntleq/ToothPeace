@@ -1,0 +1,82 @@
+.section-title {
+    font-size: 28px;
+    color: #042c5c;
+    margin-bottom: 20px;
+}
+
+.controls-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.controls-section {
+    width: 100%;
+    max-width: 600px; 
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #042c5c;
+}
+
+.control-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #dbeaff;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.cancel-button, .enter-button {
+    padding: 10px 30px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #023e73;
+}
+
+.enter-button {
+    background-color: #01548f;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .controls-wrapper {
+        flex-direction: column;
+    }
+
+    .button-group {
+        justify-content: center;
+    }
+}

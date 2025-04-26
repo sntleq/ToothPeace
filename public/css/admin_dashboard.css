@@ -1,0 +1,141 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f7ff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+}
+
+.main-content h1 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    color: #002f6c;
+    background: none;
+}
+
+.overview-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #dbeaff;
+    border-radius: 20px;
+    width: 30%;
+    height: 160px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 40px; 
+    padding-right: 20px; 
+}
+
+.icon-container {
+    background-color: #b4cdee; 
+    border-radius: 15px;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-container img {
+    width: 40px;
+    height: 40px;
+    image-rendering: auto; 
+}
+
+.card img {
+    width: 40px;
+    height: 40px;
+}
+
+.card p {
+    font-size: 18px;
+    color: #003366; 
+    font-weight: 600;
+}
+
+.main-content h2 {
+    font-family: 'Poppins', sans-serif;
+    margin: 20px 0 10px;
+    color: #003366;
+    font-size: 28px; 
+    font-weight: 700;
+}
+
+/* HERE ANG TABLE SECTION */
+
+.table-wrapper {
+    background-color: #eaf4ff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+    overflow: hidden; 
+}
+
+.scroll-clipper {
+    border-radius: 12px;
+    overflow: hidden; 
+}
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #003366 #f0f7ff;
+    padding-right: 12px;
+    box-sizing: content-box;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f0f7ff;
+    border-radius: 10px;
+    margin-block: 4px; 
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #003366;
+    border-radius: 10px;
+    border: 2px solid #f0f7ff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+thead {
+    background: #1e86c3;
+    color: white;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}

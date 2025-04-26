@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background: #f0f7ff;
+}
+
+.sidebar {
+    width: 250px;
+    background: #1e86c3;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;  
+    top: 0;          
+    left: 0;          
+    height: 100vh;    
+    overflow-y: auto; 
+    z-index: 1000;    
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 250px;  
+}
+
+.sidebar .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sidebar .logo img {
+    width: 100px;
+}
+
+.sidebar .logo h2 {
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.tooth {
+    color: #022162;
+}
+
+.peace {
+    color: #d9f1ff;
+}
+
+.sidebar .logo p {
+    font-size: 11px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.sidebar nav {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 200px;
+    transition: background 0.3s ease, color 0.3s ease;
+    background: none;
+}
+
+.sidebar nav a:hover {
+    background: #005fa3;
+}
+
+.sidebar nav a.active {
+    background: #003366;
+    color: white;
+}
+
+.sidebar nav a img {
+    width: 25px;
+}
+
+
+.logout {
+    margin-top: auto;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.logout:hover {
+    background: #005fa3;
+}
+
+.logout img {
+    width: 20px;
+}
+
+.datetime-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.date-box, .time-box {
+    flex: 1;                      
+    background-color: #1e86c3;
+    border-radius: 20px;
+    padding: 40px 20px;
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+
+.logout-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .logout-modal.hide {
+      display: none;
+  }
+  
+  .logout-modal.show {
+      display: flex;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .modal-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #003f87;
+    margin-bottom: 20px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .confirm-btn, .cancel-btn {
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .confirm-btn {
+    background-color: #0073cf;
+    color: white;
+  }
+  
+  .confirm-btn:hover {
+    background-color: #005fa3;
+  }
+  
+  .cancel-btn {
+    background-color: #e3f2fd;
+    color: #0073cf;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #b3e5fc;
+  }

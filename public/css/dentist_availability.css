@@ -1,0 +1,108 @@
+.section-title {
+    font-size: 28px;
+    color: #042c5c;
+    margin-bottom: 20px;
+  }
+  
+  .table-container {
+    background-color: #eaf4fc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+
+    box-sizing: content-box;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .7rem;
+  }
+  
+  thead {
+    background-color:#1e86c3;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    font-size: .9rem;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-track {
+    background: #f0f7ff;
+    border-radius: 10px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #003366;
+    border-radius: 10px;
+    border: 2px solid #f0f7ff;
+  }
+
+  .schedule-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 20px;  
+    flex-wrap: wrap;  
+    max-width: 900px; 
+    margin: 0 auto;  
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  select, input[type="time"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #1e86c3;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #145d8f;
+  }
+  

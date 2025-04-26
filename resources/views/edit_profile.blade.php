@@ -18,9 +18,9 @@
         <p>Discover Peace of Mind, One Appointment at a Time.</p>
       </div>
       <nav>
-        <a href="patient/Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
-        <a href="patientAppointment"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-        <a href="patientWaitlist"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
+        <a href="/patient/Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+        <a href="/patient/Appointment"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+        <a href="/patient/Waitlist"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
       </nav>
       <a href="#" class="logout" id="logoutButton">
           <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -88,7 +88,7 @@
             
                 <div class="form-actions">
                   <button type="submit" class="btn-add">Save</button>
-                  <button type="button" class="btn-cancel" onclick="window.location.href='patient_profile.html'">Cancel</button>
+                  <button type="button" class="btn-cancel" onclick="window.location.href='/patient/Profile'">Cancel</button>
                 </div>
               </form>
             </div>

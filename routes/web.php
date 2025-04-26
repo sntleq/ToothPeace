@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\AddDentistController;
 
 Route::get('/', function () {
     return view('index');
@@ -37,6 +38,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/AddDentist', function () {
         return view('admin_add_dentists');
     });
+
+    Route::post('/AddDentist', [AddDentistController::class, 'AddDentist']);
 
     Route::get('/Appointments', function () {
         return view('admin_appointments');

@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-        <a href="Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a href="Schedule"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
-        <a href="Availability"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
+        <a href="/dentist/Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+        <a href="/dentist/Schedule"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a href="/dentist/Availability"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -35,7 +35,7 @@
 
     <h1><span class="page-title">Appointment History</span></h1>
 
-    <button class="back-button" onclick="window.location.href='Schedule'">
+    <button class="back-button" onclick="window.location.href='/dentist/Schedule'">
       <span class="icon">&#8592;</span> Back
     </button>
 

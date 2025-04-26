@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ToothPeace Login</title>
-<<<<<<< HEAD
     <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
-=======
-    <link rel="icon" href="../pics/toothpeace_logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/services.css"/>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
+    <link rel="stylesheet" href="{{ asset('css/services.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -123,11 +118,7 @@
 
         <div class="form-container services-container">
             <form action="#">
-<<<<<<< HEAD
                 <button class="loginback" onclick="location.href='index'" type="button">Back</button>
-=======
-                <button class="loginback" onclick="location.href='index.html'" type="button">Back</button>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
                 <h1>Dental Services</h1>
                 <p>Check and select our dental services <br> below for more details</p>
                 <div class="buttons" id="serviceButtons">
@@ -148,17 +139,10 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-<<<<<<< HEAD
                     <img id="overlay-left-img" src="{{ asset('pics/default_pic.png') }}" alt="Dental" />
                 </div>
                 <div class="overlay-panel overlay-right">
                     <img src="{{ asset('pics/dental_services.png') }}" alt="Dental" />
-=======
-                    <img id="overlay-left-img" src="../pics/default_pic.png" alt="Dental" />
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <img src="../pics/dental_services.png" alt="Dental" />
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
                 </div>
             </div>
         </div>
@@ -168,10 +152,6 @@
         <p>&copy; 2025 ToothPeace Dental Clinic</p>
     </footer>
 
-<<<<<<< HEAD
     <script src="{{ asset('js/services.js') }}"></script>
-=======
-    <script src="../js/services.js"></script>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
 </body>
 </html>

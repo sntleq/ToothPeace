@@ -4,18 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ToothPeace</title>
-<<<<<<< HEAD
     <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-=======
-    <link rel="icon" href="../pics/toothpeace_logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/login.css"/>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
     @if (session()->has('success'))
         <div class="alert-console success">
             {{ session('success') }}
@@ -44,18 +38,6 @@
                 <input type="password" id="password" name="password" placeholder="Password" />
 
                 <button type="submit" class="btn-signup">Sign Up</button>
-=======
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Create Account</h1>
-                <input type="text" placeholder="First Name" />
-                <input type="text" placeholder="Last Name" />
-                <input type="email" placeholder="Email" />
-                <input type="email" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button class="btn-signup">Sign Up</button>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
                 <div class="switch">
                     <h6>Already have an account?</h6>
                     <button type="button" class="ghost" id="backToLogin">Login</button>
@@ -65,17 +47,12 @@
 
         <div class="form-container sign-in-container">
             <form action="#">
-<<<<<<< HEAD
+
                 <button class="loginback" onclick="location.href='index'" type="button">Back</button>
                 <h1>Sign in</h1>
                 <p>Enter your details below.</p>
                 <input type="email" placeholder="Email" />
-=======
-                <button class="loginback" onclick="location.href='index.html'" type="button">Back</button>
-                <h1>Sign in</h1>
-                <p>Enter your details below.</p>
-                <input type="email" placeholder="Username" />
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
+
                 <input type="password" placeholder="Password" />
                 <a href="index.blade.php" class="forget_pass">Forgot Password?</a>
                 <button class="btn-login">Login</button>
@@ -87,17 +64,12 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-<<<<<<< HEAD
+
                 <img src="{{ asset('pics/signup_pic.png') }}" alt="Dental" />
                 </div>
                 <div class="overlay-panel overlay-right">
                 <img src="{{ asset('pics/login_pic.png') }}" alt="Dental" />
-=======
-                <img src="../pics/signup_pic.png" alt="Dental" />
-                </div>
-                <div class="overlay-panel overlay-right">
-                <img src="../pics/login_pic.png" alt="Dental" />
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
+
                 </div>
             </div>
         </div>
@@ -107,10 +79,7 @@
         <p>&copy; 2025 ToothPeace Dental Clinic</p>
     </footer>
 
-<<<<<<< HEAD
     <script src="{{ asset('js/login.js') }}"></script>
-=======
-    <script src="../js/login.js"></script>
->>>>>>> 668825344e94d9da113377acfd2f69a021f37192
+
 </body>
 </html>

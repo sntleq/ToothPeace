@@ -18,12 +18,12 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+      <a href="/admin/Dashboard"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+      <a href="/admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="/admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="/admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="/admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a href="/admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -38,6 +38,12 @@
 
     <h1 class="section-title">Dentists</h1>
 
+    @if (session()->has('success'))
+        <div class="alert-console success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="search-bar-wrapper">
         <div class="search-group">
           <input type="text" placeholder="Search Dentist" id="searchInput" class="search-input" />
@@ -45,8 +51,10 @@
             <img src="{{ asset('pics/search_icon.png') }}" alt="Search" />
           </button>
         </div>
-        <button class="add-dentist-btn" id="addDentistBtn" title="Add Dentist">+</button>
-     </div>
+        <a href="/admin/AddDentist" class="add-dentist-btn" title="Add Dentist">
+          <span class="plus-icon">+</span>
+        </a>
+    </div>
      
     <div id="searchResults" class="search-results hidden"></div>
 

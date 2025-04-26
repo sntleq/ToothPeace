@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
-      <a href="Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="Waitlist" class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
+      <a href="/patient/Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+      <a href="/patient/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="/patient/Waitlist" class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
       <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out

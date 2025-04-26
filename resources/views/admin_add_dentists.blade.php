@@ -18,12 +18,12 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-    <a href="Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+    <a href="/admin/Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+      <a href="admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a href="admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -44,59 +44,58 @@
 
     <div class="form-container">
       <h2 class="form-title">ADD DENTIST</h2>
-      
-      <form class="dentist-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="dentistId">Dentist ID</label>
-            <input type="text" id="dentistId" name="dentistId" />
+      @if (session()->has('error'))
+          <div class="alert-console error">
+              {{ session('error') }}
           </div>
-        </div>
+      @endif
 
+      <form action="/admin/AddDentist" method="POST" class="dentist-form">
+        @csrf
         <div class="form-row">
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" />
+            <input type="text" id="lastName" name="lastName" value="{{ old('lastName') }}" />
           </div>
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" />
+            <input type="text" id="firstName" name="firstName" value="{{ old('firstName') }}" />
           </div>
           <div class="form-group">
             <label for="middleName">Middle Name</label>
-            <input type="text" id="middleName" name="middleName" />
+            <input type="text" id="middleName" name="middleName" value="{{ old('middleName') }}" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" />
+            <input type="text" id="username" name="username" value="{{ old('username') }}" />
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" />
+            <input type="email" id="email" name="email" value="{{ old('email') }}" />
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" />
+            <input type="date" id="dob" name="dob" value="{{ old('dob') }}" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" />
+            <input type="password" id="password" name="password" value="{{ old('password') }}" />
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" />
+            <input type="password" id="confirmPassword" name="confirmPassword" value="{{ old('confirmPassword') }}" />
           </div>
         </div>
 
         <div class="form-actions">
           <button type="submit" class="btn-add">Add</button>
-          <button type="button" class="btn-cancel" onclick="window.location.href='Dentist'">Cancel</button>
+          <button type="button" class="btn-cancel" onclick="window.location.href='/admin/Dentists'">Cancel</button>
         </div>
       </form>
     </div>

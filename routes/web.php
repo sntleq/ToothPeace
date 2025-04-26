@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignUpController;
 
+Route::get('/', function () {
+    return view('index');
+});
+
 Route::get('/index', function () {
     return view('index');
 });
@@ -59,7 +63,6 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-
 Route::prefix('dentist')->group(function () {
     Route::get('/Availability', function () {
         return view('dentist_availability');
@@ -76,7 +79,7 @@ Route::prefix('dentist')->group(function () {
     Route::get('/Schedule', function () {
         return view('dentist_schedule');
     });
-});    
+});
 
 Route::prefix('patient')->group(function () {
     Route::get('/Appointments', function () {
@@ -90,8 +93,4 @@ Route::prefix('patient')->group(function () {
     Route::get('/Waitlist', function () {
         return view('patient_waitlist');
     });   
-}); 
-
-
-
-
+});

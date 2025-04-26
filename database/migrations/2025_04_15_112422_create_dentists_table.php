@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('dob');
             $table->string('password');
             $table->boolean('is_active')->default(true);
-            $table->timestamps();
+            $table->timestamps(); // <-- this line should stay
         });
 
         Schema::create('password_resets_dentists', function (Blueprint $table) {

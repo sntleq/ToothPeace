@@ -13,15 +13,15 @@ class Patient extends Authenticatable
     protected $table = 'patients';
 
     protected $fillable = [
-        'first_name', 
-        'middle_name', 
-        'last_name', 
+        'first_name',
+        'middle_name',
+        'last_name',
         'suffix',
-        'email', 
-        'dob', 
+        'email',
+        'dob',
         'password'
     ];
-    
+
 
     protected $hidden = [
         'password',

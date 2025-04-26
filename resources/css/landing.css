@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    background-image: url('../pics/landing_bg.png');
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+}
+
+.logo img {
+    width: 200px;
+    margin-top: 40px;
+}
+
+.landing_page h1{
+    font-size: 3rem;
+}
+
+.blue {
+    color: #004aad;
+}
+
+.skyblue {
+    color: #38b6ff;
+}
+
+p {
+    color: #004aad;
+    font: bold 1.2rem 'Montserrat', sans-serif;
+}
+
+.buttons {
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #1e86c3;
+    color: white;
+    font: bold 1rem 'Montserrat', sans-serif;
+    transition: 0.3s;
+    border: 1px solid #38b6ff;
+}
+
+button:hover {
+    background-color: #38b6ff;
+}
+
+footer p{
+    color: #004aad;
+    font: bold .8rem 'Montserrat', sans-serif;
+}

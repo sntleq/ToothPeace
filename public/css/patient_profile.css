@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #eaf3ff;
+    display: flex;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 32px;
+    color: #002d62;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #002d62;
+  }
+
+  p {
+    font-size: 20px;
+  }
+  
+  .table-container {
+    background-color: #eaf4fc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex: 1; 
+  }
+  
+  .table-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #042c5c;
+  }
+  
+  .table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding-right: 10px;
+    box-sizing: content-box;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  thead {
+    background-color:#1e86c3;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Scrollbar Styling */
+  .table-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-track {
+    background: #f0f7ff;
+    border-radius: 10px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #003366;
+    border-radius: 10px;
+    border: 2px solid #f0f7ff;
+  }
+  
+  .profile-badge {
+    background-color: #ffffff;
+    color: #003366;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }  
+
+  .profile-card {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    height: flex;
+    margin-left: 20px;
+    align-self: flex-start;
+  }
+  
+  .profile-card p {
+    margin: 10px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+  }
+  
+  .profile-card p:last-child {
+    border-bottom: none;
+  }
+  .profile-card strong {
+    font-weight: bold;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .profile-header h3 {
+    margin: 0;
+  }
+  
+  .profile-header a {
+    color: #add8ff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 50px; 
+  }
+  

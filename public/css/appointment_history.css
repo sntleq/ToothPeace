@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #eaf3ff;
+    display: flex;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h1, .table-title {
+    font-size: 26px;
+    color: #003366;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 20px;
+  }
+  
+  .table-container {
+    background-color: #eaf4fc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex: 1;
+    margin-top: 30px;
+  }
+  
+  .table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    padding-right: 10px;
+    box-sizing: content-box;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  }
+  
+  thead {
+    background-color: #1e86c3;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Scrollbar Styling */
+  .table-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-track {
+    background: #f0f7ff;
+    border-radius: 10px;
+  }
+  
+  .table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #003366;
+    border-radius: 10px;
+    border: 2px solid #f0f7ff;
+  }
+  
+  .back-button {
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    border-radius: 2rem;
+    text-decoration: none; 
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1.2rem;
+    display: inline-flex;
+    transition: background 0.3s ease;
+  }
+  
+  .back-button .icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .back-button:hover {
+    background-color: #002244;
+  }
+  

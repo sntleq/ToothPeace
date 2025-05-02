@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ToothPeace Login</title>
     <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/services.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>

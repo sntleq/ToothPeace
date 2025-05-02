@@ -10,17 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container" id="container">
+    @if (session()->has('success'))
+        <div class="alert-console success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <div class="container {{ session('isSignUp') ? 'right-panel-active' : '' }}" id="container">
         <div class="form-container sign-up-container">
+            @if (session()->has('error'))
+                <div class="alert-console error">
+                    {{ session('error') }}
+                </div>
+            @elseif ($errors->any())
+                <div class="alert-console error">
+                    {{ $errors->first() }}
+                </div>
+            @endif
             <form action="/login" method="POST">
                 @csrf 
                 <h1>Create Account</h1>
-                <input type="text" id="first_name" name="first_name" placeholder="First Name" />
-                <input type="text" id="middle_name" name="middle_name" placeholder="Middle Name" />
-                <input type="text" id="last_name" name="last_name" placeholder="Last Name" />
-                <input type="text" id="suffix" name="suffix" placeholder="Suffix" />
-                <input type="email" id="email" name="email" placeholder="Email" />
-                <input type="date" id="dob" name="dob" placeholder="Date of Birth" />
+                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" />
+                <input type="text" id="middle_name" name="middle_name" value="{{ old('middle_name') }}" placeholder="Middle Name" />
+                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" />
+                <input type="text" id="suffix" name="suffix" value="{{ old('suffix') }}" placeholder="Suffix" />
+                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                <input type="date" id="dob" name="dob" value="{{ old('dob') }}" placeholder="Date of Birth" />
                 <input type="password" id="password" name="password" placeholder="Password" />
 
                 <button type="submit" class="btn-signup">Sign Up</button>
@@ -33,10 +47,12 @@
 
         <div class="form-container sign-in-container">
             <form action="#">
+
                 <button class="loginback" onclick="location.href='index'" type="button">Back</button>
                 <h1>Sign in</h1>
                 <p>Enter your details below.</p>
                 <input type="email" placeholder="Email" />
+
                 <input type="password" placeholder="Password" />
                 <a href="index.blade.php" class="forget_pass">Forgot Password?</a>
                 <button class="btn-login">Login</button>
@@ -48,10 +64,12 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
+
                 <img src="{{ asset('pics/signup_pic.png') }}" alt="Dental" />
                 </div>
                 <div class="overlay-panel overlay-right">
                 <img src="{{ asset('pics/login_pic.png') }}" alt="Dental" />
+
                 </div>
             </div>
         </div>
@@ -62,5 +80,6 @@
     </footer>
 
     <script src="{{ asset('js/login.js') }}"></script>
+
 </body>
 </html>

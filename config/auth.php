@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => env('AUTH_GUARD', 'patient'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'patients'),
     ],
 
     /*
@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'patient' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'patients',
+        ],
+        'dentist' => [
+            'driver' => 'session',
+            'provider' => 'dentists',
         ],
     ],
 
@@ -60,15 +64,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'patients' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', \App\Models\example\User::class),
+            'model' => env('AUTH_MODEL_PATIENT', \App\Models\Patient::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'dentists' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL_DENTIST', \App\Models\Dentist::class),
+        ],
     ],
 
     /*
@@ -91,9 +94,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+        'patients' => [
+            'provider' => 'patients',
+            'table' => env('AUTH_PASSWORD_RESET_TABLE_PATIENT', 'password_resets_patients'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'dentists' => [
+            'provider' => 'dentists',
+            'table' => env('AUTH_PASSWORD_RESET_TABLE_DENTIST', 'password_resets_dentists'),
             'expire' => 60,
             'throttle' => 60,
         ],

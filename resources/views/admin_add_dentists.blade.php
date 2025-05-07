@@ -98,7 +98,7 @@
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" value="{{ old('dob') }}" />
+            <input type="date" id="dob" name="dob" value="{{ old('dob') }}" max="{{ date('Y-m-d') }}" />
             @error('dob')
                 <div class="text-danger">{{ $message }}</div>
             @enderror

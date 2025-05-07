@@ -19,11 +19,11 @@
     </div>
     <nav>
     <a href="/admin/Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+      <a href="/admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="/admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="/admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="/admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a href="/admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -38,7 +38,7 @@
 
     <h1><span class="page-title">Dentists</span></h1>
 
-    <button class="back-button" onclick="window.location.href='Dentist'">
+    <button class="back-button" onclick="window.location.href='/admin/Dentists'">
       <span class="icon">&#8592;</span> Back
     </button>
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\AddDentistController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('index');
@@ -12,7 +13,8 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::post('/login', [SignUpController::class, 'login']);
+Route::post('/login',[LoginController::class,'loginDentist'])->name('auth');
+Route::post('/signup', [SignUpController::class, 'signup']);
 
 Route::get('/login', function(){
     return view('login');

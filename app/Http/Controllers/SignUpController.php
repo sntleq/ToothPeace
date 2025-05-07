@@ -7,14 +7,12 @@ use App\Models\Patient;
 
 class SignUpController extends Controller
 {
-    public function login(Request $request)
+    public function signup(Request $request)
     {
         try {
             $validatedData = $request->validate([
                 'first_name' => ['required', 'min:3', 'max:20'],
-                'middle_name' => ['required', 'min:3', 'max:20'],
                 'last_name' => ['required', 'min:3', 'max:20'],
-                'suffix' => ['nullable', 'max:5'],
                 'email' => ['required', 'email', 'unique:patients,email'],
                 'dob' => ['required', 'date'],
                 'password' => ['required', 'min:8']

@@ -26,15 +26,13 @@
                     {{ $errors->first() }}
                 </div>
             @endif
-            <form action="/login" method="POST">
+            <form action="/signup" method="POST">
                 @csrf 
                 <h1>Create Account</h1>
                 <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" />
-                <input type="text" id="middle_name" name="middle_name" value="{{ old('middle_name') }}" placeholder="Middle Name" />
                 <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" />
-                <input type="text" id="suffix" name="suffix" value="{{ old('suffix') }}" placeholder="Suffix" />
                 <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Email" />
-                <input type="date" id="dob" name="dob" value="{{ old('dob') }}" placeholder="Date of Birth" />
+                <input type="date" id="dob" name="dob" value="{{ old('dob') }}" placeholder="Date of Birth" max="{{ date('Y-m-d') }}" />
                 <input type="password" id="password" name="password" placeholder="Password" />
 
                 <button type="submit" class="btn-signup">Sign Up</button>
@@ -44,21 +42,25 @@
                 </div>
             </form>
         </div>
+        @if ($errors->has('login'))
+                <div class="alert-console error">{{ $errors->first('login') }}</div>
+            @endif
 
         <div class="form-container sign-in-container">
-            <form action="#">
-
+            
+            <form action="{{ route('auth') }}" method="POST">
+                @csrf
                 <button class="loginback" onclick="location.href='index'" type="button">Back</button>
                 <h1>Sign in</h1>
                 <p>Enter your details below.</p>
-                <input type="email" placeholder="Email" />
-
-                <input type="password" placeholder="Password" />
+                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+                <input type="password" name="password" placeholder="Password" />
                 <a href="index.blade.php" class="forget_pass">Forgot Password?</a>
-                <button class="btn-login">Login</button>
+                <button class="btn-login" type="submit">Login</button>
                 <h6>Don't have an account?</h6>
                 <button type="button" class="ghost" id="signUp">Sign Up</button>
             </form>
+
         </div>
 
         <div class="overlay-container">

@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="{{ asset('css/admin_add_dentists.css') }}" />
 </head>
 <body>
+@if (session('successs'))
+    <div class="alert-console success">
+        {{ session('successs') }}
+    </div>
+@endif
   <div class="sidebar">
     <div class="logo">
       <img src="{{ asset('pics/toothpeace_logo.png') }}" alt="ToothPeace Logo"/>
@@ -54,16 +59,25 @@
         @csrf
         <div class="form-row">
           <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" value="{{ old('lastName') }}" />
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" value="{{ old('lastName') }}" />
+              @error('lastName')
+                  <div class="text-danger">{{ $message }}</div>
+              @enderror
           </div>
           <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" value="{{ old('firstName') }}" />
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" value="{{ old('firstName') }}" />
+              @error('firstName')
+                  <div class="text-danger">{{ $message }}</div>
+              @enderror
           </div>
           <div class="form-group">
-            <label for="middleName">Middle Name</label>
-            <input type="text" id="middleName" name="middleName" value="{{ old('middleName') }}" />
+              <label for="middleName">Middle Name</label>
+              <input type="text" id="middleName" name="middleName" value="{{ old('middleName') }}" />
+              @error('middleName')
+                  <div class="text-danger">{{ $message }}</div>
+              @enderror
           </div>
         </div>
 
@@ -71,14 +85,23 @@
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" value="{{ old('username') }}" />
+            @error('username')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" />
+            @error('email')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" name="dob" value="{{ old('dob') }}" />
+            @error('dob')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
         </div>
 
@@ -86,10 +109,16 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" value="{{ old('password') }}" />
+            @error('password')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" value="{{ old('confirmPassword') }}" />
+            @error('confirmPassword')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
           </div>
         </div>
 

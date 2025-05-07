@@ -14,7 +14,7 @@ Route::get('/index', function () {
 });
 
 Route::post('/login',[LoginController::class,'loginDentist'])->name('auth');
-Route::post('/signup', [SignUpController::class, 'signup']);
+Route::post('/signup', [AuthController::class, 'register'])->name('signup');
 
 Route::get('/login', function(){
     return view('login');

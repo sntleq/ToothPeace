@@ -77,7 +77,7 @@ form {
 
 form h1 {
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 5px;
     color: #004aad;
 }
 
@@ -116,7 +116,8 @@ form button {
 }
 
 .btn-signup {
-    margin-left: 110px;
+    margin-left: 120px;
+    padding: 3px 5px;
 }
 
 form button:hover {
@@ -124,7 +125,7 @@ form button:hover {
 }
 
 button.ghost {
-    padding: 10px 20px;
+    padding: 3px 5px;
     cursor: pointer;
     background-color: transparent;
     border: 1px solid #0a74da;
@@ -152,7 +153,7 @@ button.ghost {
 }
 
 .switch button.ghost {
-    padding: 10px 20px;
+    padding: 5px 10px;
     cursor: pointer;
     background-color: transparent;
     border: 1px solid #0a74da;
@@ -271,4 +272,9 @@ footer p{
         opacity: 0;
         visibility: hidden;
     }
+}
+
+.text-danger {
+    color: red;
+    font-size: 8px;
 }

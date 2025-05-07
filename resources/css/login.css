@@ -222,6 +222,12 @@ button.ghost {
     color: #084e8a;
 }
 
+.text-danger {
+    color: red !important;
+    font-size: 0.875em;
+    margin-top: 4px;
+}
+
 
 footer p{
     color: #004aad;

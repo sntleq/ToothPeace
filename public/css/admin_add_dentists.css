@@ -146,6 +146,11 @@
     border: 1px solid #ffb3b3;
 }
 
+.text-danger {
+  color: red;
+  font-size: 10px;
+}
+
 @keyframes slideDownAndFade {
     0% {
         top: -50px;

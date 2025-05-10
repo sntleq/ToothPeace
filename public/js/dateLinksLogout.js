@@ -27,20 +27,6 @@ function updateDateTime() {
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
-
-// — Sidebar Active Link —
-const currentPath = window.location.pathname.split('/').pop();
-const navLinks = document.querySelectorAll(".sidebar nav a");
-
-navLinks.forEach(link => {
-    const linkPath = link.getAttribute("href");
-    if (linkPath === currentPath) {
-        link.classList.add("active");
-    } else {
-        link.classList.remove("active");
-    }
-});
-
 // — Logout Modal —
 const logoutBtn = document.getElementById("logoutButton");
 const logoutModal = document.getElementById("logoutModal");
@@ -54,7 +40,7 @@ if (logoutBtn && logoutModal) {
     });
 
     confirmLogout?.addEventListener("click", () => {
-        window.location.href = "/index"; 
+        window.location.href = "/index";
     });
 
     cancelLogout?.addEventListener("click", () => {

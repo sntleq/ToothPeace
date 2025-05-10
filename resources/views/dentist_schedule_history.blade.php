@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/sharedLayout.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/dentist_schedule_history.css') }}" />
 </head>
 <body>
@@ -47,7 +47,7 @@
           </button>
         </div>
      </div>
-     
+
     <div id="searchResults" class="search-results hidden"></div>
 
     <div class="page-wrapper">
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  
+
   <div id="logoutModal" class="logout-modal">
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>

@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/sharedLayout.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/appointment_history.css' ) }}" />
 </head>
 <body>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="main-container">
-      <button onclick="window.location.href='patient/Appointments'" class="back-button">&larr; Back</button>
+      <button onclick="window.location.href='{{ route('patient.appointments') }}'" class="back-button">&larr; Back</button>
 
       <div class="table-container">
         <h1 class="table-title">Appointment History</h1>

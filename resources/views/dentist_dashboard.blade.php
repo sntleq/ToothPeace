@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/sharedLayout.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/dentist_dashboard.css') }}" />
 </head>
 <body>
@@ -33,7 +33,7 @@
             <div class="date-box" id="dateBox"></div>
             <div class="time-box" id="timeBox"></div>
         </div>
-        
+
     <h1>Dashboard Overview</h1>
 
     <div class="overview-cards">
@@ -43,15 +43,15 @@
           </div>
           <p>Total Upcoming Appointments</p>
         </div>
-      
+
         <div class="card">
           <div class="icon-container">
             <img src="{{ asset('pics/tpatients_icon.png') }}" alt="Total Patients" />
           </div>
           <p>Total Completed Appointments</p>
         </div>
-      </div>      
-    
+      </div>
+
     <div class="appointments-section">
     <h2>Weekly Upcoming Appointments</h2>
     <div class="table-wrapper">
@@ -125,7 +125,7 @@
       </div>
     </div>
   </div>
-   
+
   <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
   <script src="{{ asset('js/dentist_dashboard.js') }}"></script>
 </body>

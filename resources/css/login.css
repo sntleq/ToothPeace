@@ -56,6 +56,7 @@ body {
 }
 
 .loginback {
+    display: inline-block;
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
@@ -123,7 +124,8 @@ form button:hover {
     background-color: #38b6ff;
 }
 
-button.ghost {
+.ghost {
+    display: inline-block;
     padding: 10px 20px;
     cursor: pointer;
     background-color: transparent;
@@ -131,7 +133,6 @@ button.ghost {
     color: #0a74da;
     transition: 0.3s;
 
-    display: block;
     margin-left: 120px;
 
     position: relative;

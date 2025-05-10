@@ -14,9 +14,7 @@ class Patient extends Authenticatable
 
     protected $fillable = [
         'first_name',
-        'middle_name',
         'last_name',
-        'suffix',
         'email',
         'dob',
         'password'

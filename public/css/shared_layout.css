@@ -20,18 +20,18 @@ body {
     align-items: center;
     padding: 20px 0;
     font-family: 'Poppins', sans-serif;
-    position: fixed;  
-    top: 0;          
-    left: 0;          
-    height: 100vh;    
-    overflow-y: auto; 
-    z-index: 1000;    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
 .main-content {
     flex: 1;
     padding: 30px;
-    margin-left: 250px;  
+    margin-left: 250px;
 }
 
 .sidebar .logo {
@@ -78,16 +78,15 @@ body {
     text-decoration: none;
     font-weight: 500;
     border-radius: 200px;
-    transition: background 0.3s ease, color 0.3s ease;
-    background: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar nav a:hover {
-    background: #005fa3;
+    background-color: #005fa3;
 }
 
 .sidebar nav a.active {
-    background: #003366;
+    background-color: #003366 !important;
     color: white;
 }
 
@@ -128,7 +127,7 @@ body {
 }
 
 .date-box, .time-box {
-    flex: 1;                      
+    flex: 1;
     background-color: #1e86c3;
     border-radius: 20px;
     padding: 40px 20px;
@@ -150,15 +149,15 @@ body {
     justify-content: center;
     z-index: 1000;
   }
-  
+
   .logout-modal.hide {
       display: none;
   }
-  
+
   .logout-modal.show {
       display: flex;
   }
-  
+
   .modal-content {
     background: white;
     padding: 30px;
@@ -167,20 +166,20 @@ body {
     text-align: center;
     width: 300px;
   }
-  
+
   .modal-content h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     color: #003f87;
     margin-bottom: 20px;
   }
-  
+
   .modal-buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
   }
-  
+
   .confirm-btn, .cancel-btn {
     padding: 12px 25px;
     font-size: 14px;
@@ -190,21 +189,21 @@ body {
     cursor: pointer;
     transition: all 0.3s;
   }
-  
+
   .confirm-btn {
     background-color: #0073cf;
     color: white;
   }
-  
+
   .confirm-btn:hover {
     background-color: #005fa3;
   }
-  
+
   .cancel-btn {
     background-color: #e3f2fd;
     color: #0073cf;
   }
-  
+
   .cancel-btn:hover {
     background-color: #b3e5fc;
   }

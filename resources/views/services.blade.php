@@ -118,7 +118,7 @@
 
         <div class="form-container services-container">
             <form action="#">
-                <button class="loginback" onclick="location.href='index'" type="button">Back</button>
+                <a href="{{ route('home') }}" class="loginback">Back</a>
                 <h1>Dental Services</h1>
                 <p>Check and select our dental services <br> below for more details</p>
                 <div class="buttons" id="serviceButtons">

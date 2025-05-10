@@ -19,8 +19,8 @@
     <div class="container {{ session('isSignUp') ? 'right-panel-active' : '' }}" id="container">
         <!-- Sign Up -->
         <div class="form-container sign-up-container">
-            <form action="/signup" method="POST">
-                @csrf 
+            <form action="{{ route('auth.patient.signup') }}" method="POST">
+                @csrf
                 <h1>Create Account</h1>
 
                 <!-- First Name -->
@@ -36,8 +36,8 @@
                 @enderror
 
                 <!-- Email -->
-                <input type="email" name="Email" value="{{ old('email') }}" placeholder="Email" />
-                @error('Email')
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                @error('email')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
@@ -48,24 +48,24 @@
                 @enderror
 
                 <!-- Password -->
-                <input type="password" name="Password" value="{{ old('password') }}" placeholder="Password" />
-                @error('Password')
+                <input type="password" name="password" value="{{ old('password') }}" placeholder="Password" />
+                @error('password')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
                 <button type="submit" class="btn-signup">Sign Up</button>
                 <div class="switch">
                     <h6>Already have an account?</h6>
-                    <button type="button" class="ghost" id="backToLogin">Login</button>
+                    <a href="{{ route('patient.login') }}" class="ghost" id="backToLogin">Login</a>
                 </div>
             </form>
         </div>
 
         <!-- Login -->
         <div class="form-container sign-in-container">
-            <form action="{{ route('auth') }}" method="POST">
+            <form action="{{ route('auth.patient.login') }}" method="POST">
                 @csrf
-                <a href="/index" class="loginback">Back</a>
+                <a href="{{ route('home') }}" class="loginback">Back</a>
                 <h1>Sign In</h1>
                 <p>Enter your details below.</p>
 
@@ -79,11 +79,13 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
-                <a href="#" class="forget_pass">Forgot Password?</a>
+                <a href="{{ route('patient.password.reset') }}" class="forget_pass">Forgot Password?</a>
                 <button class="btn-login" type="submit">Login</button>
 
-                <h6>Don't have an account?</h6>
-                <button type="button" class="ghost" id="signUp">Sign Up</button>
+                <div class="switch">
+                    <h6>Don't have an account?</h6>
+                    <a href="{{ route('patient.signup') }}" class="ghost" id="signUp">Sign Up</a>
+                </div>
             </form>
         </div>
 

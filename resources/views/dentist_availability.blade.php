@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/sharedLayout.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/dentist_availability.css') }}" />
 </head>
 <body>
@@ -160,12 +160,12 @@
           <option value="sunday">Sunday</option>
         </select>
       </div>
-      
+
       <div class="form-field">
         <label for="time">Set Time:</label>
         <input type="time" id="time" name="time">
       </div>
-      
+
       <div class="form-field">
         <label for="availability">Set Availability:</label>
         <select id="availability" name="availability">
@@ -173,11 +173,11 @@
           <option value="not-available">Not Available</option>
         </select>
       </div>
-      
+
       <div class="form-field">
         <button type="submit">Set Schedule</button>
       </div>
-    </form>    
+    </form>
   </div>
 
   <div id="logoutModal" class="logout-modal">

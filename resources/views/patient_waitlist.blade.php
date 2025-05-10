@@ -7,7 +7,7 @@
   <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ asset('css/sharedLayout.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/patient_waitlist.css') }}" />
 </head>
 <body>
@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="/patient/Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
-      <a href="/patient/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="/patient/Waitlist" class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
+      <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+      <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
       <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out

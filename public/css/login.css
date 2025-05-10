@@ -124,7 +124,8 @@ form button:hover {
     background-color: #38b6ff;
 }
 
-button.ghost {
+.ghost {
+    display: inline-block;
     padding: 3px 5px;
     cursor: pointer;
     background-color: transparent;
@@ -132,11 +133,8 @@ button.ghost {
     color: #0a74da;
     transition: 0.3s;
 
-    display: block;
-    margin-left: 120px;
+    text-decoration: none;
 
-    position: relative;
-    top: -20px;
 }
 
 .switch {

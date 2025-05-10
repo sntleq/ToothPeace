@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('dentists', function (Blueprint $table) {
             $table->id();
             $table->string('first_name', 20);
-            $table->string('middle_name', 20)->nullable();
             $table->string('last_name', 20);
-            $table->string('suffix', 3)->nullable();
             $table->string('username', 20);
             $table->string('email', 100)->unique();
             $table->date('dob');

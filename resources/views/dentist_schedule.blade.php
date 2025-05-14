@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-        <a href="/dentist/Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a href="/dentist/Schedule"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
-        <a href="/dentist/Availability"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
+        <a href="{{ route('dentist.dashboard') }}" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -42,7 +42,7 @@
             <img src="{{ asset('pics/search_icon.png') }}" alt="Search" />
           </button>
         </div>
-        <a href="/dentist/ScheduleHistory"><button class="view-apph-btn" title="Add Dentist">View Appointment History</button></a>
+        <a href="{{ route('dentist.schedule.history') }}"><button class="view-apph-btn" title="Add Dentist">View Appointment History</button></a>
      </div>
 
     <div id="searchResults" class="search-results hidden"></div>

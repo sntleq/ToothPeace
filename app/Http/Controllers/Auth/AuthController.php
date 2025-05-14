@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dentist;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class PatientAuthController extends Controller
+class AuthController extends Controller
 {
     public function signup(Request $request)
     {
@@ -17,15 +18,19 @@ class PatientAuthController extends Controller
             $validatedData = $request->validate([
                 'first_name' => ['required', 'min:3', 'max:20'],
                 'last_name' => ['required', 'min:3', 'max:20'],
-                'email' => ['required', 'email', 'unique:patients,email'],
+                'signup_email' => ['required', 'email', 'unique:patients,email'],
                 'dob' => ['required', 'date'],
                 'password' => ['required', 'min:8']
             ]);
 
+            // Map signup_email to email for the database
+            $validatedData['email'] = $validatedData['signup_email'];
+            unset($validatedData['signup_email']);
+
             Patient::create($validatedData);
 
             session()->flash('success', 'Registration successful!');
-            return redirect('/login');
+            return redirect()->route('patient.login');
 
         } catch (ValidationException $e) {
             return back()
@@ -37,20 +42,33 @@ class PatientAuthController extends Controller
 
     public function login(Request $request)
     {
-        try {
+        $request->validate([
+            'login_email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required',
+        $dentist = Dentist::where('email', $request->login_email)->first();
+        $patient = Patient::where('email', $request->login_email)->first();
+
+        if (!$dentist && !$patient) {
+            throw ValidationException::withMessages([
+                'login' => 'Email not registered.',
             ]);
+        }
 
-            $patient = Patient::where('email', $request->email)->first();
-            if (!$patient) {
+        if ($dentist) {
+            if (!Hash::check($request->password, $dentist->password)) {
                 throw ValidationException::withMessages([
-                    'login' => 'Email not registered.',
+                    'login' => 'Password incorrect.',
                 ]);
             }
 
+            Auth::guard('dentist')->login($dentist);
+            $request->session()->regenerate();
+            return redirect()->route('dentist.dashboard')->with('success', 'Login successful!');
+        }
+
+        if ($patient) {
             if (!Hash::check($request->password, $patient->password)) {
                 throw ValidationException::withMessages([
                     'login' => 'Password incorrect.',
@@ -59,20 +77,24 @@ class PatientAuthController extends Controller
 
             Auth::guard('patient')->login($patient);
             $request->session()->regenerate();
-            return redirect()->route('patient.home')->with('success', 'Login successfully!');
-
-        } catch (ValidationException $e) {
-            return back()->withErrors([
-                'login' => 'Fill all the fields',
-            ])->withInput();
+            return redirect()->route('patient.dashboard')->with('success', 'Login successful!');
         }
+
+        // Fallback
+        return back()->withErrors([
+            'login' => 'Login failed.',
+        ])->withInput();
     }
 
     public function logout(Request $request)
     {
+        // Logout from both guards to ensure session is clean
+        Auth::guard('dentist')->logout();
         Auth::guard('patient')->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('patient.login');
+
+        return redirect()->route('home')->with('success', 'Logged out successfully!');
     }
 }

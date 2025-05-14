@@ -17,3 +17,7 @@ Route::get('/', function () {
 Route::get('/services', function() {
     return view('services');
 })->name('services');
+
+Route::get('/login', function() {
+    return redirect()->route('home');
+})->name('login');

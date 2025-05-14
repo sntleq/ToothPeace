@@ -19,14 +19,12 @@ Route::prefix('patient')
         Route::get('/password-reset', function(){
             return view('forgot_pass');
         })->name('password.reset');
-
     });
 
 Route::middleware('auth:patient')
     ->prefix('patient')
     ->name('patient.')
     ->group(function () {
-
         Route::get('/', function () {
             return view('patient_profile');
         })->name('index');
@@ -50,5 +48,4 @@ Route::middleware('auth:patient')
         Route::get('/waitlist', function () {
             return view('patient_waitlist');
         })->name('waitlist');
-
     });

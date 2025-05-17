@@ -24,7 +24,7 @@ class WaitlistEntry extends Model
 
     protected $casts = [
         'date' => 'date',
-        'time' => 'datetime:H:i', 
+        'time' => 'datetime:H:i',
     ];
 
     public function patient()
@@ -40,21 +40,6 @@ class WaitlistEntry extends Model
     public function appointmentType()
     {
         return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
-    }
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
-    }
-
-    public function dentist()
-    {
-        return $this->belongsTo(Dentist::class);
-    }
-
-    public function appointmentType()
-    {
-        return $this->belongsTo(AppointmentType::class);
     }
 
 }

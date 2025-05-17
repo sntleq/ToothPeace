@@ -29,4 +29,20 @@ class WaitlistEntry extends Model
             'time' => 'time',
         ];
     }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
+
+    public function dentist()
+    {
+        return $this->belongsTo(Dentist::class);
+    }
+
+    public function appointmentType()
+    {
+        return $this->belongsTo(AppointmentType::class);
+    }
+
 }

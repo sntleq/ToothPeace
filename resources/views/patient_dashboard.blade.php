@@ -52,12 +52,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @forelse ($appointments as $appointment)
                             <tr>
-                                <td>08/24/2025</td>
-                                <td>01:30 PM</td>
-                                <td>Jhane Gabiana</td>
-                                <td><span class="appt-type">Brace Consultation</span></td>
+                                <td>{{ \Carbon\Carbon::parse($appointment->date)->format('F d, Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($appointment->time)->format('g:i A') }}</td>
+                                <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                                <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
                             </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5">No active appointments found.</td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
                 </div>

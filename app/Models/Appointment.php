@@ -14,6 +14,7 @@ class Appointment extends Model
         'patient_id',
         'dentist_id',
         'appointment_type_id',
+        'status',
     ];
 
     protected $hidden = [
@@ -24,7 +25,19 @@ class Appointment extends Model
     {
         return [
             'date' => 'date',
-            'time' => 'time',
+            //'time' => 'time',
         ];
     }
+
+    public function dentist()
+    {
+        return $this->belongsTo(Dentist::class, 'dentist_id');
+    }
+
+    public function appointmentType()
+    {
+        return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
+    }
+
+
 }

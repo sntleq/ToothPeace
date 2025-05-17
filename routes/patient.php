@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Appointment;
+use App\Models\WaitlistEntry;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:patient')
@@ -11,19 +13,36 @@ Route::middleware('auth:patient')
         })->name('index');
 
         Route::get('/home', function () {
-            return view('patient_dashboard');
+            $appointments = Appointment::with(['dentist', 'appointmentType'])
+                ->where('patient_id', auth()->id())
+                ->where('is_active', true) // Only get active appointments
+                ->get();
+            return view('patient_dashboard', compact('appointments'));
         })->name('home');
 
         Route::get('/profile', function () {
-            return view('patient_profile');
+            $patient = auth()->user(); // Authenticated Patient model
+
+            // Get only active appointments for the patient
+            $appointments = $patient->activeAppointments()
+                ->with(['dentist', 'appointmentType'])
+                ->get();
+            return view('patient_profile', compact('appointments', 'patient'));
         })->name('profile');
 
         Route::get('/appointments', function () {
-            return view('patient_appointments');
+            $appointments = Appointment::with(['dentist', 'appointmentType'])
+                ->where('patient_id', auth()->id())
+                ->get();
+            return view('patient_appointments', compact('appointments'));
         })->name('appointments');
 
-        Route::get('/appointments/history', function(){
-            return view('appointment_history');
+        Route::get('/appointments/history', function () {
+            $patient = auth()->user();
+            $appointments = $patient->pastAppointments()
+                ->with(['dentist', 'appointmentType'])
+                ->get();
+            return view('appointment_history', compact('appointments'));
         })->name('appointments.history');
 
         Route::get('/profile/edit', function(){
@@ -31,6 +50,7 @@ Route::middleware('auth:patient')
         })->name('profile.edit');
 
         Route::get('/waitlist', function () {
-            return view('patient_waitlist');
+            $entries = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])->get();
+            return view('patient_waitlist', compact('entries'));
         })->name('waitlist');
     });

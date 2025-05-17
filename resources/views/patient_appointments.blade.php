@@ -47,18 +47,24 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Sample Scrollable Data -->
-              <tr><td>April 20, 2025</td><td>10:30 AM</td><td>Cleaning</td><td>Dr. Santos</td><td class="status-confirmed">Confirmed</td></tr>
-              <tr><td>April 21, 2025</td><td>11:00 AM</td><td>Filling</td><td>Dr. Cruz</td><td class="status-pending">Pending</td></tr>
-              <tr><td>April 22, 2025</td><td>9:00 AM</td><td>Consultation</td><td>Dr. Reyes</td><td class="status-waiting">Waiting</td></tr>
-              <tr><td>April 23, 2025</td><td>1:30 PM</td><td>Cleaning</td><td>Dr. Santos</td><td class="status-confirmed">Confirmed</td></tr>
-              <tr><td>April 24, 2025</td><td>3:00 PM</td><td>Check-up</td><td>Dr. Reyes</td><td class="status-confirmed">Confirmed</td></tr>
-              <tr><td>April 25, 2025</td><td>10:00 AM</td><td>Extraction</td><td>Dr. Cruz</td><td class="status-pending">Pending</td></tr>
-              <tr><td>April 26, 2025</td><td>2:00 PM</td><td>Filling</td><td>Dr. Santos</td><td class="status-waiting">Waiting</td></tr>
-              <tr><td>April 27, 2025</td><td>2:00 PM</td><td>Root Canal</td><td>Dr. Santos</td><td class="status-confirmed">Confirmed</td></tr>
-              <tr><td>April 28, 2025</td><td>2:00 PM</td><td>Implant</td><td>Dr. Reyes</td><td class="status-confirmed">Confirmed</td></tr>
-            </tbody>
+              <tbody>
+              @forelse ($appointments as $appointment)
+                  <tr>
+                      <td>{{ \Carbon\Carbon::parse($appointment->date)->format('F d, Y') }}</td>
+                      <td>{{ \Carbon\Carbon::parse($appointment->time)->format('g:i A') }}</td>
+                      <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
+                      <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                      <td>
+                          {{ $appointment->is_active ? 'Active' : 'Inactive' }}
+                      </td>
+                  </tr>
+              @empty
+                  <tr>
+                      <td colspan="5" style="text-align: center;">No appointments found.</td>
+                  </tr>
+              @endforelse
+
+              </tbody>
           </table>
         </div>
       </div>

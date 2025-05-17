@@ -30,24 +30,15 @@ updateDateTime();
 // — Logout Modal —
 const logoutBtn = document.getElementById("logoutButton");
 const logoutModal = document.getElementById("logoutModal");
-const confirmLogout = document.getElementById("confirmLogout");
 const cancelLogout = document.getElementById("cancelLogout");
 
-if (logoutBtn && logoutModal) {
-    logoutBtn.addEventListener("click", (e) => {
+if (logoutBtn && logoutModal && cancelLogout) {
+    logoutBtn.addEventListener("click", function(e) {
         e.preventDefault();
         logoutModal.style.display = "flex";
     });
 
-    const confirmLogout = document.getElementById("confirmLogout");
-
-    confirmLogout?.addEventListener("click", () => {
-        const url = confirmLogout.dataset.url;
-        window.location.href = url;
-    });
-
-
-    cancelLogout?.addEventListener("click", () => {
+    cancelLogout.addEventListener("click", function() {
         logoutModal.style.display = "none";
     });
 }

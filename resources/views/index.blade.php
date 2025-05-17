@@ -31,8 +31,8 @@
         </h1>
         <p>Discover Peace of Mind, One Appointment at a Time.</p>
         <div class="buttons">
-            <button onclick="location.href='/patient/login'">Proceed to Login</button> <br>
-            <button onclick="location.href='/services'">View Services</button>
+            <button onclick="location.href='{{ route('login') }}'">Proceed to Login</button> <br>
+            <button onclick="location.href='{{ route('services') }}'">View Services</button>
         </div>
     </section>
 

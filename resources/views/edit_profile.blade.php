@@ -19,6 +19,7 @@
       </div>
       <nav>
         <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+        <a class="active"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
         <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
       </nav>
@@ -28,10 +29,6 @@
     </div>
 
     <div class="main-content">
-      <div class="datetime-container">
-          <div class="date-box" id="dateBox"></div>
-          <div class="time-box" id="timeBox"></div>
-      </div>
 
       <div class="main-container">
           <h1>Welcome, User!</h1>
@@ -98,8 +95,11 @@
           <div class="modal-content">
             <h3>Are you sure you want to log out?</h3>
             <div class="modal-buttons">
-              <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
-              <button id="cancelLogout" class="cancel-btn">No</button>
+                <form action="{{ route('auth.logout') }}" method="POST">
+                @csrf
+                    <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+                </form>
+                <button id="cancelLogout" class="cancel-btn">No</button>
             </div>
           </div>
         </div>

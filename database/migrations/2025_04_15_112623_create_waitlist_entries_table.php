@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time_start');
             $table->time('time_end');
-            $table->enum('status', ['waiting', 'notified']);
+            $table->enum('status', ['waiting', 'notified', 'inactive']);
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('dentist_id')->constrained('dentists');
             $table->foreignId('appointment_type_id')->constrained('appointment_types');

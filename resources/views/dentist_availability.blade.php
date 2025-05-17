@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-        <a href="{{ route('dentist.dashboard') }}" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+        <a href="{{ route('dentist.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
         <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
-        <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
+        <a class="active"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -28,10 +28,6 @@
   </div>
 
   <div class="main-content">
-    <div class="datetime-container">
-      <div class="date-box" id="dateBox"></div>
-      <div class="time-box" id="timeBox"></div>
-    </div>
 
     <h1 class="section-title">Weekly Schedule Availability</h1>
 
@@ -184,8 +180,11 @@
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
-        <button id="cancelLogout" class="cancel-btn">No</button>
+          <form action="{{ route('auth.logout') }}" method="POST">
+          @csrf
+              <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+          </form>
+          <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>
   </div>

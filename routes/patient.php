@@ -2,25 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('patient')
-    ->name('patient.')
-    ->group(function () {
-
-        Route::get('/login', function() {
-            session(['isSignUp' => false]);
-            return view('login');
-        })->name('login');
-
-        Route::get('/signup', function () {
-            session(['isSignUp' => true]);
-            return view('login');
-        })->name('signup');
-
-        Route::get('/password-reset', function(){
-            return view('forgot_pass');
-        })->name('password.reset');
-    });
-
 Route::middleware('auth:patient')
     ->prefix('patient')
     ->name('patient.')
@@ -30,8 +11,12 @@ Route::middleware('auth:patient')
         })->name('index');
 
         Route::get('/home', function () {
-            return view('patient_profile');
+            return view('patient_dashboard');
         })->name('home');
+
+        Route::get('/profile', function () {
+            return view('patient_profile');
+        })->name('profile');
 
         Route::get('/appointments', function () {
             return view('patient_appointments');

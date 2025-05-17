@@ -31,8 +31,6 @@
   <div class="main-content">
 
     <div class="main-container">
-      <h1>Welcome, User!</h1>
-      <p>Book your smile appointment today</p>
 
       <div class="table-container">
         <h1 class="table-header">My Appointments</h1>

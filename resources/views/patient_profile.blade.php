@@ -29,29 +29,18 @@
   </div>
 
   <div class="main-content">
-    <div class="datetime-container">
-        <div class="date-box" id="dateBox"></div>
-        <div class="time-box" id="timeBox"></div>
-    </div>
-
+      <div class="profile-header">
+          <h1 class="section-title">My Profile</h1>
+          <button onclick="window.location.href='{{ route('patient.profile.edit') }}'" class="edit-profile-btn">Edit Profile</button>
+      </div>
     <div class="main-container">
-        <h1>Welcome, User!</h1>
-        <p>Book your smile appointment today</p>
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-badge">My Profile</div>
-                    <a href="{{ route('patient.profile.edit') }}">Edit Profile</a>
-                </div>
-
-                <p><strong>Last Name:</strong> <span id="lastName">{{ $patient->last_name ?? 'N/A' }}</span></p>
-                <p><strong>First Name:</strong> <span id="firstName">{{ $patient->first_name ?? 'N/A' }}</span></p>
-                <p><strong>Middle Name:</strong> <span id="middleName">{{ $patient->middle_name ?? 'N/A' }}</span></p>
-                <p><strong>Suffix:</strong> <span id="suffix">{{ $patient->suffix ?? 'N/A' }}</span></p>
-                <p><strong>Date of Birth:</strong> <span id="dob">{{ $patient->dob->format('F d, Y') ?? 'N/A' }}</span></p>
-                <p><strong>Email Address:</strong> <span id="email">{{ $patient->email ?? 'N/A' }}</span></p>
-            </div>
-
+        <div class="profile-card">
+            <p><strong>Last Name:</strong> <span id="lastName">{{ $patient->last_name ?? 'N/A' }}</span></p>
+            <p><strong>First Name:</strong> <span id="firstName">{{ $patient->first_name ?? 'N/A' }}</span></p>
+            <p><strong>Date of Birth:</strong> <span id="dob">{{ $patient->dob->format('F d, Y') ?? 'N/A' }}</span></p>
+            <p><strong>Email Address:</strong> <span id="email">{{ $patient->email ?? 'N/A' }}</span></p>
         </div>
+    </div>
   </div>
   <div id="logoutModal" class="logout-modal">
     <div class="modal-content">

@@ -30,11 +30,6 @@
 
   <div class="main-content">
 
-    <div class="welcome-header">
-      <h1>Welcome, User!</h1>
-      <p>Book your smile appointment today.</p>
-    </div>
-
     <div class="main-container">
       <div class="table-container">
         <h1 class="table-title">Waitlist Entry</h1>

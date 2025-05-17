@@ -49,23 +49,21 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>March 10, 2025</td>
-                <td>1:00 PM</td>
-                <td>Extraction</td>
-                <td>Dr. Reyes</td>
-                <td class="status-completed">Completed</td>
-              </tr>
-              <tr>
-                <td>February 15, 2025</td>
-                <td>9:00 AM</td>
-                <td>Cleaning</td>
-                <td>Dr. Santos</td>
-                <td class="status-completed">Completed</td>
-              </tr>
-              <!-- Add lag dummy rows if needed -->
-            </tbody>
+              <tbody>
+              @forelse ($appointments as $appointment)
+                  <tr>
+                      <td>{{ \Carbon\Carbon::parse($appointment->date)->format('F d, Y') }}</td>
+                      <td>{{ \Carbon\Carbon::parse($appointment->time)->format('g:i A') }}</td>
+                      <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
+                      <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                      <td class="status-completed">Completed</td>
+                  </tr>
+              @empty
+                  <tr>
+                      <td colspan="5" style="text-align: center;">No appointment history found.</td>
+                  </tr>
+              @endforelse
+              </tbody>
           </table>
         </div>
       </div>

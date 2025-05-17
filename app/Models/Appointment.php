@@ -14,23 +14,18 @@ class Appointment extends Model
         'patient_id',
         'dentist_id',
         'appointment_type_id',
-        'duration',  
-        'is_active', 
     ];
 
     protected $hidden = [
         'is_active',
     ];
 
-    protected $casts = [
-        'date' => 'date',
-        'time' => 'datetime:H:i', 
-    ];
-
-    // Relationships
-    public function patient()
+    protected function casts(): array
     {
-        return $this->belongsTo(Patient::class, 'patient_id');
+        return [
+            'date' => 'date',
+            'time' => 'time',
+        ];
     }
 
     public function dentist()
@@ -42,4 +37,6 @@ class Appointment extends Model
     {
         return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
     }
+
+
 }

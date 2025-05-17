@@ -53,29 +53,25 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>WL001</td>
-                <td>Juan Dela Cruz</td>
-                <td>Dr. Reyes</td>
-                <td>Cleaning</td>
-                <td>April 21, 2025</td>
-                <td>9:00 AM</td>
-                <td>9:30 AM</td>
-                <td class="status-waiting">Waiting</td>
-              </tr>
-              <tr>
-                <td>WL002</td>
-                <td>Ana Santos</td>
-                <td>Dr. Gomez</td>
-                <td>Consultation</td>
-                <td>April 22, 2025</td>
-                <td>10:00 AM</td>
-                <td>10:30 AM</td>
-                <td class="status-waiting">Waiting</td>
-              </tr>
-              <!-- more data add lang if needed -->
-            </tbody>
+              <tbody>
+              @forelse ($entries as $entry)
+                  <tr>
+                      <td>WL{{ str_pad($entry->id, 3, '0', STR_PAD_LEFT) }}</td>
+                      <td>{{ $entry->patient->name ?? 'N/A' }}</td>
+                      <td>{{ $entry->dentist->name ?? 'N/A' }}</td>
+                      <td>{{ $entry->appointmentType->name ?? 'N/A' }}</td>
+                      <td>{{ \Carbon\Carbon::parse($entry->date)->format('F d, Y') }}</td>
+                      <td>{{ \Carbon\Carbon::parse($entry->time_start)->format('g:i A') }}</td>
+                      <td>{{ \Carbon\Carbon::parse($entry->time_end)->format('g:i A') }}</td>
+                      <td class="status-{{ $entry->status }}">{{ ucfirst($entry->status) }}</td>
+                  </tr>
+              @empty
+                  <tr>
+                      <td colspan="8" style="text-align: center;">No waitlist entries found.</td>
+                  </tr>
+              @endforelse
+              </tbody>
+
           </table>
         </div>
       </div>

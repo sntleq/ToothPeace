@@ -37,46 +37,21 @@
     <div class="main-container">
         <h1>Welcome, User!</h1>
         <p>Book your smile appointment today</p>
-
-        <div class="container">
-            <div class="table-container">
-                <h2 class="table-title">Upcoming Appointments</h2>
-                <div class="table-wrapper">
-                    <table class="appointment-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Dentist</th>
-                                <th>Appointment Type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>08/24/2025</td>
-                                <td>01:30 PM</td>
-                                <td>Jhane Gabiana</td>
-                                <td><span class="appt-type">Brace Consultation</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="profile-badge">My Profile</div>
                     <a href="{{ route('patient.profile.edit') }}">Edit Profile</a>
-                    </div>
-                    <p><strong>Last Name:</strong> <span id="lastName"></span></p>
-                    <p><strong>First Name:</strong> <span id="firstName"></span></p>
-                    <p><strong>Middle Name:</strong> <span id="middleName"></span></p>
-                    <p><strong>Suffix:</strong> <span id="suffix"></span></p>
-                    <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
-                    <p><strong>Email Address:</strong> <span id="email"></span></p>
                 </div>
+
+                <p><strong>Last Name:</strong> <span id="lastName">{{ $patient->last_name ?? 'N/A' }}</span></p>
+                <p><strong>First Name:</strong> <span id="firstName">{{ $patient->first_name ?? 'N/A' }}</span></p>
+                <p><strong>Middle Name:</strong> <span id="middleName">{{ $patient->middle_name ?? 'N/A' }}</span></p>
+                <p><strong>Suffix:</strong> <span id="suffix">{{ $patient->suffix ?? 'N/A' }}</span></p>
+                <p><strong>Date of Birth:</strong> <span id="dob">{{ $patient->dob->format('F d, Y') ?? 'N/A' }}</span></p>
+                <p><strong>Email Address:</strong> <span id="email">{{ $patient->email ?? 'N/A' }}</span></p>
             </div>
-    </div>
+
+        </div>
   </div>
   <div id="logoutModal" class="logout-modal">
     <div class="modal-content">

@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Form submitted!', formData);
     alert('Dentist successfully added!');
-    window.location.href = 'admin_dentists.html';
+    window.location.href = 'admin/dentists';
   });
 });

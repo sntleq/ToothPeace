@@ -22,11 +22,23 @@ class WaitlistEntry extends Model
         'status',
     ];
 
-    protected function casts(): array
+    protected $casts = [
+        'date' => 'date',
+        'time' => 'datetime:H:i', 
+    ];
+
+    public function patient()
     {
-        return [
-            'date' => 'date',
-            'time' => 'time',
-        ];
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
+
+    public function dentist()
+    {
+        return $this->belongsTo(Dentist::class, 'dentist_id');
+    }
+
+    public function appointmentType()
+    {
+        return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
     }
 }

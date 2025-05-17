@@ -26,6 +26,9 @@ class AuthController extends Controller
             // Map signup_email to email for the database
             $validatedData['email'] = $validatedData['signup_email'];
             unset($validatedData['signup_email']);
+            
+            // Hash the password before storing it
+            $validatedData['password'] = Hash::make($validatedData['password']);
 
             Patient::create($validatedData);
 
@@ -77,7 +80,7 @@ class AuthController extends Controller
 
             Auth::guard('patient')->login($patient);
             $request->session()->regenerate();
-            return redirect()->route('patient.dashboard')->with('success', 'Login successful!');
+            return redirect()->route('patient.home')->with('success', 'Login successful!');
         }
 
         // Fallback

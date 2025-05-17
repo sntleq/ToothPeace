@@ -18,3 +18,5 @@ Route::resource('availability.override', AvailabilityOverrideController::class);
 Route::resource('dentist.services', DentistServiceController::class);
 Route::resource('waitlist', WaitlistController::class);
 Route::resource('admin.controls', AdminControlsController::class);
+
+

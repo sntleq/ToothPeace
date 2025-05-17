@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddDentistController;
+use App\Http\Controllers\AdminController;
 
 Route::prefix('admin')
     ->name('admin.')
@@ -10,28 +12,37 @@ Route::prefix('admin')
             return view('admin_dashboard');
         })->name('dashboard');
 
-        Route::get('/appointments', function () {
-            return view('admin_appointments');
-        })->name('appointments');
+        Route::get('/appointments', 
+        [AdminController::class, 
+        'appointments'])->name('appointments');
 
-        Route::get('/dentists', function () {
-            return view('admin_dentists');
-        })->name('dentists');
+        Route::get('/dentists', 
+        [AdminController::class, 
+        'dentists'])->name('dentists');
 
-        Route::get('/dentists/create', function () {
-            return view('admin_add_dentists');
-        })->name('dentists.create');
+        Route::get('/dentists/create', 
+        [AddDentistController::class, 
+        'create'])->name('dentists.create');
 
-        Route::get('/patients', function () {
-            return view('admin_patients');
-        })->name('patients');
+        Route::post('/dentists/store', 
+        [AddDentistController::class, 
+        'store'])->name('dentists.store');
 
-        Route::get('/controls', function () {
-            return view('admin_controls');
-        })->name('controls');
+        Route::get('/patients', 
+        [AdminController::class, 
+        'patients'])->name('patients');
 
-        Route::get('/waitlist', function () {
-            return view('admin_waitlist');
-        })->name('waitlist');
+        Route::get('/controls', 
+        [AdminController::class, 
+        'adminControls'])->name('controls');
+
+        Route::post('/controls/save', 
+        [AdminController::class, 
+        'saveSettings'])->name('controls.save');
+
+        Route::get('/waitlist', 
+        [AdminController::class, 
+        'waitlist'])->name('waitlist');
+
 
     });

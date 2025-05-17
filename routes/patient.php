@@ -21,10 +21,6 @@ Route::middleware('auth:patient')
         })->name('home');
 
         Route::get('/profile', function () {
-            return view('patient_profile');
-        })->name('profile');
-
-        Route::get('/profile', function () {
             $patient = auth()->user(); // Authenticated Patient model
 
             // Get only active appointments for the patient
@@ -49,7 +45,7 @@ Route::middleware('auth:patient')
             return view('appointment_history', compact('appointments'));
         })->name('appointments.history');
 
-        Route::get('/profile/edit', function(){
+        Route::get('/profile/edit', function () {
             return view('edit_profile');
         })->name('profile.edit');
 

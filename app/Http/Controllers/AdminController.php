@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function patients()
     {
         $patients = Patient::all();
-        return view('admin_patients', compact('patients')); 
+        return view('admin_patients', compact('patients'));
     }
 
     public function appointments()

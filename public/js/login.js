@@ -11,8 +11,8 @@ backToLogin.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); 
+loginForm.addEventListener('submit', function (event) {
+    event.preventDefault();
 
     location.href = 'dentist_dashboard.html';
 });

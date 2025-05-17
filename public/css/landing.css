@@ -14,7 +14,7 @@ body {
     margin-top: 40px;
 }
 
-.landing_page h1{
+.landing_page h1 {
     font-size: 3rem;
 }
 
@@ -50,7 +50,7 @@ button:hover {
     background-color: #38b6ff;
 }
 
-footer p{
+footer p {
     color: #004aad;
     font: bold .8rem 'Montserrat', sans-serif;
 }

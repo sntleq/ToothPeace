@@ -1,5 +1,3 @@
-
-
 // — Live Date / Day / Time —
 function updateDateTime() {
     const now = new Date();
@@ -24,6 +22,7 @@ function updateDateTime() {
         timeBox.textContent = `${h}:${m}:${s} ${ampm}`;
     }
 }
+
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
@@ -33,12 +32,12 @@ const logoutModal = document.getElementById("logoutModal");
 const cancelLogout = document.getElementById("cancelLogout");
 
 if (logoutBtn && logoutModal && cancelLogout) {
-    logoutBtn.addEventListener("click", function(e) {
+    logoutBtn.addEventListener("click", function (e) {
         e.preventDefault();
         logoutModal.style.display = "flex";
     });
 
-    cancelLogout.addEventListener("click", function() {
+    cancelLogout.addEventListener("click", function () {
         logoutModal.style.display = "none";
     });
 }

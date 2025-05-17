@@ -144,10 +144,6 @@
     </div>
   </div>
 
-  <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
-      @csrf
-  </form>
-
   <script src="{{ asset('js/admin_add_dentists.js') }}" defer></script>
   <script src="{{ asset('js/dateLinksLogout.js') }}" defer></script>
 </body>

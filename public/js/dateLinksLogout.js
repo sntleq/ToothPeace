@@ -39,14 +39,6 @@ if (logoutBtn && logoutModal) {
         logoutModal.style.display = "flex";
     });
 
-    const confirmLogout = document.getElementById("confirmLogout");
-
-    confirmLogout?.addEventListener("click", () => {
-        const url = confirmLogout.dataset.url;
-        window.location.href = url;
-    });
-
-
     cancelLogout?.addEventListener("click", () => {
         logoutModal.style.display = "none";
     });

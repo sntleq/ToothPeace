@@ -77,7 +77,7 @@ class AuthController extends Controller
 
             Auth::guard('patient')->login($patient);
             $request->session()->regenerate();
-            return redirect()->route('patient.dashboard')->with('success', 'Login successful!');
+            return redirect()->route('patient.home')->with('success', 'Login successful!');
         }
 
         // Fallback

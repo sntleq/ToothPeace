@@ -2,20 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('dentist')
-    ->name('dentist.')
-    ->group(function () {
-
-        Route::get('/login', function() {
-            return view('login');
-        })->name('login');
-
-        Route::get('/password-reset', function(){
-            return view('forgot_pass');
-        })->name('password.reset');
-
-    });
-
 Route::middleware('auth:dentist')
     ->prefix('dentist')
     ->name('dentist.')

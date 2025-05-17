@@ -19,8 +19,9 @@
     </div>
     <nav>
       <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+      <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
       <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
+      <a class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entry</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
       <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -28,10 +29,6 @@
   </div>
 
   <div class="main-content">
-    <div class="datetime-container">
-      <div class="date-box" id="dateBox"></div>
-      <div class="time-box" id="timeBox"></div>
-    </div>
 
     <div class="welcome-header">
       <h1>Welcome, User!</h1>

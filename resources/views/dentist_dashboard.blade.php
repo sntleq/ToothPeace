@@ -18,7 +18,7 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-        <a href="{{ route('dentist.dashboard') }}" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+        <a class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
         <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
         <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
@@ -34,26 +34,8 @@
             <div class="time-box" id="timeBox"></div>
         </div>
 
-    <h1>Dashboard Overview</h1>
-
-    <div class="overview-cards">
-        <div class="card">
-          <div class="icon-container">
-            <img src="{{ asset('pics/ptoday_icon.png') }}" alt="Patients Today" />
-          </div>
-          <p>Total Upcoming Appointments</p>
-        </div>
-
-        <div class="card">
-          <div class="icon-container">
-            <img src="{{ asset('pics/tpatients_icon.png') }}" alt="Total Patients" />
-          </div>
-          <p>Total Completed Appointments</p>
-        </div>
-      </div>
-
     <div class="appointments-section">
-    <h2>Weekly Upcoming Appointments</h2>
+    <h2 class="section-title">Weekly Upcoming Appointments</h2>
     <div class="table-wrapper">
       <div class="table-container">
         <table>
@@ -120,8 +102,10 @@
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
-        <button id="cancelLogout" class="cancel-btn">No</button>
+          <form action="{{ route('auth.logout') }}" method="POST">
+              <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+          </form>
+          <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>
   </div>

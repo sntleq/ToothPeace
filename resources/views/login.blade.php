@@ -53,7 +53,7 @@
                 <button type="submit" class="btn-signup">Sign Up</button>
                 <div class="switch">
                     <h6>Already have an account?</h6>
-                    <a href="{{ route('patient.login') }}" class="ghost" id="backToLogin">Login</a>
+                    <a href="{{ route('login') }}" class="ghost" id="backToLogin">Login</a>
                 </div>
             </form>
         </div>
@@ -76,12 +76,12 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
-                <a href="{{ route('patient.password.reset') }}" class="forget_pass">Forgot Password?</a>
+                <a href="{{ route('password.reset') }}" class="forget_pass">Forgot Password?</a>
                 <button class="btn-login" type="submit">Login</button>
 
                 <div class="switch">
                     <h6>Don't have an account?</h6>
-                    <a href="{{ route('patient.signup') }}" class="ghost" id="signUp">Sign Up</a>
+                    <a href="{{ route('signup') }}" class="ghost" id="signUp">Sign Up</a>
                 </div>
             </form>
         </div>
@@ -112,17 +112,15 @@
             const signUpLink = document.getElementById('signUp');
             const backToLoginLink = document.getElementById('backToLogin');
             const container = document.getElementById('container');
-            
+
             if (signUpLink) {
                 signUpLink.addEventListener('click', function(e) {
-                    e.preventDefault();
                     container.classList.add('right-panel-active');
                 });
             }
-            
+
             if (backToLoginLink) {
                 backToLoginLink.addEventListener('click', function(e) {
-                    e.preventDefault();
                     container.classList.remove('right-panel-active');
                 });
             }

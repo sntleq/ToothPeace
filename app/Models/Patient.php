@@ -23,7 +23,6 @@ class Patient extends Authenticatable
 
     protected $hidden = [
         'password',
-        'is_active',
     ];
 
     protected function casts(): array

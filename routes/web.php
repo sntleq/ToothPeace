@@ -19,5 +19,15 @@ Route::get('/services', function() {
 })->name('services');
 
 Route::get('/login', function() {
-    return redirect()->route('home');
+    session(['isSignUp' => false]);
+    return view('login');
 })->name('login');
+
+Route::get('/signup', function () {
+    session(['isSignUp' => true]);
+    return view('login');
+})->name('signup');
+
+Route::get('/password-reset', function(){
+    return view('forgot_pass');
+})->name('password.reset');

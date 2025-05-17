@@ -55,7 +55,7 @@
           </div>
       @endif
 
-      <form action="/admin/AddDentist" method="POST" class="dentist-form">
+      <form action="{{ route('dentists.store') }}" method="POST" class="dentist-form">
         @csrf
         <div class="form-row">
           <div class="form-group">
@@ -124,7 +124,7 @@
 
         <div class="form-actions">
           <button type="submit" class="btn-add">Add</button>
-          <button type="button" class="btn-cancel" onclick="window.location.href='/admin/Dentists'">Cancel</button>
+          <button type="button" class="btn-cancel" onclick="window.location.href='{{ route('admin.dentists') }}'">Cancel</button>
         </div>
       </form>
     </div>

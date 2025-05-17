@@ -18,8 +18,8 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
-      <a class="active"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
+      <a class="active"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+      <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
       <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
       <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entry</a>
     </nav>
@@ -62,20 +62,6 @@
                     </table>
                 </div>
             </div>
-
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-badge">My Profile</div>
-                    <a href="{{ route('patient.profile.edit') }}">Edit Profile</a>
-                    </div>
-                    <p><strong>Last Name:</strong> <span id="lastName"></span></p>
-                    <p><strong>First Name:</strong> <span id="firstName"></span></p>
-                    <p><strong>Middle Name:</strong> <span id="middleName"></span></p>
-                    <p><strong>Suffix:</strong> <span id="suffix"></span></p>
-                    <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
-                    <p><strong>Email Address:</strong> <span id="email"></span></p>
-                </div>
-            </div>
     </div>
   </div>
   <div id="logoutModal" class="logout-modal">
@@ -90,6 +76,7 @@
 
   <script src="{{ asset('js/patient_profile.js') }}"></script>
   <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+  </div>
 </body>
 </html>
 

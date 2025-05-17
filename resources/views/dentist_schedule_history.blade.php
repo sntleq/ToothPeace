@@ -18,8 +18,8 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-        <a href="{{ route('dentist.dashboard') }}" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a href="{{ route('dentist.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+        <a class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
         <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
@@ -28,10 +28,6 @@
   </div>
 
   <div class="main-content">
-    <div class="datetime-container">
-      <div class="date-box" id="dateBox"></div>
-      <div class="time-box" id="timeBox"></div>
-    </div>
 
     <h1><span class="page-title">Appointment History</span></h1>
 

@@ -26,11 +26,11 @@
                 <button class="btn-login" type="submit">Reset Password</button>
                 <div class="row-link">
                     <h6>Remember your password?</h6>
-                    <a href="{{ route('patient.login') }}" class="ghost" id="backToLogin">Login</a>
+                    <a href="{{ route('login') }}" class="ghost" id="backToLogin">Login</a>
                 </div>
                 <div class="row-link">
                     <h6>Don't have an account?</h6>
-                    <a href="{{ route('patient.signup') }}" class="ghost" id="signUp">Sign Up</a>
+                    <a href="{{ route('signup') }}" class="ghost" id="signUp">Sign Up</a>
                 </div>
             </form>
         </div>

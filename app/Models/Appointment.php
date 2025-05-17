@@ -14,7 +14,6 @@ class Appointment extends Model
         'patient_id',
         'dentist_id',
         'appointment_type_id',
-        'status',
     ];
 
     protected $hidden = [
@@ -25,7 +24,7 @@ class Appointment extends Model
     {
         return [
             'date' => 'date',
-            //'time' => 'time',
+            'time' => 'time',
         ];
     }
 

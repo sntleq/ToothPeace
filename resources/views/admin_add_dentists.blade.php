@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="{{ asset('css/admin_add_dentists.css') }}" />
 </head>
 <body>
-@if (session('successs'))
+@if (session('success'))
     <div class="alert-console success">
-        {{ session('successs') }}
+        {{ session('success') }}
     </div>
 @endif
   <div class="sidebar">
@@ -23,12 +23,12 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-    <a href="/admin/Dashboard" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="/admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="/admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="/admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="/admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="/admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+    <a href="{{ route ('admin.dashboard') }}" class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+      <a href="{{ route ('admin.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="{{ route ('admin.waitlist') }}"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="{{ route ('admin.patients') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="{{ route ('admin.dentists') }}"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a href="{{ route ('admin.controls') }}"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -43,7 +43,7 @@
 
     <h1><span class="page-title">Dentists</span></h1>
 
-    <button class="back-button" onclick="window.location.href='/admin/Dentists'">
+    <button class="back-button" onclick="window.location.href='{{ route('admin.dentists') }}'">
       <span class="icon">&#8592;</span> Back
     </button>
 
@@ -115,8 +115,8 @@
           </div>
           <div class="form-group">
             <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" value="{{ old('confirmPassword') }}" />
-            @error('confirmPassword')
+            <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" />
+            @error('password_confirmation')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
           </div>
@@ -135,7 +135,7 @@
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" class="confirm-btn">Yes</button>
+        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
         <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>

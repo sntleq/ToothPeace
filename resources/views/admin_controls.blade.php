@@ -18,12 +18,12 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="/admin/Dashboard"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="/admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="/admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="/admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="/admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="/admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+      <a href="{{ route ('admin.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+      <a href="{{ route ('admin.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="{{ route ('admin.waitlist') }}"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="{{ route ('admin.patients') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="{{ route ('admin.dentists') }}"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a class="active"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -40,30 +40,71 @@
 
     <div class="controls-wrapper">
       <div class="controls-section">
-        <div class="control-group">
-          <label for="timeslotSize">Timeslot Size:</label>
-          <input type="text" id="timeslotSize" placeholder="Enter timeslot size">
+      @if (session()->has('success'))
+        <div class="alert-console success">
+            {{ session('success') }}
         </div>
+      @endif
+
+      @if ($errors->has('timeslot_size'))
+        <div class="error-message">{{ $errors->first('timeslot_size') }}</div>
+      @endif
+
+
+      <form method="POST" action="{{ route('admin.controls.save') }}">
+        @csrf
+
+        <div class="control-group">
+          <label for="timeslotSize">Timeslot Size (minutes):</label>
+          <input 
+            type="number" 
+            id="timeslotSize" 
+            name="timeslot_size" 
+            placeholder="Enter timeslot size" 
+            value="{{ old('timeslot_size', $settings['timeslot_size'] ?? '') }}" 
+            min="1"
+            required
+          >
+        </div>
+
         <div class="control-group">
           <label for="openingTime">Opening Time:</label>
-          <input type="time" id="openingTime">
+          <input 
+            type="time" 
+            id="openingTime" 
+            name="opening_time" 
+            value="{{ old('opening_time', $settings['opening_time'] ?? '') }}" 
+            required
+          >
         </div>
+
         <div class="control-group">
           <label for="closingTime">Closing Time:</label>
-          <input type="time" id="closingTime">
+          <input 
+            type="time" 
+            id="closingTime" 
+            name="closing_time" 
+            value="{{ old('closing_time', $settings['closing_time'] ?? '') }}" 
+            required
+          >
+          @if ($errors->has('closing_time'))
+              <div class="text-danger">{{ $errors->first('closing_time') }}</div>
+          @endif
         </div>
 
         <div class="button-group">
-          <button class="cancel-button">Cancel</button>
-          <button class="enter-button">Enter</button>
+          <button type="reset" class="cancel-button">Cancel</button>
+          <button type="submit" class="enter-button">Save</button>
         </div>
+      </form>
+
       </div>
 
   <div id="logoutModal" class="logout-modal">
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" class="confirm-btn">Yes</button>
+        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
         <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>

@@ -105,26 +105,6 @@
     <footer>
         <p>&copy; 2025 ToothPeace Dental Clinic</p>
     </footer>
-
-    <script>
-        // Simple script to handle panel transitions
-        document.addEventListener('DOMContentLoaded', function() {
-            const signUpLink = document.getElementById('signUp');
-            const backToLoginLink = document.getElementById('backToLogin');
-            const container = document.getElementById('container');
-
-            if (signUpLink) {
-                signUpLink.addEventListener('click', function(e) {
-                    container.classList.add('right-panel-active');
-                });
-            }
-
-            if (backToLoginLink) {
-                backToLoginLink.addEventListener('click', function(e) {
-                    container.classList.remove('right-panel-active');
-                });
-            }
-        });
-    </script>
+    <script src="{{ asset('js/login.js') }}"></script>
 </body>
 </html>

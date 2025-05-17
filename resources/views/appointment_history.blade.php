@@ -18,9 +18,9 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="patient/Profile"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
-      <a href="patient/Appointments" class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="patient/Waitlist"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Entry</a>
+      <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
+      <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entry</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
       <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -74,7 +74,7 @@
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" class="confirm-btn">Yes</button>
+        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
         <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>

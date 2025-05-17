@@ -18,12 +18,12 @@
       <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
-      <a href="/admin/Dashboard"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-      <a href="/admin/Appointments"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-      <a href="/admin/Waitlist"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
-      <a href="/admin/Patients"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
-      <a href="/admin/Dentists"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
-      <a href="/admin/Controls"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
+      <a href="{{ route ('admin.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
+      <a href="{{ route ('admin.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
+      <a class="active"><img src="{{ asset('pics/waitlist_icon.png') }}" alt="Waitlist">Waitlist</a>
+      <a href="{{ route ('admin.patients') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
+      <a href="{{ route ('admin.dentists') }}"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
+      <a href="{{ route ('admin.controls') }}"><img src="{{ asset('pics/admincontrols_icon.png') }}" alt="Admin Controls">Admin Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -64,26 +64,19 @@
                       <th>Time End</th>
                     </tr>
                   </thead>
-              <tbody>
-                <tr>
-                    <td>W001</td>
-                    <td>Jane Smith</td>
-                    <td>Dr. Cruz</td>
-                    <td>Check-up</td>
-                    <td>2025-04-18</td>
-                    <td>09:00 AM</td>
-                    <td>09:30 AM</td>
-                  </tr>
-                  <tr>
-                    <td>W002</td>
-                    <td>Mark Reyes</td>
-                    <td>Dr. Lopez</td>
-                    <td>Cleaning</td>
-                    <td>2025-04-18</td>
-                    <td>10:00 AM</td>
-                    <td>10:45 AM</td>
-                  </tr>
-              </tbody>
+                  <tbody>
+                    @foreach ($waitlists as $waitlist)
+                      <tr>
+                        <td>{{ $waitlist->id }}</td>
+                        <td>{{ $waitlist->patient->name ?? 'N/A' }}</td>
+                        <td>{{ $waitlist->dentist->name ?? 'N/A' }}</td>
+                        <td>{{ $waitlist->appointmentType->name ?? 'N/A' }}</td>
+                        <td>{{ $waitlist->date->format('Y-m-d') ?? 'N/A' }}</td>
+                        <td>{{ $waitlist->time_start ?? 'N/A' }}</td>
+                        <td>{{ $waitlist->time_end ?? 'N/A' }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
             </table>
           </div>
         </div>
@@ -94,7 +87,7 @@
         <div class="modal-content">
           <h3>Are you sure you want to log out?</h3>
           <div class="modal-buttons">
-            <button id="confirmLogout" class="confirm-btn">Yes</button>
+            <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
             <button id="cancelLogout" class="cancel-btn">No</button>
           </div>
         </div>

@@ -84,8 +84,11 @@
     <div class="modal-content">
       <h3>Are you sure you want to log out?</h3>
       <div class="modal-buttons">
-        <button id="confirmLogout" data-url="{{ route('auth.logout') }}" class="confirm-btn">Yes</button>
-        <button id="cancelLogout" class="cancel-btn">No</button>
+          <form action="{{ route('auth.logout') }}" method="POST">
+          @csrf
+              <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+          </form>
+          <button id="cancelLogout" class="cancel-btn">No</button>
       </div>
     </div>
   </div>

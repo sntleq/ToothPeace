@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" max="{{ date('Y-m-d') }}" />
+                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" max="{{ now()->toDateString() }}"/>
                     @error('dob')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -92,7 +92,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="{{ old('password') }}" />
+                    <input type="password" id="password" name="password" value="{{ old('password') }}"/>
                     @error('password')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -108,7 +108,6 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn-add">Save</button>
-                </button>
             </div>
         </form>
     </div>

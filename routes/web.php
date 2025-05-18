@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ForgotPasswordController;
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/crud.php';
@@ -28,6 +29,7 @@ Route::get('/signup', function () {
     return view('login');
 })->name('signup');
 
-Route::get('/password-reset', function () {
-    return view('forgot_pass');
-})->name('password.reset');
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password/email', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email');
+Route::post('/forgot-password/reset', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');

@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/edit_profile.css') }}"/>
 </head>
 <body>
+@if (session('success'))
+    <div class="alert-console success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="sidebar">
     <div class="logo">
         <img src="{{ asset('pics/toothpeace_logo.png') }}" alt="ToothPeace Logo"/>
@@ -41,56 +46,92 @@
         </a>
 
         <div class="form-container">
-            <h2 class="form-title">My Profile</h2>
+            <h2 class="form-title">Edit Profile</h2>
+            @if (session()->has('error'))
+                <div class="alert-console error">
+                    {{ session('error') }}
+                </div>
+            @endif
 
-            <form class="patient-form">
+            <form action="{{ route('patients.update', $patient) }}" method="POST" class="patient-form">
+                @csrf
+                @method('PUT')
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName"/>
+                        <input type="text" id="firstName" name="first_name" value="{{ old('first_name', $patient->first_name) }}" />
+                        @error('first_name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName"/>
+                        <input type="text" id="lastName" name="last_name" value="{{ old('last_name', $patient->last_name) }}" />
+                        @error('last_name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email"/>
+                        <input type="email" id="email" name="email" value="{{ old('email', $patient->email) }}" />
+                        @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob"/>
+                        <input type="date" id="dob" name="dob" value="{{ old('dob', $patient->dob->format('Y-m-d')) }}" max="{{ date('Y-m-d') }}" />
+                        @error('dob')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-add">Save</button>
+                    </button>
                 </div>
             </form>
         </div>
 
         <div class="form-container">
             <h2 class="form-title">Change Password</h2>
+            @if (session()->has('error'))
+                <div class="alert-console error">
+                    {{ session('error') }}
+                </div>
+            @endif
 
-            <form class="patient-form">
+            <form action="{{ route('patients.update.password', $patient) }}" method="POST" class="patient-form">
+                @csrf
+                @method('PUT')
                 <div class="form-row">
                     <div class="form-group">
                         <label for="currentPassword">Current Password</label>
-                        <input type="password" id="currentPassword" name="current_password"/>
+                        <input type="password" id="currentPassword" name="current_password" value="{{ old('current_password') }}"/>
+                        @error('current_password')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="newPassword">New Password</label>
-                        <input type="password" id="newPassword" name="new_password"/>
+                        <input type="password" id="newPassword" name="new_password" value="{{ old('new_password') }}"/>
+                        @error('new_password')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="newPasswordConfirm">Confirm New Password</label>
-                        <input type="password" id="newPasswordConfirm" name="new_password_confirmation"/>
+                        <input type="password" id="newPasswordConfirm" name="new_password_confirm" value="{{ old('new_password_confirm') }}"/>
+                        @error('new_password_confirm')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

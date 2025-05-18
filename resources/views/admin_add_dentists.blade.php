@@ -59,7 +59,7 @@
             </div>
         @endif
 
-        <form action="{{ route('dentists.store') }}" method="POST" class="dentist-form">
+        <form action="{{ route('admin.dentists.store') }}" method="POST" class="dentist-form">
             @csrf
             <div class="form-row">
                 <div class="form-group">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" max="{{ date('Y-m-d') }}"/>
+                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" max="{{ now()->toDateString() }}"/>
                     @error('dob')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror

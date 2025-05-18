@@ -33,7 +33,7 @@ class AuthController extends Controller
             Patient::create($validatedData);
 
             session()->flash('success', 'Registration successful!');
-            return redirect()->route('patient.login');
+            return redirect()->route('login');
 
         } catch (ValidationException $e) {
             return back()

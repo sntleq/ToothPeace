@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/edit_profile.css') }}"/>
+    <link rel="stylesheet" href="css/shared_layout.css"/>
+    <link rel="stylesheet" href="css/edit_profile.css"/>
 </head>
 <body>
 <div class="sidebar">
@@ -68,6 +69,8 @@
 
                 <div class="form-actions">
                     <button type="submit" class="btn-add">Save</button>
+                    <button type="button" class="btn-cancel" onclick="window.location.href='/patient/Profile'">Cancel
+                    </button>
                 </div>
             </form>
         </div>
@@ -81,9 +84,6 @@
                         <label for="currentPassword">Current Password</label>
                         <input type="password" id="currentPassword" name="current_password"/>
                     </div>
-                </div>
-
-                <div class="form-row">
                     <div class="form-group">
                         <label for="newPassword">New Password</label>
                         <input type="password" id="newPassword" name="new_password"/>
@@ -94,8 +94,32 @@
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob"/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword"/>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="submit" class="btn-add">Save</button>
+                    <button type="button" class="btn-cancel" onclick="window.location.href='/patient/Profile'">Cancel
+                    </button>
                 </div>
             </form>
         </div>

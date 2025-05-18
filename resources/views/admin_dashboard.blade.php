@@ -26,7 +26,7 @@
         <a href="{{ route ('admin.patients') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
         <a href="{{ route ('admin.dentists') }}"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
         <a href="{{ route ('admin.controls') }}"><img src="{{ asset('pics/admincontrols_icon.png') }}"
-                                                      alt="Admin Controls">Admin Controls</a>
+                                                      alt="Admin Controls">Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -38,31 +38,6 @@
     <div class="datetime-container">
         <div class="date-box" id="dateBox"></div>
         <div class="time-box" id="timeBox"></div>
-    </div>
-
-    <h1>Dashboard Overview</h1>
-
-    <div class="overview-cards">
-        <div class="card">
-            <div class="icon-container">
-                <img src="{{ asset('pics/ptoday_icon.png') }}" alt="Patients Today"/>
-            </div>
-            <p>Patients Today</p>
-        </div>
-
-        <div class="card">
-            <div class="icon-container">
-                <img src="{{ asset('pics/tpatients_icon.png') }}" alt="Total Patients"/>
-            </div>
-            <p>Total Patients</p>
-        </div>
-
-        <div class="card">
-            <div class="icon-container">
-                <img src="{{ asset('pics/wpatiients_icon.png') }}" alt="Waitlisted Patients"/>
-            </div>
-            <p>Waitlisted Patients</p>
-        </div>
     </div>
 
     <div class="appointments-section">

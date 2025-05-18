@@ -26,7 +26,7 @@
         <a href="{{ route ('admin.patients') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Patients">Patients</a>
         <a href="{{ route ('admin.dentists') }}"><img src="{{ asset('pics/dentist_icon.png') }}" alt="Dentists">Dentists</a>
         <a href="{{ route ('admin.controls') }}"><img src="{{ asset('pics/admincontrols_icon.png') }}"
-                                                      alt="Admin Controls">Admin Controls</a>
+                                                      alt="Admin Controls">Controls</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -34,11 +34,6 @@
 </div>
 
 <div class="main-content">
-
-    <div class="datetime-container">
-        <div class="date-box" id="dateBox"></div>
-        <div class="time-box" id="timeBox"></div>
-    </div>
 
     <h1 class="section-title">Waitlist</h1>
 

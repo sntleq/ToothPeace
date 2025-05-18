@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->string('first_name', 20);
             $table->string('last_name', 20);
-            $table->string('username', 20);
             $table->string('email', 100)->unique();
             $table->date('dob');
             $table->string('password');

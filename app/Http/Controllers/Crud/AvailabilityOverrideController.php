@@ -28,8 +28,21 @@ class AvailabilityOverrideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dentistId = auth()->id();
+
+        foreach ($request->input('availability', []) as $dayOfWeek => $times) {
+            if (!empty($times['start_time']) && !empty($times['end_time'])) {
+                AvailabilityOverride::updateOrCreate(
+                    ['dentist_id' => $dentistId, 'day_of_week' => $dayOfWeek],
+                    ['start_time' => $times['start_time'], 'end_time' => $times['end_time']]
+                );
+            }
+        }
+
+        return response()->json(['message' => 'Override availability saved.']);
     }
+
+
 
     /**
      * Display the specified resource.

@@ -28,8 +28,22 @@ class AvailabilityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dentistId = auth()->id(); // or however you're getting the dentist ID
+
+        foreach ($request->input('availability', []) as $dayOfWeek => $times) {
+            if (!empty($times['start_time']) && !empty($times['end_time'])) {
+                Availability::updateOrCreate(
+                    ['dentist_id' => $dentistId, 'day_of_week' => $dayOfWeek],
+                    ['start_time' => $times['start_time'], 'end_time' => $times['end_time']]
+                );
+            }
+        }
+
+        return response()->json(['message' => 'Recurring availability saved.']);
     }
+
+
+
 
     /**
      * Display the specified resource.

@@ -77,7 +77,7 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
 
-            <a href="{{ route('password.reset') }}" class="forget_pass">Forgot Password?</a>
+            <a href="{{ route('password.request') }}" class="forget_pass">Forgot Password?</a>
             <button class="btn-login" type="submit">Login</button>
 
             <div class="switch">

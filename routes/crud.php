@@ -19,4 +19,6 @@ Route::resource('dentist.services', DentistServiceController::class);
 Route::resource('waitlist', WaitlistController::class);
 Route::resource('admin.controls', AdminControlsController::class);
 
+Route::put('patients/{patient}/update', [PatientController::class, 'updatePassword'])
+    ->name('patients.update.password');
 

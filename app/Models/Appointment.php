@@ -24,8 +24,13 @@ class Appointment extends Model
     {
         return [
             'date' => 'date',
-            'time' => 'time',
+            'time' => 'datetime:H:i',
         ];
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
 
     public function dentist()

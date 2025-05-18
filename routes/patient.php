@@ -15,13 +15,13 @@ Route::middleware('auth:patient')
         Route::get('/home', function () {
             $appointments = Appointment::with(['dentist', 'appointmentType'])
                 ->where('patient_id', auth()->id())
-                ->where('is_active', true) // Only get active appointments
+                ->where('is_active', true)
                 ->get();
             return view('patient_dashboard', compact('appointments'));
         })->name('home');
 
         Route::get('/profile', function () {
-            $patient = auth()->user(); // Authenticated Patient model
+            $patient = auth()->user();
 
             // Get only active appointments for the patient
             $appointments = $patient->activeAppointments()
@@ -29,6 +29,11 @@ Route::middleware('auth:patient')
                 ->get();
             return view('patient_profile', compact('appointments', 'patient'));
         })->name('profile');
+
+        Route::get('/profile/edit', function () {
+            $patient = auth()->user();
+            return view('edit_profile', compact('patient'));
+        })->name('profile.edit');
 
         Route::get('/appointments', function () {
             $appointments = Appointment::with(['dentist', 'appointmentType'])
@@ -44,10 +49,6 @@ Route::middleware('auth:patient')
                 ->get();
             return view('appointment_history', compact('appointments'));
         })->name('appointments.history');
-
-        Route::get('/profile/edit', function () {
-            return view('edit_profile');
-        })->name('profile.edit');
 
         Route::get('/waitlist', function () {
             $entries = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])->get();

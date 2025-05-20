@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+
+class Admin extends Authenticatable
 {
     use Notifiable;
 
@@ -19,7 +19,7 @@ class Admin extends Model
     ];
 
 
-    protected $hidden = [
+    protected $hidden = [   
         'password',
     ];
 
@@ -29,5 +29,5 @@ class Admin extends Model
             'password' => 'hashed',
         ];
     }
- 
+
 }

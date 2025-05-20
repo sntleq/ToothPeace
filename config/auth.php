@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'dentists',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'dentists' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL_DENTIST', \App\Models\Dentist::class)
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL_ADMIN', \App\Models\Admin::class)
         ],
     ],
 
@@ -103,6 +111,12 @@ return [
         'dentists' => [
             'provider' => 'dentists',
             'table' => env('AUTH_PASSWORD_RESET_TABLE_DENTIST', 'password_resets_dentists'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => env('AUTH_PASSWORD_RESET_TABLE_ADMIN', 'password_resets_admins'),
             'expire' => 60,
             'throttle' => 60,
         ],

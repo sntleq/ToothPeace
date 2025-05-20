@@ -6,6 +6,7 @@ use App\Http\Controllers\Crud\DentistController;
 
 Route::prefix('admin')
     ->name('admin.')
+    ->middleware('auth:admin')
     ->group(function () {
 
         Route::get('/dashboard', function () {
@@ -46,3 +47,6 @@ Route::prefix('admin')
 
 
     });
+    
+
+    

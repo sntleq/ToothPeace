@@ -20,4 +20,6 @@ class AppointmentCategory extends Model
     {
         return $this->hasMany(AppointmentType::class, 'appointment_category_id');
     }
+
+
 }

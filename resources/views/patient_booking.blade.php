@@ -44,77 +44,29 @@
                     <label for="appointmentType">Appointment Type</label>
                     <select id="appointmentType" name="appointmentType" required>
                         <option disabled selected>Please select</option>
-                        <optgroup label="Dental Appointments">
-                            <option>Dental Cleaning</option>
-                            <option>Dental Exam/Check-up</option>
-                            <option>X-rays</option>
-                        </optgroup>
-                        <optgroup label="Restorative Treatment">
-                            <option>Tooth Filling</option>
-                            <option>Tooth Extraction</option>
-                            <option>Root Canal</option>
-                            <option>Dental Crown</option>
-                            <option>Bridge Placement</option>
-                            <option>Dental Implants</option>
-                            <option>Inlays/Onlays</option>
-                        </optgroup>
-                        <optgroup label="Preventive Treatment">
-                            <option>Flouride Treatment</option>
-                            <option>Dental Sealants</option>
-                            <option>Oral Cancer Screening</option>
-                            <option>Deep Cleaning</option>
-                        </optgroup>
-                        <optgroup label="Cosmetic Dentistry">
-                            <option>Teeth Whitening</option>
-                            <option>Dental Bonding</option>
-                            <option>Veeners</option>
-                            <option>Smile Makeover</option>
-                            <option>Gum Contouring</option>
-                        </optgroup>
-                        <optgroup label="Orthodontics">
-                            <option>Braces</option>
-                            <option>Traditional Metal Braces</option>
-                            <option>Clear Aligners</option>
-                            <option>Retainers</option>
-                        </optgroup>
-                        <optgroup label="Oral Surgery">
-                            <option>Wisdom Tooth Extraction</option>
-                            <option>Bone Grafting</option>
-                        </optgroup>
-                        <optgroup label="Pediatric Dentistry">
-                            <option>Children’s Check-up</option>
-                            <option>Fluoride Treatment for Kids</option>
-                            <option>Pediatric Dental Cleaning</option>
-                            <option>Space Maintainers</option>
-                            <option>Sealants for Children</option>
-                        </optgroup>
-                        <optgroup label="Periodontics (Gum)">
-                            <option>Deep Cleaning</option>
-                            <option>Gum Grafting</option>
-                            <option>Periodontal Maintenance</option>
-                            <option>Crown Lengthening</option>
-                        </optgroup>
-                        <optgroup label="Emergency Dentistry">
-                            <option>Toothache Relief</option>
-                            <option>Trauma Care</option>
-                            <option>Abscess Treatment</option>
-                            <option>Lost Filling / Crown Repair</option>
-                            <option>Broken Tooth Restoration</option>
-                        </optgroup>
+                        @foreach($categories as $category)
+                            <optgroup label="{{ $category->name }}">
+                                @foreach($category->appointmentTypes as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
                     </select>
                 </div>
+
 
                 <!-- Add lang here -->
                 <div class="form-group">
                     <label for="preferredDentist">Preferred Dentist</label>
                     <select id="preferredDentist" name="preferredDentist" required>
                         <option disabled selected>Select dentist</option>
-                        <option>Any</option>
-                        <option>Dr. Cruz</option>
-                        <option>Dr. Santos</option>
-                        <option>Dr. Reyes</option>
+                        <option value="any">Any</option>
+                        @foreach($dentists as $dentist)
+                            <option value="{{ $dentist->id }}">{{ $dentist->name }}</option>
+                        @endforeach
                     </select>
                 </div>
+
 
                 <!-- Add lang here -->
                 <div class="form-group">
@@ -137,6 +89,19 @@
                 </div>
 
             </form>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="logout-modal">
+        <div class="modal-content">
+            <h3>Are you sure you want to log out?</h3>
+            <div class="modal-buttons">
+                <form action="{{ route('auth.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+                </form>
+                <button id="cancelLogout" class="cancel-btn">No</button>
+            </div>
         </div>
     </div>
 </div>

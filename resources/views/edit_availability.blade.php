@@ -29,7 +29,7 @@
 </div>
 
 <div class="main-content">
-    <a href="{{ route('patient.home') }}" class="back-button">
+    <a href="{{ route('dentist.availability') }}" class="back-button">
         <i class="fa fa-arrow-left"></i> Back
     </a>
 

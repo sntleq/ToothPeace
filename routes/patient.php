@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Appointment;
+use App\Models\AppointmentCategory;
+use App\Models\Dentist;
 use App\Models\WaitlistEntry;
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +57,9 @@ Route::middleware('auth:patient')
         })->name('waitlist');
 
         Route::get('/booking', function () {
-            return view('patient_booking');
+            $categories = AppointmentCategory::with('appointmentTypes')->get();
+            $dentists = Dentist::all();
+            return view('patient_booking', compact('categories', 'dentists'));
         })->name('booking');
 
         Route::get('/waitlist/add', function () {

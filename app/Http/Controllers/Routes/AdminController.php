@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Routes;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Appointment;
@@ -39,12 +40,10 @@ class AdminController extends Controller
     public function saveSettings(Request $request)
     {
         $validated = $request->validate([
-            'timeslot_size' => 'required|integer|min:1',
             'opening_time' => 'required|date_format:H:i',
             'closing_time' => 'required|date_format:H:i|after:opening_time',
         ]);
 
-        AdminControls::setValue('timeslot_size', $validated['timeslot_size']);
         AdminControls::setValue('opening_time', $validated['opening_time']);
         AdminControls::setValue('closing_time', $validated['closing_time']);
 
@@ -54,7 +53,6 @@ class AdminController extends Controller
     public function adminControls()
     {
         $settings = [
-            'timeslot_size' => AdminControls::getValue('timeslot_size', ''),
             'opening_time' => AdminControls::getValue('opening_time', ''),
             'closing_time' => AdminControls::getValue('closing_time', ''),
         ];

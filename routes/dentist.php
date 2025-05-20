@@ -15,6 +15,10 @@ Route::middleware('auth:dentist')
             return view('dentist_availability');
         })->name('availability');
 
+        Route::get('/availability/edit', function () {
+            return view('edit_availability');
+        })->name('availability.edit');
+
         Route::get('/schedule', function () {
             return view('dentist_schedule');
         })->name('schedule');

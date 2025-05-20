@@ -3,8 +3,8 @@ const appointments = [];
 document.addEventListener('DOMContentLoaded', function () {
     const tbody = document.getElementById('appointments-body');
     appointments.forEach(a => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
         <td>${a.id}</td>
         <td>${a.name}</td>
         <td>${a.type}</td>
@@ -12,6 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         <td>${a.duration}</td>
         <td>${a.dentist}</td>
       `;
-      tbody.appendChild(tr);
+        tbody.appendChild(tr);
     });
-  });
+});

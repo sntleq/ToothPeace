@@ -26,14 +26,14 @@ class AuthController extends Controller
             // Map signup_email to email for the database
             $validatedData['email'] = $validatedData['signup_email'];
             unset($validatedData['signup_email']);
-            
+
             // Hash the password before storing it
             $validatedData['password'] = Hash::make($validatedData['password']);
 
             Patient::create($validatedData);
 
             session()->flash('success', 'Registration successful!');
-            return redirect()->route('patient.login');
+            return redirect()->route('login');
 
         } catch (ValidationException $e) {
             return back()

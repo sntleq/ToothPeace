@@ -29,7 +29,7 @@ class Patient extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'dob' => 'date',
+            'dob' => 'date:Y-m-d',
         ];
     }
 

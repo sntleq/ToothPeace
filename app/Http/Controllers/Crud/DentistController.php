@@ -31,68 +31,25 @@ class DentistController extends Controller
      */
     public function store(Request $request)
     {
-        // Define rules
         $rules = [
-            'lastName' => ['required', 'string', 'min:2', 'max:20'],
-            'firstName' => ['required', 'string', 'min:2', 'max:20'],
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('dentists', 'email')
-            ],
+            'last_name' => ['required', 'string', 'min:2', 'max:20'],
+            'first_name' => ['required', 'string', 'min:2', 'max:20'],
+            'email' => ['required', 'email', Rule::unique('dentists', 'email')],
             'dob' => ['required', 'date', 'before:today'],
             'password' => ['required', 'string', 'min:8'],
-            'confirmPassword' => ['required', 'same:password', 'min:8'],
+            'password_confirm' => ['required', 'same:password', 'min:8'],
         ];
 
-        // Custom messages
-        $messages = [
-            'lastName.required' => 'Last name is required.',
-            'lastName.min' => 'Last name must be at least 2 characters.',
-            'lastName.max' => 'Last name cannot exceed 20 characters.',
-
-            'firstName.required' => 'First name is required.',
-            'firstName.min' => 'First name must be at least 2 characters.',
-            'firstName.max' => 'First name cannot exceed 20 characters.',
-
-            'middleName.min' => 'Middle name must be at least 2 characters.',
-            'middleName.max' => 'Middle name cannot exceed 20 characters.',
-
-            'username.required' => 'Username is required.',
-            'username.unique' => 'This username is already taken.',
-            'username.max' => 'Username cannot exceed 20 characters.',
-
-            'email.required' => 'Email address is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'email.unique' => 'This email is already registered.',
-
-            'dob.required' => 'Date of birth is required.',
-            'dob.date' => 'Please enter a valid date.',
-            'dob.before' => 'Date of birth must be in the past.',
-
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must be at least 8 characters.',
-
-            'confirmPassword.required' => 'Confirm password is required.',
-            'confirmPassword.same' => 'Passwords do not match.',
-            'confirmPassword.min' => 'Confirm password must be at least 8 characters.',
-        ];
-
-        // Validate request
-        $validator = Validator::make($request->all(), $rules, $messages);
-
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        // Create dentist
         Dentist::create([
-            'first_name' => $request->firstName,
-            'middle_name' => $request->middleName,
-            'last_name' => $request->lastName,
-            'username' => $request->username,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'dob' => $request->dob,
             'password' => $request->password,

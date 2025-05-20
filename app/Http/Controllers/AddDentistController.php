@@ -24,13 +24,13 @@ class AddDentistController extends Controller
     {
         // 1) Validate incoming data
         $data = $request->validate([
-            'lastName'        => ['required', 'string', 'min:3', 'max:20'],
-            'firstName'       => ['required', 'string', 'min:3', 'max:20'],
-            'middleName'      => ['nullable', 'string', 'min:2', 'max:20'],
-            'username'        => ['required', 'string', 'min:3', 'max:20', 'unique:dentists,username'],
-            'email'           => ['required', 'email', 'unique:dentists,email'],
-            'dob'             => ['required', 'date'],
-            'password'        => ['required', 'confirmed', 'min:8'],  // adds password_confirmation
+            'lastName' => ['required', 'string', 'min:3', 'max:20'],
+            'firstName' => ['required', 'string', 'min:3', 'max:20'],
+            'middleName' => ['nullable', 'string', 'min:2', 'max:20'],
+            'username' => ['required', 'string', 'min:3', 'max:20', 'unique:dentists,username'],
+            'email' => ['required', 'email', 'unique:dentists,email'],
+            'dob' => ['required', 'date'],
+            'password' => ['required', 'confirmed', 'min:8'],  // adds password_confirmation
         ]);
 
         // 2) Hash the password
@@ -38,13 +38,13 @@ class AddDentistController extends Controller
 
         // 3) Create the dentist
         Dentist::create([
-            'last_name'   => $data['lastName'],
-            'first_name'  => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'first_name' => $data['firstName'],
             'middle_name' => $data['middleName'],
-            'username'    => $data['username'],
-            'email'       => $data['email'],
-            'dob'         => $data['dob'],
-            'password'    => $data['password'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'dob' => $data['dob'],
+            'password' => $data['password'],
         ]);
 
         // 4) Flash success & redirect

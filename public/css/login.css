@@ -16,8 +16,8 @@ body {
 .container {
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-                0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     width: 800px;
     max-width: 100%;
@@ -222,7 +222,7 @@ form button:hover {
 }
 
 
-footer p{
+footer p {
     color: #004aad;
     font: bold .8rem 'Montserrat', sans-serif;
 }
@@ -236,7 +236,7 @@ footer p{
     border-radius: 5px;
     z-index: 9999;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     animation: slideDownAndFade 5s ease-in-out forwards;
 }
 

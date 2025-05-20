@@ -18,7 +18,7 @@ class Dentist extends Authenticatable
         'username',
         'email',
         'dob',
-        'password',  
+        'password',
     ];
 
     protected $hidden = [

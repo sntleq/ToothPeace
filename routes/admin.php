@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AddDentistController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Routes\AdminController;
+use App\Http\Controllers\Crud\DentistController;
 
 Route::prefix('admin')
     ->name('admin.')
@@ -21,11 +21,11 @@ Route::prefix('admin')
                 'dentists'])->name('dentists');
 
         Route::get('/dentists/create',
-            [AddDentistController::class,
+            [DentistController::class,
                 'create'])->name('dentists.create');
 
         Route::post('/dentists/store',
-            [AddDentistController::class,
+            [DentistController::class,
                 'store'])->name('dentists.store');
 
         Route::get('/patients',

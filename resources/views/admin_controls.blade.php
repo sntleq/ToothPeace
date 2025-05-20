@@ -53,19 +53,6 @@
                 @csrf
 
                 <div class="control-group">
-                    <label for="timeslotSize">Timeslot Size (minutes):</label>
-                    <input
-                        type="number"
-                        id="timeslotSize"
-                        name="timeslot_size"
-                        placeholder="Enter timeslot size"
-                        value="{{ old('timeslot_size', $settings['timeslot_size'] ?? '') }}"
-                        min="1"
-                        required
-                    >
-                </div>
-
-                <div class="control-group">
                     <label for="openingTime">Opening Time:</label>
                     <input
                         type="time"

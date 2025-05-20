@@ -23,7 +23,7 @@ class DentistController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin_add_dentists');
     }
 
     /**

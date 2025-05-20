@@ -55,7 +55,6 @@
                         <th>Patient ID</th>
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Middle Name</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
                     </tr>
@@ -66,7 +65,6 @@
                             <td>{{ $patient->id }}</td>
                             <td>{{ $patient->last_name }}</td>
                             <td>{{ $patient->first_name }}</td>
-                            <td>{{ $patient->middle_name ?? '-' }}</td>
                             <td>{{ $patient->email }}</td>
                             <td>{{ $patient->dob ? $patient->dob->format('Y-m-d') : '-' }}</td>
                         </tr>

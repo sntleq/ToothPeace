@@ -53,4 +53,12 @@ Route::middleware('auth:patient')
             $entries = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])->get();
             return view('patient_waitlist', compact('entries'));
         })->name('waitlist');
+
+        Route::get('/booking', function () {
+            return view('patient_booking');
+        })->name('booking');
+
+        Route::get('/waitlist/add', function () {
+            return view('patient_waitlistBooking');
+        })->name('waitlist.add');
     });

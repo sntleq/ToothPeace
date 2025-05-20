@@ -257,37 +257,6 @@
             </div>
         </div>
     </div>
-    <form action="your-action-url" method="POST" class="schedule-form">
-        <div class="form-field">
-            <label for="day">Set Day:</label>
-            <select id="day" name="day">
-                <option value="monday">Monday</option>
-                <option value="tuesday">Tuesday</option>
-                <option value="wednesday">Wednesday</option>
-                <option value="thursday">Thursday</option>
-                <option value="friday">Friday</option>
-                <option value="saturday">Saturday</option>
-                <option value="sunday">Sunday</option>
-            </select>
-        </div>
-
-        <div class="form-field">
-            <label for="time">Set Time:</label>
-            <input type="time" id="time" name="time">
-        </div>
-
-        <div class="form-field">
-            <label for="availability">Set Availability:</label>
-            <select id="availability" name="availability">
-                <option value="available">Available</option>
-                <option value="not-available">Not Available</option>
-            </select>
-        </div>
-
-        <div class="form-field">
-            <button type="submit">Set Schedule</button>
-        </div>
-    </form>
 </div>
 
 <div id="logoutModal" class="logout-modal">

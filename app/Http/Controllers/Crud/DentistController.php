@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dentist;
+use App\Models\Patient;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class DentistController extends Controller
@@ -34,13 +37,24 @@ class DentistController extends Controller
         $rules = [
             'last_name' => ['required', 'string', 'min:2', 'max:20'],
             'first_name' => ['required', 'string', 'min:2', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('dentists', 'email')],
+            'email' => [
+                'required', 
+                'email', 
+                Rule::unique('dentists', 'email'),
+                Rule::unique('patients', 'email'),
+                Rule::unique('admins', 'email')
+            ],
             'dob' => ['required', 'date', 'before:today'],
             'password' => ['required', 'string', 'min:8'],
             'password_confirm' => ['required', 'same:password', 'min:8'],
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $messages = [
+            'email.unique' => 'This email is already registered.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
@@ -52,7 +66,7 @@ class DentistController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'dob' => $request->dob,
-            'password' => $request->password,
+            'password' => Hash::make($request->password), // Make sure to hash the password
         ]);
 
         return redirect()->back()->with('success', 'Dentist added successfully!');

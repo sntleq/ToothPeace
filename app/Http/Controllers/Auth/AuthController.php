@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -19,9 +20,17 @@ class AuthController extends Controller
             $validatedData = $request->validate([
                 'first_name' => ['required', 'min:3', 'max:20'],
                 'last_name' => ['required', 'min:3', 'max:20'],
-                'signup_email' => ['required', 'email', 'unique:patients,email'],
+                'signup_email' => [
+                    'required', 
+                    'email', 
+                    Rule::unique('patients', 'email'),
+                    Rule::unique('dentists', 'email'),
+                    Rule::unique('admins', 'email')
+                ],
                 'dob' => ['required', 'date'],
                 'password' => ['required', 'min:8']
+            ], [
+                'signup_email.unique' => 'This email is already registered.'
             ]);
 
             // Map signup_email to email for the database

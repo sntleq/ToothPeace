@@ -66,8 +66,6 @@
                         <th>Dentist ID</th>
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Middle Name</th>
-                        <th>Username</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
                     </tr>
@@ -78,8 +76,6 @@
                             <td>{{ $dentist->id }}</td>
                             <td>{{ $dentist->last_name }}</td>
                             <td>{{ $dentist->first_name }}</td>
-                            <td>{{ $dentist->middle_name ?? '-' }}</td>
-                            <td>{{ $dentist->username }}</td>
                             <td>{{ $dentist->email }}</td>
                             <td>{{ $dentist->dob ? $dentist->dob->format('Y-m-d') : '-' }}</td>
                         </tr>

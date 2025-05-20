@@ -4,76 +4,50 @@ namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Availability;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AvailabilityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function update(Request $request)
     {
-        //
-    }
+        $dentistId = Auth::guard('dentist')->id();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $dentistId = auth()->id(); // or however you're getting the dentist ID
-
-        foreach ($request->input('availability', []) as $dayOfWeek => $times) {
-            if (!empty($times['start_time']) && !empty($times['end_time'])) {
-                Availability::updateOrCreate(
-                    ['dentist_id' => $dentistId, 'day_of_week' => $dayOfWeek],
-                    ['start_time' => $times['start_time'], 'end_time' => $times['end_time']]
-                );
-            }
+        if (!$dentistId) {
+            return redirect()->back()->with('error', 'Dentist not authenticated.');
         }
 
-        return response()->json(['message' => 'Recurring availability saved.']);
-    }
+        // Validate input structure
+        $validated = $request->validate([
+            'availability' => 'required|array',
+            'availability.*.start_time' => 'nullable|date_format:H:i',
+            'availability.*.end_time' => 'nullable|date_format:H:i|after:availability.*.start_time',
+        ]);
 
+        try {
+            // Use transaction for data consistency
+            \DB::transaction(function () use ($dentistId, $validated) {
+                // Delete old availability entries for this dentist
+                Availability::where('dentist_id', $dentistId)->delete();
 
+                // Save new availability entries
+                foreach ($validated['availability'] as $day => $time) {
+                    if (!empty($time['start_time']) && !empty($time['end_time'])) {
+                        Availability::create([
+                            'day_of_week' => $day,
+                            'start_time' => $time['start_time'],
+                            'end_time' => $time['end_time'],
+                            'dentist_id' => $dentistId,
+                        ]);
+                    }
+                }
+            });
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            return redirect()->route('dentist.availability')->with('success', 'Recurring Schedule Saved Successfully!');
+            
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to save availability: ' . $e->getMessage());
+        }
     }
 }

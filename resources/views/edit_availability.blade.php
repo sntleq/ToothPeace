@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/dentist_availability.css') }}"/>
 </head>
 <body>
+
 <div class="sidebar">
     <div class="logo">
         <img src="{{ asset('pics/toothpeace_logo.png') }}" alt="ToothPeace Logo"/>
@@ -32,17 +33,36 @@
         <i class="fa fa-arrow-left"></i> Back
     </a>
 
+    @if (session('error'))
+        <div class="alert-console error" id="alertMessage">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert-console error" id="alertMessage">
+            <ul style="margin: 0; padding: 0; list-style: none;">
+                @foreach ($errors->all() as $error)
+                    <li class="text-danger">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="form-container">
         <h2 class="form-title">Edit Availability</h2>
 
-        <form class="patient-form" id="availability-form" method="POST">
+        <form id="availabilityForm" method="POST"
+              data-available-action="{{ route('dentist.availability.update') }}"
+              data-override-action="{{ route('dentist.availability.override.update') }}">
             @csrf
+            @method('PUT')
             <div class="form-row">
                 <div class="form-group">
                     <label for="availability-mode">Setting Mode</label>
                     <select id="availability-mode" name="availability_mode">
-                        <option value="recurring">Recurring (For every week since next week)</option>
-                        <option value="override">Override (For next week only)</option>
+                        <option value="available">Recurring (For every week since next week)</option>
+                        <option value="not-available">Override (For next week only)</option>
                     </select>
                 </div>
             </div>
@@ -54,29 +74,53 @@
                     2 => 'Tuesday',
                     3 => 'Wednesday',
                     4 => 'Thursday',
-                    5 => 'Friday'
+                    5 => 'Friday',
                     6 => 'Saturday',
                 ];
             @endphp
 
-            @foreach($days as $dayNumber => $dayName)
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="time_in_{{ $dayNumber }}">{{ $dayName }}: Time In</label>
-                        <input type="time" name="availability[{{ $dayNumber }}][start_time]" id="time_in_{{ $dayNumber }}">
+            {{-- RECURRING AVAILABILITY FIELDS --}}
+            <div id="recurring-fields">
+                @foreach($days as $index => $day)
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>{{ $day }}: Time In</label>
+                            <input type="time" name="availability[{{ $index }}][start_time]"
+                                value="{{ $regularAvailability[$index]['start_time'] ?? '' }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>{{ $day }}: Time Out</label>
+                            <input type="time" name="availability[{{ $index }}][end_time]"
+                                value="{{ $regularAvailability[$index]['end_time'] ?? '' }}" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="time_out_{{ $dayNumber }}">{{ $dayName }}: Time Out</label>
-                        <input type="time" name="availability[{{ $dayNumber }}][end_time]" id="time_out_{{ $dayNumber }}">
+                @endforeach
+            </div>
+
+            {{-- OVERRIDE AVAILABILITY FIELDS --}}
+            <div id="override-fields" style="display: none;">
+                @foreach($days as $index => $day)
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>{{ $day }}: Time In</label>
+                            <input type="time" name="availability[{{ $index }}][start_time]"
+                                value="{{ $overrideAvailability[$index]['start_time'] ?? '' }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>{{ $day }}: Time Out</label>
+                            <input type="time" name="availability[{{ $index }}][end_time]"
+                                value="{{ $overrideAvailability[$index]['end_time'] ?? '' }}" />
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn-add">Save</button>
                 <button type="button" class="btn-cancel" onclick="window.location.href='/patient/Profile'">Cancel</button>
             </div>
         </form>
+
     </div>
 </div>
 
@@ -93,40 +137,9 @@
     </div>
 </div>
 
-<script>
-document.getElementById('availability-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
-    const mode = formData.get('availability_mode');
-
-    const url = mode === 'recurring'
-        ? "{{ route('availability.store') }}"
-        : "{{ route('availability.override.store') }}";
-
-    fetch(url, {
-        method: "POST",
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Failed to save availability.');
-        return response.json();
-    })
-    .then(data => {
-        alert('Availability saved successfully!');
-        window.location.reload();
-    })
-    .catch(error => {
-        console.error(error);
-        alert('An error occurred while saving availability.');
-    });
-});
-</script>
-
+<!-- External JS files -->
+<script src="{{ asset('js/availability.js') }}"></script>
 <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+
 </body>
 </html>

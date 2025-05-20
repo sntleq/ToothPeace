@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Dentist;
 use App\Models\Patient;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,11 +53,24 @@ class AuthController extends Controller
 
         $dentist = Dentist::where('email', $request->login_email)->first();
         $patient = Patient::where('email', $request->login_email)->first();
+        $admin = Admin::where('email', $request->login_email)->first();
 
-        if (!$dentist && !$patient) {
+        if (!$dentist && !$patient && !$admin) {
             throw ValidationException::withMessages([
                 'login' => 'Email not registered.',
             ]);
+        }
+
+        if ($admin) {
+            if (!Hash::check($request->password, $admin->password)) {
+                throw ValidationException::withMessages([
+                    'login' => 'Password incorrect.',
+                ]);
+            }
+
+            Auth::guard('admin')->login($admin);
+            $request->session()->regenerate();
+            return redirect()->route('admin.dashboard')->with('success', 'Login successful!');
         }
 
         if ($dentist) {
@@ -92,6 +106,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         // Logout from both guards to ensure session is clean
+        Auth::guard('admin')->logout();
         Auth::guard('dentist')->logout();
         Auth::guard('patient')->logout();
 

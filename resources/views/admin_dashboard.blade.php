@@ -47,7 +47,6 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Patient ID</th>
                         <th>Name</th>
                         <th>Appointment Type</th>
                         <th>Date</th>
@@ -57,78 +56,20 @@
                     </thead>
                     <!--TESTING RANI PARA MAKITA JUD NIMO UNSAY NANWG NIYA TENKS-->
                     <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>John Doe</td>
-                        <td>Check-up</td>
-                        <td>2025-04-17</td>
-                        <td>30 mins</td>
-                        <td>Dr. Jane</td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Jane Doe</td>
-                        <td>Cleaning</td>
-                        <td>2025-04-17</td>
-                        <td>45 mins</td>
-                        <td>Dr. Smith</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>005</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>006</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>007</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>008</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
-                    <tr>
-                        <td>009</td>
-                        <td>Mike Ross</td>
-                        <td>Filling</td>
-                        <td>2025-04-17</td>
-                        <td>1 hr</td>
-                        <td>Dr. Alex</td>
-                    </tr>
+                    @forelse ($appointments as $appointment)
+                        <tr>
+                            <td>{{ $appointment->patient->name ?? 'N/A' }}</td>
+                            <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
+                            <td>{{ \Carbon\Carbon::parse($appointment->date)->format('Y-m-d') }}</td>
+                            <td>{{ $appointment->appointmentType->duration ?? 'N/A' }} mins</td>
+                            <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5">No active appointments found.</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
                     </tbody>
                 </table>
             </div>

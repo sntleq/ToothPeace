@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Appointment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Routes\AdminController;
 use App\Http\Controllers\Crud\DentistController;
@@ -9,8 +10,12 @@ Route::prefix('admin')
     ->group(function () {
 
         Route::get('/dashboard', function () {
-            return view('admin_dashboard');
+            $appointments = Appointment::with(['patient', 'appointmentType', 'dentist'])
+                ->where('is_active', false)
+                ->get();
+            return view('admin_dashboard', compact('appointments'));
         })->name('dashboard');
+
 
         Route::get('/appointments',
             [AdminController::class,

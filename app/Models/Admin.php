@@ -29,5 +29,20 @@ class Admin extends Model
             'password' => 'hashed',
         ];
     }
- 
+
+    public function dentist()
+    {
+        return $this->belongsTo(Dentist::class, 'dentist_id');
+    }
+
+    public function appointmentType()
+    {
+        return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
+
 }

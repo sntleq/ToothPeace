@@ -67,7 +67,7 @@
                             <td>{{ $appointment->patient->name ?? 'N/A' }}</td>
                             <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
                             <td>{{ $appointment->date->format('Y-m-d') ?? 'N/A' }}</td>
-                            <td>{{ $appointment->time->format('H:i') }}</td>
+                            <td>{{ \Carbon\Carbon::createFromFormat('H:i:s', $appointment->time)->format('H:i') }}</td>
                             <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
                         </tr>
                     @endforeach

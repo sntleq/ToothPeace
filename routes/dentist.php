@@ -20,10 +20,10 @@ Route::middleware('auth:dentist')
 
         Route::get('/availability/edit', [DentistAvailabilityController::class, 'editAvailability'])
         ->name('availability.edit');
-        
+
         Route::put('/availability/update', [AvailabilityController::class, 'update'])
             ->name('availability.update');
-            
+
         Route::put('/availability-override/update', [AvailabilityOverrideController::class, 'update'])
             ->name('availability.override.update');
 

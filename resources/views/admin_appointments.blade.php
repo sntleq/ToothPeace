@@ -52,7 +52,6 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Patient ID</th>
                         <th>Name</th>
                         <th>Appointment Type</th>
                         <th>Date</th>
@@ -63,7 +62,6 @@
                     <tbody>
                     @foreach ($appointments as $appointment)
                         <tr>
-                            <td>{{ $appointment->patient->id ?? 'N/A' }}</td>
                             <td>{{ $appointment->patient->name ?? 'N/A' }}</td>
                             <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
                             <td>{{ $appointment->date->format('Y-m-d') ?? 'N/A' }}</td>

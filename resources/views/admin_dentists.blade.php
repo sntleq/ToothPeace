@@ -63,7 +63,6 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Dentist ID</th>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Email</th>
@@ -73,7 +72,6 @@
                     <tbody>
                     @foreach ($dentists as $dentist)
                         <tr>
-                            <td>{{ $dentist->id }}</td>
                             <td>{{ $dentist->last_name }}</td>
                             <td>{{ $dentist->first_name }}</td>
                             <td>{{ $dentist->email }}</td>

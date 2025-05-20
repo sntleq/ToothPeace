@@ -53,7 +53,6 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Waitlist ID</th>
                         <th>Patient</th>
                         <th>Dentist</th>
                         <th>Appointment Type</th>
@@ -65,7 +64,6 @@
                     <tbody>
                     @foreach ($waitlists as $waitlist)
                         <tr>
-                            <td>{{ $waitlist->id }}</td>
                             <td>{{ $waitlist->patient->name ?? 'N/A' }}</td>
                             <td>{{ $waitlist->dentist->name ?? 'N/A' }}</td>
                             <td>{{ $waitlist->appointmentType->name ?? 'N/A' }}</td>

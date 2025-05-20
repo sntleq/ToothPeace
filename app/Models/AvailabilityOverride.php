@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AvailabilityOverride extends Model
 {
+    public $timestamps = false;
+    
     protected $table = 'availability_override';
 
     protected $fillable = [
@@ -15,11 +18,14 @@ class AvailabilityOverride extends Model
         'dentist_id',
     ];
 
-    protected function casts(): array
+    protected $casts = [
+        'start_time' => 'datetime:H:i',
+        'end_time' => 'datetime:H:i',
+        'day_of_week' => 'integer',
+    ];
+
+    public function dentist(): BelongsTo
     {
-        return [
-            'start_time' => 'time',
-            'end_time' => 'time',
-        ];
+        return $this->belongsTo(Dentist::class);
     }
 }

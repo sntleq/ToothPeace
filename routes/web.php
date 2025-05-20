@@ -30,6 +30,15 @@ Route::get('/signup', function () {
 })->name('signup');
 
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
-Route::post('/forgot-password/email', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email');
-Route::post('/forgot-password/reset', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+Route::get('/forgot-password', 
+[ForgotPasswordController::class, 
+'showForgotPasswordForm'])->name('password.request');
+
+Route::post('/forgot-password/email', 
+[ForgotPasswordController::class, 
+'sendResetCode'])->name('password.email');
+
+Route::post('/forgot-password/reset', 
+[ForgotPasswordController::class, 
+'resetPassword'])->name('password.update');
+

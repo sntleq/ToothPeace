@@ -29,6 +29,11 @@
 </div>
 
 <div class="main-content">
+    @if (session('success'))
+        <div class="alert-console success" id="alertMessage">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="availability-header">
         <h1 class="section-title">My Weekly Availability </h1>

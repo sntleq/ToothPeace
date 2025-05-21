@@ -22,3 +22,8 @@ Route::resource('admin.controls', AdminControlsController::class);
 Route::put('patients/{patient}/update', [PatientController::class, 'updatePassword'])
     ->name('patients.update.password');
 
+// Search routes
+Route::get('search/dentists', [DentistController::class, 'search'])->name('dentists.search');
+Route::get('search/patients', [PatientController::class, 'search'])->name('patients.search');
+Route::get('search/appointments', [AppointmentController::class, 'search'])->name('appointments.search');
+Route::get('search/waitlist', [WaitlistController::class, 'search'])->name('waitlist.search');

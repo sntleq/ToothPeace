@@ -74,20 +74,22 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div id="logoutModal" class="logout-modal">
-        <div class="modal-content">
-            <h3>Are you sure you want to log out?</h3>
-            <div class="modal-buttons">
-                <form action="{{ route('auth.logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
-                </form>
-                <button id="cancelLogout" class="cancel-btn">No</button>
-            </div>
+<div id="logoutModal" class="logout-modal">
+    <div class="modal-content">
+        <h3>Are you sure you want to log out?</h3>
+        <div class="modal-buttons">
+            <form action="{{ route('auth.logout') }}" method="POST">
+                @csrf
+                <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
+            </form>
+            <button id="cancelLogout" class="cancel-btn">No</button>
         </div>
     </div>
+</div>
 
-    <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+<script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+<script src="{{ asset('js/admin_appointments.js') }}"></script>
 </body>
 </html>

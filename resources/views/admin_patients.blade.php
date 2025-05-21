@@ -56,6 +56,8 @@
                         <th>First Name</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
+                        <th>Age</th>
+                        <th>Created At</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,6 +67,8 @@
                             <td>{{ $patient->first_name }}</td>
                             <td>{{ $patient->email }}</td>
                             <td>{{ $patient->dob ? $patient->dob->format('Y-m-d') : '-' }}</td>
+                            <td>{{ $patient->age }}</td>
+                            <td>{{ $patient->created_at ? $patient->created_at->format('Y-m-d H:i:s') : '-' }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -88,5 +92,6 @@
 </div>
 
 <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+<script src="{{ asset('js/admin_patients.js') }}"></script>
 </body>
 </html>

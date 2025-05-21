@@ -22,6 +22,25 @@ class DentistController extends Controller
     }
 
     /**
+     * Search for dentists based on a query string.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return response()->json([]);
+        }
+
+        $dentists = Dentist::where('first_name', 'like', "%{$query}%")
+            ->orWhere('last_name', 'like', "%{$query}%")
+            ->orWhere('email', 'like', "%{$query}%")
+            ->get();
+
+        return response()->json($dentists);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -38,8 +57,8 @@ class DentistController extends Controller
             'last_name' => ['required', 'string', 'min:2', 'max:20'],
             'first_name' => ['required', 'string', 'min:2', 'max:20'],
             'email' => [
-                'required', 
-                'email', 
+                'required',
+                'email',
                 Rule::unique('dentists', 'email'),
                 Rule::unique('patients', 'email'),
                 Rule::unique('admins', 'email')
@@ -54,7 +73,7 @@ class DentistController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
-        
+
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)

@@ -76,10 +76,10 @@
                 </table>
             </div>
         </div>
-        </main>
     </div>
+</div>
 
-    <div id="logoutModal" class="logout-modal">
+<div id="logoutModal" class="logout-modal">
         <div class="modal-content">
             <h3>Are you sure you want to log out?</h3>
             <div class="modal-buttons">
@@ -93,5 +93,6 @@
     </div>
 
     <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+    <script src="{{ asset('js/admin_waitlist.js') }}"></script>
 </body>
 </html>

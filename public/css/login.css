@@ -56,7 +56,7 @@ body {
 }
 
 .loginback {
-    padding: 10px 20px;
+    padding: 10px 10px;
     margin: 5px;
     cursor: pointer;
     background-color: #1e86c3;
@@ -64,6 +64,9 @@ body {
     font: bold 1rem 'Montserrat', sans-serif;
     transition: 0.3s;
     border: 1px solid #38b6ff;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-left: 0;
 }
 
 form {
@@ -95,29 +98,38 @@ form input {
     display: inline-block;
     background-color: #eee;
     border: 1px solid #38b6ff;
-    padding: 12px;
+    padding: 12px;  
     margin: 8px 0;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 7px;
 }
 
 form button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     cursor: pointer;
     background-color: #1e86c3;
     color: white;
     font: bold 1rem 'Montserrat', sans-serif;
     transition: 0.3s;
     border: 1px solid #38b6ff;
+    border-radius: 20px;
+    width: 30%;
 }
 
 .btn-login {
+    padding: 10px 10px;
     margin-left: 20px; /* top, right, bottom, left */
+    border-radius: 20px;
+    transition: 0.3s;
+    font-size: 1rem;
 }
 
 .btn-signup {
+    padding: 10px 10px;
     margin-left: 120px;
-    padding: 3px 5px;
+    border-radius: 20px;
+    transition: 0.3s;
+    font-size: 1rem;
 }
 
 form button:hover {
@@ -125,15 +137,18 @@ form button:hover {
 }
 
 .ghost {
-    display: inline-block;
-    padding: 3px 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #0a74da;
-    color: #0a74da;
+    background-color: #1e86c3;
+    color: white;
+    font: bold 1rem 'Montserrat', sans-serif;
     transition: 0.3s;
-
+    border: 1px solid #38b6ff;
+    border-radius: 20px;
+    width: 30%;
     text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
 
 }
 
@@ -159,6 +174,9 @@ form button:hover {
     transition: 0.3s;
     margin-left: 10px;
     top: 2px;
+    width: 30%;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .overlay-container {

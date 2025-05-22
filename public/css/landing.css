@@ -44,6 +44,7 @@ button {
     font: bold 1rem 'Montserrat', sans-serif;
     transition: 0.3s;
     border: 1px solid #38b6ff;
+    border-radius: 25px;
 }
 
 button:hover {

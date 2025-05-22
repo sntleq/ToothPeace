@@ -19,6 +19,37 @@ class WaitlistController extends Controller
     }
 
     /**
+     * Search for waitlist entries based on a query string.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return response()->json([]);
+        }
+
+        $waitlistEntries = WaitlistEntry::where('date', 'like', "%{$query}%")
+            ->orWhere('time_start', 'like', "%{$query}%")
+            ->orWhere('time_end', 'like', "%{$query}%")
+            ->orWhereHas('patient', function($q) use ($query) {
+                $q->where('first_name', 'like', "%{$query}%")
+                  ->orWhere('last_name', 'like', "%{$query}%");
+            })
+            ->orWhereHas('dentist', function($q) use ($query) {
+                $q->where('first_name', 'like', "%{$query}%")
+                  ->orWhere('last_name', 'like', "%{$query}%");
+            })
+            ->orWhereHas('appointmentType', function($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->with(['patient', 'dentist', 'appointmentType'])
+            ->get();
+
+        return response()->json($waitlistEntries);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

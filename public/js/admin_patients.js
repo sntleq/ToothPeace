@@ -1,15 +1,3 @@
-// Add Dentist button event listener
-try {
-    const addDentistBtn = document.getElementById("addDentistBtn");
-    if (addDentistBtn) {
-        addDentistBtn.addEventListener("click", () => {
-            window.location.href = "admin/dentists/create";
-        });
-    }
-} catch (error) {
-    console.error("Error setting up Add Dentist button:", error);
-}
-
 // Search functionality
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
@@ -31,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Make AJAX request to search endpoint
-        fetch(`/search/dentists?query=${encodeURIComponent(query)}`)
+        fetch(`/search/patients?query=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.length === 0) {
@@ -43,15 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Update the existing table with search results
                     let tableContent = '';
 
-                    data.forEach(dentist => {
-                        const dob = dentist.dob ? new Date(dentist.dob).toISOString().split('T')[0] : '-';
+                    data.forEach(patient => {
+                        const dob = patient.dob ? new Date(patient.dob).toISOString().split('T')[0] : '-';
                         tableContent += `<tr>
-                            <td>${dentist.last_name}</td>
-                            <td>${dentist.first_name}</td>
-                            <td>${dentist.email}</td>
+                            <td>${patient.last_name}</td>
+                            <td>${patient.first_name}</td>
+                            <td>${patient.email}</td>
                             <td>${dob}</td>
-                            <td>${dentist.age || '-'}</td>
-                            <td>${dentist.created_at ? new Date(dentist.created_at).toISOString().replace('T', ' ').substr(0, 19) : '-'}</td>
+                            <td>${patient.age || '-'}</td>
+                            <td>${patient.created_at ? new Date(patient.created_at).toISOString().replace('T', ' ').substr(0, 19) : '-'}</td>
                         </tr>`;
                     });
 

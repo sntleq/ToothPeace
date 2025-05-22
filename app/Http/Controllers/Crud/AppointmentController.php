@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -13,6 +14,36 @@ class AppointmentController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Search for appointments based on a query string.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return response()->json([]);
+        }
+
+        $appointments = Appointment::where('date', 'like', "%{$query}%")
+            ->orWhere('time', 'like', "%{$query}%")
+            ->orWhereHas('patient', function($q) use ($query) {
+                $q->where('first_name', 'like', "%{$query}%")
+                  ->orWhere('last_name', 'like', "%{$query}%");
+            })
+            ->orWhereHas('dentist', function($q) use ($query) {
+                $q->where('first_name', 'like', "%{$query}%")
+                  ->orWhere('last_name', 'like', "%{$query}%");
+            })
+            ->orWhereHas('appointmentType', function($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->with(['patient', 'dentist', 'appointmentType'])
+            ->get();
+
+        return response()->json($appointments);
     }
 
     /**

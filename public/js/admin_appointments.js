@@ -1,15 +1,3 @@
-// Add Dentist button event listener
-try {
-    const addDentistBtn = document.getElementById("addDentistBtn");
-    if (addDentistBtn) {
-        addDentistBtn.addEventListener("click", () => {
-            window.location.href = "admin/dentists/create";
-        });
-    }
-} catch (error) {
-    console.error("Error setting up Add Dentist button:", error);
-}
-
 // Search functionality
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
@@ -31,27 +19,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Make AJAX request to search endpoint
-        fetch(`/search/dentists?query=${encodeURIComponent(query)}`)
+        fetch(`/search/appointments?query=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.length === 0) {
                     // Show no results message and clear table
-                    tableBody.innerHTML = '<tr><td colspan="6">No results found</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="5">No results found</td></tr>';
                     searchResults.innerHTML = '';
                     searchResults.classList.add('hidden');
                 } else {
                     // Update the existing table with search results
                     let tableContent = '';
 
-                    data.forEach(dentist => {
-                        const dob = dentist.dob ? new Date(dentist.dob).toISOString().split('T')[0] : '-';
+                    data.forEach(appointment => {
+                        const date = appointment.date ? new Date(appointment.date).toISOString().split('T')[0] : '-';
+                        const time = appointment.time || '-';
+                        const patientName = appointment.patient ? appointment.patient.name : 'N/A';
+                        const dentistName = appointment.dentist ? appointment.dentist.name : 'N/A';
+                        const appointmentType = appointment.appointment_type ? appointment.appointment_type.name : 'N/A';
+
                         tableContent += `<tr>
-                            <td>${dentist.last_name}</td>
-                            <td>${dentist.first_name}</td>
-                            <td>${dentist.email}</td>
-                            <td>${dob}</td>
-                            <td>${dentist.age || '-'}</td>
-                            <td>${dentist.created_at ? new Date(dentist.created_at).toISOString().replace('T', ' ').substr(0, 19) : '-'}</td>
+                            <td>${patientName}</td>
+                            <td>${appointmentType}</td>
+                            <td>${date}</td>
+                            <td>${time}</td>
+                            <td>${dentistName}</td>
                         </tr>`;
                     });
 

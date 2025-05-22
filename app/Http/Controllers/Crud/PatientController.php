@@ -19,6 +19,25 @@ class PatientController extends Controller
     }
 
     /**
+     * Search for patients based on a query string.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if (empty($query)) {
+            return response()->json([]);
+        }
+
+        $patients = Patient::where('first_name', 'like', "%{$query}%")
+            ->orWhere('last_name', 'like', "%{$query}%")
+            ->orWhere('email', 'like', "%{$query}%")
+            ->get();
+
+        return response()->json($patients);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

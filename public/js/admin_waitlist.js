@@ -1,15 +1,3 @@
-// Add Dentist button event listener
-try {
-    const addDentistBtn = document.getElementById("addDentistBtn");
-    if (addDentistBtn) {
-        addDentistBtn.addEventListener("click", () => {
-            window.location.href = "admin/dentists/create";
-        });
-    }
-} catch (error) {
-    console.error("Error setting up Add Dentist button:", error);
-}
-
 // Search functionality
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
@@ -31,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Make AJAX request to search endpoint
-        fetch(`/search/dentists?query=${encodeURIComponent(query)}`)
+        fetch(`/search/waitlist?query=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.length === 0) {
@@ -43,15 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Update the existing table with search results
                     let tableContent = '';
 
-                    data.forEach(dentist => {
-                        const dob = dentist.dob ? new Date(dentist.dob).toISOString().split('T')[0] : '-';
+                    data.forEach(waitlist => {
+                        const date = waitlist.date ? new Date(waitlist.date).toISOString().split('T')[0] : '-';
+                        const timeStart = waitlist.time_start || '-';
+                        const timeEnd = waitlist.time_end || '-';
+                        const patientName = waitlist.patient ? waitlist.patient.name : 'N/A';
+                        const dentistName = waitlist.dentist ? waitlist.dentist.name : 'N/A';
+                        const appointmentType = waitlist.appointment_type ? waitlist.appointment_type.name : 'N/A';
+
                         tableContent += `<tr>
-                            <td>${dentist.last_name}</td>
-                            <td>${dentist.first_name}</td>
-                            <td>${dentist.email}</td>
-                            <td>${dob}</td>
-                            <td>${dentist.age || '-'}</td>
-                            <td>${dentist.created_at ? new Date(dentist.created_at).toISOString().replace('T', ' ').substr(0, 19) : '-'}</td>
+                            <td>${patientName}</td>
+                            <td>${dentistName}</td>
+                            <td>${appointmentType}</td>
+                            <td>${date}</td>
+                            <td>${timeStart}</td>
+                            <td>${timeEnd}</td>
                         </tr>`;
                     });
 

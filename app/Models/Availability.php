@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Availability extends Model
 {
     public $timestamps = false;
-    
+
     protected $table = 'availability';
 
     protected $fillable = [
+        'date',
         'day_of_week',
         'start_time',
         'end_time',
@@ -19,6 +20,7 @@ class Availability extends Model
     ];
 
     protected $casts = [
+        'date' => 'date',
         'start_time' => 'datetime:H:i',
         'end_time' => 'datetime:H:i',
         'day_of_week' => 'integer',

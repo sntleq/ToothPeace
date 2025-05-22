@@ -63,7 +63,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">No active appointments found.</td>
+                                <td colspan="6">No active appointments found.</td>
                             </tr>
                         @endforelse
                         </tbody>

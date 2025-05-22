@@ -40,7 +40,6 @@ body, html {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Montserrat', sans-serif;
     padding-left: 40px;
-    padding-right: 20px;
 }
 
 .icon-container {
@@ -79,6 +78,7 @@ body, html {
 /* HERE ANG TABLE SECTION */
 
 .table-wrapper {
+    height: 100%;
     background-color: #eaf4ff;
     border-radius: 20px;
     padding: 20px;
@@ -93,7 +93,7 @@ body, html {
 }
 
 .table-container {
-    max-height: 300px;
+    max-height: 100%;
     overflow-y: auto;
     border-radius: 12px;
     scrollbar-width: thin;
@@ -140,4 +140,8 @@ th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
     font-size: .8rem;
+}
+
+.appointments-section {
+    height: 70%;
 }

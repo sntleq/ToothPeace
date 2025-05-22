@@ -20,7 +20,7 @@
     </div>
     <nav>
         <a href="{{ route('dentist.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a class="active"><img src="{{ asset('pics/availability_icon.png') }}" alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
@@ -37,7 +37,7 @@
 
     <div class="availability-header">
         <h1 class="section-title">My Weekly Availability </h1>
-        <button onclick="window.location.href='{{ route('dentist.availability.edit') }}'">Set Next Week's Hours</button>
+        <button onclick="window.location.href='{{ route('dentist.availability.edit') }}'">Set Next Week Availability</button>
     </div>
 
     <div class="page-wrapper">
@@ -49,15 +49,9 @@
                     <thead>
                     <tr>
                         <th>Day</th>
-                        <th>08:00 AM</th>
-                        <th>09:00 AM</th>
-                        <th>10:00 AM</th>
-                        <th>11:00 AM</th>
-                        <th>12:00 PM</th>
-                        <th>01:00 PM</th>
-                        <th>02:00 PM</th>
-                        <th>03:00 PM</th>
-                        <th>04:00 PM</th>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,85 +59,31 @@
                         <th>Monday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Tuesday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Wednesday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Thursday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Friday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Saturday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                    </tr>
-                    <tr>
-                        <th>Sunday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     </tbody>
                 </table>
@@ -156,15 +96,9 @@
                     <thead>
                     <tr>
                         <th>Day</th>
-                        <th>08:00 AM</th>
-                        <th>09:00 AM</th>
-                        <th>10:00 AM</th>
-                        <th>11:00 AM</th>
-                        <th>12:00 PM</th>
-                        <th>01:00 PM</th>
-                        <th>02:00 PM</th>
-                        <th>03:00 PM</th>
-                        <th>04:00 PM</th>
+                        <th>Date</th>
+                        <th>Time In</th>
+                        <th>Time Out</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -172,90 +106,37 @@
                         <th>Monday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Tuesday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Wednesday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Thursday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Friday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     <tr>
                         <th>Saturday</th>
                         <td>Available</td>
                         <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                    </tr>
-                    <tr>
-                        <th>Sunday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                        <td>Available</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
     </div>
 </div>
 

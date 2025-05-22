@@ -10,6 +10,7 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/dentist_dashboard.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/schedule.css') }}">
 </head>
 <body>
 <div class="sidebar">
@@ -20,7 +21,7 @@
     </div>
     <nav>
         <a class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}"
                                                            alt="Availability">Availability</a>
     </nav>
@@ -37,7 +38,7 @@
     </div>
 
     <div class="appointments-section">
-        <h2 class="section-title">Weekly Upcoming Appointments</h2>
+        <h2 class="section-title">Appointments This Week</h2>
         <div class="table-wrapper">
             <div class="table-container">
                 <table>
@@ -49,58 +50,32 @@
                         <th>Thursday</th>
                         <th>Friday</th>
                         <th>Saturday</th>
-                        <th>Sunday</th>
                     </tr>
                     </thead>
-                    <!--TESTING RANI PARA MAKITA JUD NIMO UNSAY NANWG NIYA TENKS-->
-                    <tbody>
-                    <tr>
-                        <td>Tooth Extraction <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                        <td>Dental Cleaning <br> Shene Booc <br> @ 1pm - 2pm</td>
-                        <td>Dental Checkup <br> Jodeci Pacibe <br> @ 1pm - 2pm</td>
-                        <td>Tooth Filling <br> Emmanuel Inot <br> @ 1pm - 2pm</td>
-                        <td>Dental Implants <br> Roberto Vender <br> @ 1pm - 2pm</td>
-                        <td>Wisdom Tooth Extraction <br> John Paul Noquiana <br> @ 1pm - 2pm</td>
-                        <td>Dental Crown <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                    </tr>
-                    <tr>
-                        <td>Tooth Extraction <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                        <td>Dental Cleaning <br> Shene Booc <br> @ 1pm - 2pm</td>
-                        <td>Dental Checkup <br> Jodeci Pacibe <br> @ 1pm - 2pm</td>
-                        <td>Tooth Filling <br> Emmanuel Inot <br> @ 1pm - 2pm</td>
-                        <td>Dental Implants <br> Roberto Vender <br> @ 1pm - 2pm</td>
-                        <td>Wisdom Tooth Extraction <br> John Paul Noquiana <br> @ 1pm - 2pm</td>
-                        <td>Dental Crown <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                    </tr>
-                    <tr>
-                        <td>Tooth Extraction <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                        <td>Dental Cleaning <br> Shene Booc <br> @ 1pm - 2pm</td>
-                        <td>Dental Checkup <br> Jodeci Pacibe <br> @ 1pm - 2pm</td>
-                        <td>Tooth Filling <br> Emmanuel Inot <br> @ 1pm - 2pm</td>
-                        <td>Dental Implants <br> Roberto Vender <br> @ 1pm - 2pm</td>
-                        <td>Wisdom Tooth Extraction <br> John Paul Noquiana <br> @ 1pm - 2pm</td>
-                        <td>Dental Crown <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                    </tr>
-                    <tr>
-                        <td>Tooth Extraction <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                        <td>Dental Cleaning <br> Shene Booc <br> @ 1pm - 2pm</td>
-                        <td>Dental Checkup <br> Jodeci Pacibe <br> @ 1pm - 2pm</td>
-                        <td>Tooth Filling <br> Emmanuel Inot <br> @ 1pm - 2pm</td>
-                        <td>Dental Implants <br> Roberto Vender <br> @ 1pm - 2pm</td>
-                        <td>Wisdom Tooth Extraction <br> John Paul Noquiana <br> @ 1pm - 2pm</td>
-                        <td>Dental Crown <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                    </tr>
-                    <tr>
-                        <td>Tooth Extraction <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                        <td>Dental Cleaning <br> Shene Booc <br> @ 1pm - 2pm</td>
-                        <td>Dental Checkup <br> Jodeci Pacibe <br> @ 1pm - 2pm</td>
-                        <td>Tooth Filling <br> Emmanuel Inot <br> @ 1pm - 2pm</td>
-                        <td>Dental Implants <br> Roberto Vender <br> @ 1pm - 2pm</td>
-                        <td>Wisdom Tooth Extraction <br> John Paul Noquiana <br> @ 1pm - 2pm</td>
-                        <td>Dental Crown <br> Gaile Casio <br> @ 1pm - 2pm</td>
-                    </tr>
-                    </tbody>
                 </table>
+                <div class="schedule-wrapper">
+                    <div class="schedule-container">
+
+                        <!-- Items -->
+                        <a href="#"
+                           class="schedule-item col-2 row-2-4">
+                            <p class="title">Tooth Extraction</p>
+                            <p class="meta">Jayson Gabriel Limosnero<br>9:30AM - 10:30AM</p>
+                        </a>
+
+                        <a href="#"
+                           class="schedule-item col-1 row-8-10">
+                            <p class="title">Data Structures &amp; Algorithms (Lec)</p>
+                            <p class="meta">IT203 · 1:00 PM – 2:00 PM</p>
+                        </a>
+
+                        <a href="#"
+                           class="schedule-item col-2 row-8-11">
+                            <p class="title">Readings in Philippine History</p>
+                            <p class="meta">IT203 · 1:00 PM – 2:00 PM</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

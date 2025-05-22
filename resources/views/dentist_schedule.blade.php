@@ -20,7 +20,7 @@
     </div>
     <nav>
         <a href="{{ route('dentist.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
-        <a class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Schedule">Schedule</a>
+        <a class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}"
                                                            alt="Availability">Availability</a>
     </nav>
@@ -62,7 +62,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($appointments as $appointment)
+                    @forelse($appointments as $appointment)
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($appointment->date)->format('m-d-Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($appointment->time_start)->format('h:i A') }}</td>
@@ -70,7 +70,11 @@
                             <td>{{ $appointment->patient->first_name ?? 'N/A' }}</td>
                             <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5">No active appointments found.</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>

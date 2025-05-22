@@ -56,29 +56,21 @@
                     <tr>
                         <th>Date</th>
                         <th>Time Start</th>
-                        <th>Time End</th>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Appointment Type</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>05-10-2025</td>
-                        <td>01:00 AM</td>
-                        <td>02:00 AM</td>
-                        <td>Casio</td>
-                        <td>Gaile</td>
-                        <td>Tooth Extraction</td>
-                    </tr>
-                    <tr>
-                        <td>05-10-2025</td>
-                        <td>01:00 AM</td>
-                        <td>02:00 AM</td>
-                        <td>Casio</td>
-                        <td>Gaile</td>
-                        <td>Tooth Extraction</td>
-                    </tr>
+                    @foreach($appointments as $appointment)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($appointment->date)->format('m-d-Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($appointment->time_start)->format('h:i A') }}</td>
+                            <td>{{ $appointment->patient->last_name ?? 'N/A' }}</td>
+                            <td>{{ $appointment->patient->first_name ?? 'N/A' }}</td>
+                            <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

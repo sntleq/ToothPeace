@@ -2,9 +2,15 @@
 
 use App\Models\Appointment;
 use App\Models\AppointmentCategory;
+use App\Models\AppointmentType;
+use App\Models\Availability;
 use App\Models\Dentist;
 use App\Models\WaitlistEntry;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 Route::middleware('auth:patient')
     ->prefix('patient')
@@ -58,9 +64,49 @@ Route::middleware('auth:patient')
 
         Route::get('/booking', function () {
             $categories = AppointmentCategory::with('appointmentTypes')->get();
+            $types = AppointmentType::all();
             $dentists = Dentist::all();
-            return view('patient_booking', compact('categories', 'dentists'));
+
+            $freeSlots = collect();
+
+            if (old('appointment_type_id')) {
+                $type = old('appointment_type_id');
+                $dentist = old('dentist_id');
+
+                $nextMonday = Carbon::now()->startOfWeek()->addWeek();
+                $dates = collect(range(0,6))
+                    ->map(fn($i) => $nextMonday->copy()->addDays($i)->toDateString())
+                    ->all();
+
+                $availQ = Availability::whereIn('date', $dates);
+                $appntQ = Appointment::whereIn('date', $dates);
+
+                if ($dentist && $type != 0) {
+                    $availQ->where('dentist_id', $dentist);
+                    $appntQ->where('dentist_id', $dentist);
+                }
+
+                $availabilities = $availQ->get();
+
+                // Check if availability table is empty
+                if ($availabilities->isEmpty()) {
+                    abort(404, 'No availability found');
+                }
+
+                $availSlots = $availabilities->flatMap->timeslots;
+                $appntSlots = $appntQ->get()->flatMap->timeslots;
+
+                $freeSlots = $availSlots->diff($appntSlots);
+
+            }
+
+            return view('patient_booking', compact('categories', 'types', 'dentists', 'freeSlots'));
+
         })->name('booking');
+
+        Route::post('/booking', function (Request $request) {
+            return redirect()->back()->withInput();
+        })->name('booking.queries');
 
         Route::get('/waitlist/add', function () {
             return view('patient_waitlistBooking');

@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::create('availability_override', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->enum('day_of_week', range(0, 6));
+            $table->enum('day_of_week', range(1, 6));
             $table->time('start_time');
             $table->time('end_time');
             $table->foreignId('dentist_id')->constrained('dentists');

@@ -37,46 +37,53 @@
 
         <div class="form-container">
             <h2 class="form-title">Appointment Booking</h2>
-            <form class="patient-form">
+            <form action="{{ route('patient.booking.queries') }}" method="POST" class="patient-form">
+                @csrf
 
                 <!-- Appointment Type -->
                 <div class="form-group">
                     <label for="appointmentType">Appointment Type</label>
-                    <select id="appointmentType" name="appointmentType" required>
-                        <option disabled selected>Please select</option>
+                    <select id="appointmentType" name="appointment_type_id" required>
+                        <option disabled selected hidden>Please select</option>
                         @foreach($categories as $category)
                             <optgroup label="{{ $category->name }}">
                                 @foreach($category->appointmentTypes as $type)
-                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                    <option value="{{ $type->id }}" {{ old('appointment_type_id') == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
                                 @endforeach
                             </optgroup>
                         @endforeach
                     </select>
                 </div>
 
-
-                <!-- Add lang here -->
+                <!-- Choose Dentist -->
                 <div class="form-group">
                     <label for="preferredDentist">Preferred Dentist</label>
-                    <select id="preferredDentist" name="preferredDentist" required>
-                        <option disabled selected>Select dentist</option>
-                        <option value="any">Any</option>
+                    <select id="preferredDentist" name="dentist_id" value="old('dentist_id')" required>
+                        <option value="0">Any</option>
                         @foreach($dentists as $dentist)
-                            <option value="{{ $dentist->id }}">{{ $dentist->name }}</option>
+                            <option value="{{ $dentist->id }}" {{ old('dentist_id') == $dentist->id ? 'selected' : '' }}>{{ $dentist->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
+                <!-- Form Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-add">See Available Slots</button>
+                </div>
+
+            </form>
+            @if (old('appointment_type_id'))
+            <form action="{{ route('appointments.store') }}" method="POST" class="patient-form">
+                @csrf
 
                 <!-- Add lang here -->
                 <div class="form-group">
                     <label for="schedule">Pick a Schedule</label>
                     <select id="schedule" name="schedule" required>
-                        <option disabled selected>Select schedule</option>
-                        <option>May 20, 2025 – 09:00 AM</option>
-                        <option>May 20, 2025 – 10:00 AM</option>
-                        <option>May 21, 2025 – 01:00 PM</option>
-                        <option>May 21, 2025 – 03:30 PM</option>
+                        <option disabled selected hidden>Select schedule</option>
+                        @foreach($freeSlots as $sched)
+                            <option value="{{ $sched->id }}">{{ $sched->day_of_week . ' ' . $sched->start_time }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -87,8 +94,8 @@
                     </button>
                     <button type="submit" class="btn-add">Book</button>
                 </div>
-
             </form>
+            @endif
         </div>
     </div>
 

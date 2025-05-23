@@ -33,6 +33,11 @@
         <i class="fa fa-arrow-left"></i> Back
     </a>
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     @if (session('error'))
         <div class="alert-console error" id="alertMessage">
             {{ session('error') }}
@@ -52,17 +57,15 @@
     <div class="form-container">
         <h2 class="form-title">Edit Availability</h2>
 
-        <form id="availabilityForm" method="POST"
-              data-available-action="{{ route('dentist.availability.update') }}"
-              data-override-action="{{ route('dentist.availability.override.update') }}">
+        <form id="availabilityForm" method="POST" action="{{ route('availability.store') }}">
             @csrf
-            @method('PUT')
             <div class="form-row">
                 <div class="form-group">
                     <label for="availability-mode">Setting Mode</label>
                     <select id="availability-mode" name="availability_mode">
-                        <option value="available">Recurring (For every week since next week)</option>
-                        <option value="not-available">Override (For next week only)</option>
+                        <option value="recurring">
+                            Recurring (For every week since next week)</option>
+                        <option value="override">Override (For next week only)</option>
                     </select>
                 </div>
             </div>
@@ -85,12 +88,12 @@
                         <div class="form-group">
                             <label>{{ $day }}: Time In</label>
                             <input type="time" name="availability[{{ $index }}][start_time]"
-                                   value="{{ $regularAvailability[$index]['start_time'] ?? '' }}" />
+                                   value="{{ $existingRecurring[$index]['start_time'] ?? '' }}" />
                         </div>
                         <div class="form-group">
                             <label>{{ $day }}: Time Out</label>
                             <input type="time" name="availability[{{ $index }}][end_time]"
-                                   value="{{ $regularAvailability[$index]['end_time'] ?? '' }}" />
+                                   value="{{ $existingRecurring[$index]['end_time'] ?? '' }}" />
                         </div>
                     </div>
                 @endforeach
@@ -103,12 +106,12 @@
                         <div class="form-group">
                             <label>{{ $day }}: Time In</label>
                             <input type="time" name="availability[{{ $index }}][start_time]"
-                                   value="{{ $overrideAvailability[$index]['start_time'] ?? '' }}" />
+                                   value="{{ $existingOverride[$index]['start_time'] ?? '' }}" />
                         </div>
                         <div class="form-group">
                             <label>{{ $day }}: Time Out</label>
                             <input type="time" name="availability[{{ $index }}][end_time]"
-                                   value="{{ $overrideAvailability[$index]['end_time'] ?? '' }}" />
+                                   value="{{ $existingOverride[$index]['end_time'] ?? '' }}" />
                         </div>
                     </div>
                 @endforeach
@@ -116,7 +119,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn-add">Save</button>
-                <button type="button" class="btn-cancel" onclick="window.location.href='/patient/Profile'">Cancel</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='{{ route('dentist.availability') }}'">Cancel</button>
             </div>
         </form>
 

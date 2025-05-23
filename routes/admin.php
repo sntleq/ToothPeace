@@ -30,10 +30,6 @@ Route::prefix('admin')
             [DentistController::class,
                 'create'])->name('dentists.create');
 
-        Route::post('/dentists/store',
-            [DentistController::class,
-                'store'])->name('dentists.store');
-
         Route::get('/patients',
             [AdminController::class,
                 'patients'])->name('patients');
@@ -42,16 +38,12 @@ Route::prefix('admin')
             [AdminController::class,
                 'adminControls'])->name('controls');
 
-        Route::post('/controls/save',
-            [AdminController::class,
-                'saveSettings'])->name('controls.save');
-
         Route::get('/waitlist',
             [AdminController::class,
                 'waitlist'])->name('waitlist');
 
 
     });
-    
 
-    
+
+

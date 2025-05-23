@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\Appointment;
+use App\Models\Availability;
+use App\Models\AvailabilityOverride;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Crud\AvailabilityController;
 use App\Http\Controllers\Crud\AvailabilityOverrideController;
@@ -15,12 +19,11 @@ Route::middleware('auth:dentist')
             return view('dentist_dashboard');
         })->name('dashboard');
 
-        Route::get('/availability', function () {
-            return view('dentist_availability');
-        })->name('availability');
-
         Route::get('/availability/edit', [DentistAvailabilityController::class, 'editAvailability'])
-        ->name('availability.edit');
+            ->name('availability.edit');
+
+        Route::get('/availability', [AvailabilityController::class, 'index'])
+            ->name('availability');
 
         Route::put('/availability/update', [AvailabilityController::class, 'update'])
             ->name('availability.update');

@@ -40,102 +40,43 @@
             <form class="patient-form">
                 <div class="form-group">
                     <label for="appointmentType">Appointment Type</label>
-                    <select id="appointmentType" name="appointmentType">
-                        <optgroup label="Dental Appointments">
-                            <option>Dental Cleaning</option>
-                            <option>Dental Exam/Check-up</option>
-                            <option>X-rays</option>
-                        </optgroup>
-                        <optgroup label="Restorative Treatment">
-                            <option>Tooth Filling</option>
-                            <option>Tooth Extraction</option>
-                            <option>Root Canal</option>
-                            <option>Dental Crown</option>
-                            <option>Bridge Placement</option>
-                            <option>Dental Implants</option>
-                            <option>Inlays/Onlays</option>
-                        </optgroup>
-                        <optgroup label="Preventive Treatment">
-                            <option>Flouride Treatment</option>
-                            <option>Dental Sealants</option>
-                            <option>Oral Cancer Screening</option>
-                            <option>Deep Cleaning</option>
-                        </optgroup>
-                        <optgroup label="Cosmetic Dentistry">
-                            <option>Teeth Whitening</option>
-                            <option>Dental Bonding</option>
-                            <option>Veeners</option>
-                            <option>Smile Makeover</option>
-                            <option>Gum Contouring</option>
-                        </optgroup>
-                        <optgroup label="Orthodontics">
-                            <option>Braces</option>
-                            <option>Traditional Metal Braces</option>
-                            <option>Clear Aligners</option>
-                            <option>Retainers</option>
-                        </optgroup>
-                        <optgroup label="Oral Surgery">
-                            <option>Wisdom Tooth Extraction</option>
-                            <option>Bone Grafting</option>
-                        </optgroup>
-                        <optgroup label="Pediatric Dentistry">
-                            <option>Children’s Check-up</option>
-                            <option>Fluoride Treatment for Kids</option>
-                            <option>Pediatric Dental Cleaning</option>
-                            <option>Space Maintainers</option>
-                            <option>Sealants for Children</option>
-                        </optgroup>
-                        <optgroup label="Periodontics (Gum)">
-                            <option>Deep Cleaning</option>
-                            <option>Gum Grafting</option>
-                            <option>Periodontal Maintenance</option>
-                            <option>Crown Lengthening</option>
-                        </optgroup>
-                        <optgroup label="Emergency Dentistry">
-                            <option>Toothache Relief</option>
-                            <option>Trauma Care</option>
-                            <option>Abscess Treatment</option>
-                            <option>Lost Filling / Crown Repair</option>
-                            <option>Broken Tooth Restoration</option>
-                        </optgroup>
+                    <select id="appointmentType" name="appointmentType" required>
+                        <option disabled selected>Please select</option>
+                        @foreach($categories as $category)
+                            <optgroup label="{{ $category->name }}">
+                                @foreach($category->appointmentTypes as $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="preferredDentist">Preferred Dentist</label>
-                    <select id="preferredDentist" name="preferredDentist">
-                        <option>Any</option>
-                        <option>Dr. Cruz</option>
-                        <option>Dr. Santos</option>
-                        <option>Dr. Reyes</option>
+                    <select id="preferredDentist" name="preferredDentist" required>
+                        <option disabled selected>Select dentist</option>
+                        <option value="any">Any</option>
+                        @foreach($dentists as $dentist)
+                            <option value="{{ $dentist->id }}">{{ $dentist->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="preferredDate">Preferred Date</label>
-                    <input type="date" id="preferredDate" name="preferredDate"/>
+                    <input type="date" id="preferredDate" name="preferredDate"
+                           min="{{ $minDate }}" max="{{ $maxDate }}"/>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="timeFrom">From</label>
-                        <select id="timeFrom" name="timeFrom">
-                            <!-- Add langs  -->
-                            <option>08:00</option>
-                            <option>09:00</option>
-                            <option>10:00</option>
-                            <option>11:00</option>
-                        </select>
+                        <input type="time" id="timeFrom">
                     </div>
                     <div class="form-group">
                         <label for="timeTo">To</label>
-                        <select id="timeTo" name="timeTo">
-                            <!-- Add langs -->
-                            <option>08:30</option>
-                            <option>09:30</option>
-                            <option>10:30</option>
-                            <option>11:30</option>
-                        </select>
+                        <input type="time" id="timeTo">
                     </div>
                 </div>
 

@@ -78,6 +78,7 @@ class AvailabilityController extends Controller
 
                 foreach ($validEntries as $day => $time) {
                     Availability::create([
+                        'date' => date('Y-m-d'),
                         'day_of_week' => $day,
                         'start_time' => $time['start_time'],
                         'end_time' => $time['end_time'],
@@ -91,4 +92,35 @@ class AvailabilityController extends Controller
             return redirect()->back()->with('error', 'Failed to save availability: ' . $e->getMessage());
         }
     }
+
+    public function index()
+    {
+        $dentistId = Auth::guard('dentist')->id();
+
+        if (!$dentistId) {
+            return redirect()->back()->with('error', 'Dentist not authenticated.');
+        }
+
+        $thisWeek = [];
+        $nextWeek = [];
+
+        $availability = Availability::where('dentist_id', $dentistId)->get();
+
+        foreach ($availability as $slot) {
+            $week = now()->startOfWeek();
+            $nextWeekStart = now()->addWeek()->startOfWeek();
+
+            if ($slot->date >= $week && $slot->date < $week->copy()->addDays(7)) {
+                $thisWeek[$slot->day_of_week] = $slot;
+            } elseif ($slot->date >= $nextWeekStart && $slot->date < $nextWeekStart->copy()->addDays(7)) {
+                $nextWeek[$slot->day_of_week] = $slot;
+            }
+        }
+
+        return view('dentist_availability', [
+            'thisWeek' => $thisWeek,
+            'nextWeek' => $nextWeek,
+        ]);
+    }
+
 }

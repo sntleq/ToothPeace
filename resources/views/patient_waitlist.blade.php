@@ -40,8 +40,6 @@
                 <table class="appointments-table">
                     <thead>
                     <tr>
-                        <th>Waitlist ID</th>
-                        <th>Patient</th>
                         <th>Dentist</th>
                         <th>Appointment Type</th>
                         <th>Date</th>
@@ -53,8 +51,6 @@
                     <tbody>
                     @forelse ($entries as $entry)
                         <tr>
-                            <td>WL{{ str_pad($entry->id, 3, '0', STR_PAD_LEFT) }}</td>
-                            <td>{{ $entry->patient->name ?? 'N/A' }}</td>
                             <td>{{ $entry->dentist->name ?? 'N/A' }}</td>
                             <td>{{ $entry->appointmentType->name ?? 'N/A' }}</td>
                             <td>{{ \Carbon\Carbon::parse($entry->date)->format('F d, Y') }}</td>

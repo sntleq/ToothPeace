@@ -22,9 +22,8 @@
     <nav>
         <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
         <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
-        <a class="active"><img src="{{ asset('pics/booking_icon.svg') }}" alt="Booking">Booking</a>
         <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-        <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entries</a>
+        <a class="active"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entries</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -37,7 +36,9 @@
 
         <div class="form-container">
             <h2 class="form-title">Waitlist Signup</h2>
-            <form class="patient-form">
+            <form class="patient-form" method="POST" action="{{ route('patient.waitlist.store') }}">
+            @csrf
+
                 <div class="form-group">
                     <label for="appointmentType">Appointment Type</label>
                     <select id="appointmentType" name="appointmentType" required>
@@ -65,26 +66,23 @@
 
                 <div class="form-group">
                     <label for="preferredDate">Preferred Date</label>
-                    <input type="date" id="preferredDate" name="preferredDate"
-                           min="{{ $minDate }}" max="{{ $maxDate }}"/>
+                    <input type="date" id="preferredDate" name="preferredDate" min="{{ $minDate }}" max="{{ $maxDate }}" required />
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="timeFrom">From</label>
-                        <input type="time" id="timeFrom">
+                        <input type="time" id="timeFrom" name="timeFrom" required />
                     </div>
                     <div class="form-group">
                         <label for="timeTo">To</label>
-                        <input type="time" id="timeTo">
+                        <input type="time" id="timeTo" name="timeTo" required />
                     </div>
                 </div>
 
                 <div class="form-actions">
                     <button type="submit" class="btn-add">Submit</button>
-                    <button type="button" class="btn-cancel" onclick="window.location.href='{{ route('patient.booking') }}'">
-                        Cancel
-                    </button>
+                    <button type="button" class="btn-cancel" onclick="window.location.href='{{ route('patient.waitlist') }}'">Cancel</button>
                 </div>
             </form>
         </div>

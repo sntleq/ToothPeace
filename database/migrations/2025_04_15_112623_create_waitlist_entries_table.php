@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('waitlist_entries', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->useCurrent();
             $table->date('date');
             $table->time('time_start');
             $table->time('time_end');
-            $table->enum('status', ['waiting', 'notified', 'inactive']);
+            $table->enum('status', ['waiting', 'notified', 'inactive'])->default('waiting');
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('dentist_id')->constrained('dentists');
             $table->foreignId('appointment_type_id')->constrained('appointment_types');

@@ -95,9 +95,27 @@ tbody tr:nth-child(even) {
     border: 2px solid #f0f7ff;
 }
 
-.appointment-history-btn-wrapper {
-    text-align: right;
+.appointment-buttons-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
     margin-top: 20px;
+}
+
+.book-here-btn {
+    background-color: #1e86c3;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-here-btn:hover {
+    background-color: #005fa3;
 }
 
 .appointment-history-btn {
@@ -115,3 +133,4 @@ tbody tr:nth-child(even) {
 .appointment-history-btn:hover {
     background-color: #0071d3;
 }
+

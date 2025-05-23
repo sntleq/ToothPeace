@@ -21,7 +21,6 @@
     <nav>
         <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
         <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
-        <a href="{{ route('patient.booking') }}"><img src="{{ asset('pics/booking_icon.svg') }}" alt="Booking">Booking</a>
         <a class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entries</a>
     </nav>
@@ -69,7 +68,11 @@
             </div>
         </div>
 
-        <div class="appointment-history-btn-wrapper">
+        <div class="appointment-buttons-wrapper">
+            <button class="book-here-btn"
+                    onclick="window.location.href='{{ route('patient.booking') }}'">
+                Book Here!
+            </button>
             <button class="appointment-history-btn"
                     onclick="window.location.href='{{ route('patient.appointments.history') }}'">
                 View Appointment History

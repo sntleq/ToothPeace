@@ -122,4 +122,26 @@ Route::middleware('auth:patient')
 
             return view('patient_waitlistBooking', compact('categories', 'dentists', 'minDate', 'maxDate'));
         })->name('waitlist.add');
+
+        Route::post('/waitlist/store', function (Request $request) {
+            $validated = $request->validate([
+                'appointmentType' => 'required|exists:appointment_types,id',
+                'preferredDentist' => 'required',
+                'preferredDate' => 'required|date',
+                'timeFrom' => 'required|date_format:H:i',
+                'timeTo' => 'required|date_format:H:i|after:timeFrom',
+            ]);
+
+            WaitlistEntry::create([
+                'patient_id' => auth()->id(),
+                'appointment_type_id' => $validated['appointmentType'],
+                'dentist_id' => $validated['preferredDentist'] !== 'any' ? $validated['preferredDentist'] : null,
+                'date' => $validated['preferredDate'],
+                'time_start' => $validated['timeFrom'],
+                'time_end' => $validated['timeTo'],
+            ]);
+
+            return redirect()->route('patient.waitlist')->with('success', 'You’ve been added to the waitlist!');
+        })->name('waitlist.store');
+
     });

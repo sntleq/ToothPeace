@@ -62,32 +62,27 @@ class WaitlistController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'last_name' => ['required', 'string', 'min:2', 'max:20'],
-            'first_name' => ['required', 'string', 'min:2', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('dentists', 'email')],
-            'dob' => ['required', 'date', 'before:today'],
-            'password' => ['required', 'string', 'min:8'],
-            'password_confirm' => ['required', 'same:password', 'min:8'],
-        ];
-
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        WaitlistEntry::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'dob' => $request->dob,
-            'password' => $request->password,
+        $request->validate([
+            'appointmentType' => 'required|exists:appointment_types,id',
+            'preferredDentist' => 'required',
+            'preferredDate' => 'required|date',
+            'timeFrom' => 'required|date_format:H:i',
+            'timeTo' => 'required|date_format:H:i|after:timeFrom',
         ]);
 
-        return redirect()->back()->with('success', 'Dentist added successfully!');
+        WaitlistEntry::create([
+            'patient_id' => auth()->id(),
+            'appointment_type_id' => $request->appointmentType,
+            'dentist_id' => $request->preferredDentist !== 'any' ? $request->preferredDentist : null,
+            'date' => $request->preferredDate,
+            'time_start' => $request->timeFrom,
+            'time_end' => $request->timeTo,
+        ]);
+
+        return redirect()->route('patient.waitlist')->with('success', 'Waitlist entry submitted successfully!');
     }
+
+
 
     /**
      * Display the specified resource.

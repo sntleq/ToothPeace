@@ -178,3 +178,26 @@ body {
     background-color: #004b80;
     transform: translateY(-1px);
   }
+
+.back-button {
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.back-button .icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.back-button:hover {
+    background-color: #002244;
+}

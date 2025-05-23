@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class WaitlistEntry extends Model
 {
+    // Use only created_at, disable updated_at
+    const UPDATED_AT = null;
+
     protected $table = 'waitlist_entries';
 
     protected $fillable = [
-        'created_at',
         'date',
         'time_start',
         'time_end',
@@ -24,7 +26,8 @@ class WaitlistEntry extends Model
 
     protected $casts = [
         'date' => 'date',
-        'time' => 'datetime:H:i',
+        'time_start' => 'datetime:H:i',
+        'time_end' => 'datetime:H:i',
     ];
 
     public function patient()
@@ -41,5 +44,4 @@ class WaitlistEntry extends Model
     {
         return $this->belongsTo(AppointmentType::class, 'appointment_type_id');
     }
-
 }

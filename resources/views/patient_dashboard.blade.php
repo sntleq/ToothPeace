@@ -21,7 +21,6 @@
     <nav>
         <a class="active"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
         <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
-        <a href="{{ route('patient.booking') }}"><img src="{{ asset('pics/booking_icon.svg') }}" alt="Booking">Booking</a>
         <a href="{{ route('patient.appointments') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
         <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entries</a>
     </nav>

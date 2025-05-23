@@ -40,6 +40,27 @@
 
         <div class="form-container">
             <h2 class="form-title">Appointment Booking</h2>
+            @if (session('success'))
+                <div class="alert-console success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert-console error">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert-console error">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('patient.booking.queries') }}" method="POST" class="patient-form">
                 @csrf
 
@@ -61,7 +82,7 @@
                 <!-- Choose Dentist -->
                 <div class="form-group">
                     <label for="preferredDentist">Preferred Dentist</label>
-                    <select id="preferredDentist" name="dentist_id" value="old('dentist_id')" required>
+                    <select id="preferredDentist" name="dentist_id" value="old('dentist_id')">
                         <option value="">Any</option>
                         @foreach($dentists as $dentist)
                             <option value="{{ $dentist->id }}" {{ old('dentist_id') == $dentist->id ? 'selected' : '' }}>{{ $dentist->name }}</option>
@@ -79,10 +100,13 @@
             <form action="{{ route('appointments.store') }}" method="POST" class="patient-form">
                 @csrf
 
+                <input type="hidden" name="appointment_type_id" value="{{ old('appointment_type_id') }}">
+                <input type="hidden" name="dentist_id" value="{{ old('dentist_id') }}">
+
                 <!-- Add lang here -->
                 <div class="form-group">
                     <label for="schedule">Pick a Schedule</label>
-                    <select id="schedule" name="schedule" required>
+                    <select id="schedule" name="slot_id" required>
                         <option disabled selected hidden>Select schedule</option>
                         @foreach($freeSlots as $slot)
                             @php

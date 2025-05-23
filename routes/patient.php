@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\AdminControls;
 use App\Models\Appointment;
 use App\Models\AppointmentCategory;
 use App\Models\AppointmentType;
 use App\Models\Availability;
 use App\Models\Dentist;
+use App\Models\Timeslot;
 use App\Models\WaitlistEntry;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -83,26 +85,35 @@ Route::middleware('auth:patient')
                     ->map(fn($i) => $nextMonday->copy()->addDays($i - 1)->toDateString())
                     ->all();
 
-                $availQ = Availability::whereIn('date', $dates);
-                $appntQ = Appointment::whereIn('date', $dates);
+                $availStart = AdminControls::find('open_time')->value;
+                $availEnd = AdminControls::find('close_time')->value;
+                $availSlots = collect();
 
+                foreach (collect(range(1, 6)) as $day) {
+                    $startSlot = Timeslot::where('day_of_week', $day)
+                        ->where('start_time', '<=', $availStart)
+                        ->orderBy('start_time', 'desc')
+                        ->firstOrFail();
+                    $endSlot = Timeslot::where('day_of_week', $day)
+                        ->where('end_time', '>=', $availEnd)
+                        ->orderBy('end_time', 'asc')
+                        ->firstOrFail();
+                    $availSlots = $availSlots->merge(
+                        Timeslot::where('day_of_week', $day)
+                        ->where('start_time', '>=', $startSlot->start_time)
+                        ->where('end_time',   '<=', $endSlot->end_time)
+                        ->orderBy('start_time')
+                        ->get()
+                    );
+                }
+
+                $appntQ = Appointment::whereIn('date', $dates);
                 if ($dentist && $type != 0) {
-                    $availQ->where('dentist_id', $dentist);
                     $appntQ->where('dentist_id', $dentist);
                 }
 
-                $availabilities = $availQ->get();
-
-                // Check if availability table is empty
-                if ($availabilities->isEmpty()) {
-                    abort(404, 'No availability found');
-                }
-
-                $availSlots = $availabilities->flatMap->timeslots;
                 $appntSlots = $appntQ->get()->flatMap->timeslots;
-
                 $freeSlots = $availSlots->diff($appntSlots);
-
             }
 
             return view('patient_booking', compact('categories', 'types', 'dentists', 'dates', 'freeSlots'));

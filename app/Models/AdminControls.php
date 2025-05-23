@@ -19,18 +19,6 @@ class AdminControls extends Model
 
     public $timestamps = false; // disable timestamps if not used
 
-    public static function getValue(string $key, $default = null)
-    {
-        $record = self::where('key', $key)->first();
-        return $record ? $record->value : $default;
-    }
 
-    public static function setValue(string $key, $value)
-    {
-        return self::updateOrCreate(
-            ['key' => $key],
-            ['value' => $value]
-        );
-    }
 }
 

@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Dentist;
+use App\Models\Timeslot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AppointmentController extends Controller
 {
@@ -59,7 +65,35 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'appointment_type_id' => ['required', 'exists:appointment_types,id'],
+            'dentist_id' => ['nullable', 'exists:dentists,id'],
+            'slot_id' => ['required', 'exists:timeslots,id'],
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $slot = Timeslot::find($request->slot_id);
+        $nextMonday = Carbon::now()->startOfWeek()->addWeek();
+        $dates = collect(range(1,6))
+            ->map(fn($i) => $nextMonday->copy()->addDays($i - 1)->toDateString())
+            ->all();
+
+        Appointment::create([
+            'date'                  => $dates[$slot->day_of_week - 1],
+            'time'                  => $slot->start_time,
+            'patient_id'            => auth()->id(),
+            'dentist_id'            => $request->dentist_id,
+            'appointment_type_id'   => $request->appointment_type_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Appointment booked successfully!');
     }
 
     /**

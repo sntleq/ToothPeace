@@ -120,6 +120,16 @@ class AppointmentController extends Controller
         //
     }
 
+    public function cancel(Request $request, int $id)
+    {
+        $appointment = Appointment::find($id);
+        $appointment->update([
+            'is_active' => false
+        ]);
+
+        return redirect()->back()->with('success', 'Appointment cancelled successfully!');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

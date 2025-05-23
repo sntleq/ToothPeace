@@ -4,7 +4,6 @@ use App\Models\AdminControls;
 use App\Models\Appointment;
 use App\Models\AppointmentCategory;
 use App\Models\AppointmentType;
-use App\Models\Availability;
 use App\Models\Dentist;
 use App\Models\Timeslot;
 use App\Models\WaitlistEntry;
@@ -44,14 +43,15 @@ Route::middleware('auth:patient')
         Route::get('/appointments', function () {
             $appointments = Appointment::with(['dentist', 'appointmentType'])
                 ->where('patient_id', auth()->id())
+                ->where('is_active', true) // Only get active appointments
                 ->get();
             return view('patient_appointments', compact('appointments'));
         })->name('appointments');
 
         Route::get('/appointments/history', function () {
-            $patient = auth()->user();
-            $appointments = $patient->pastAppointments()
-                ->with(['dentist', 'appointmentType'])
+            $appointments = Appointment::with(['dentist', 'appointmentType'])
+                ->where('patient_id', auth()->id())
+                ->where('is_active', false) // Only get active appointments
                 ->get();
             return view('appointment_history', compact('appointments'));
         })->name('appointments.history');
@@ -107,7 +107,7 @@ Route::middleware('auth:patient')
                     );
                 }
 
-                $appntQ = Appointment::whereIn('date', $dates);
+                $appntQ = Appointment::whereIn('date', $dates)->where('is_active', true);
                 if ($dentist && $type != 0) {
                     $appntQ->where('dentist_id', $dentist);
                 }

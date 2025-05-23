@@ -17,6 +17,7 @@ class Appointment extends Model
         'patient_id',
         'dentist_id',
         'appointment_type_id',
+        'is_active',
     ];
 
     protected $hidden = [

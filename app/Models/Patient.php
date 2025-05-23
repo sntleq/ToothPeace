@@ -25,6 +25,10 @@ class Patient extends Authenticatable
         'password',
     ];
 
+    protected $casts = [
+        'password' => 'hashed',
+        'dob' => 'date:Y-m-d',
+    ];
     protected function casts(): array
     {
         return [

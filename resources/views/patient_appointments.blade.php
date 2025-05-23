@@ -36,6 +36,27 @@
         <div class="table-container">
             <h1 class="table-header">My Appointments</h1>
             <div class="table-wrapper">
+                @if (session('success'))
+                    <div class="alert-console success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert-console error">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert-console error">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <table class="appointments-table">
                     <thead>
                     <tr>
@@ -57,7 +78,13 @@
                             <td>
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
-                            <td><button class="delete">Delete</button></td>
+                            <td>
+                                <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button id="cancellingButton" class="cancel-btn">Cancel</button>
+                                </form>
+                            </td>
 
                         </tr>
                         </tr>
@@ -98,7 +125,22 @@
     </div>
 </div>
 
+<div id="cancelModal" class="logout-modal">
+    <div class="modal-content">
+        <h3>Are you sure you want to cancel?</h3>
+        <div class="modal-buttons">
+            <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <button type="submit" id="confirmCancel" class="confirm-btn">Cancel</button>
+            </form>
+            <button id="cancelCancel" class="cancel-btn">No</button>
+        </div>
+    </div>
+</div>
+
 <script src="{{ asset('js/patient_appointments.js') }}" defer></script>
 <script src="{{ asset('js/dateLinksLogout.js') }}" defer></script>
+<script src="{{ asset('js/cancelModal.js') }}" defer></script>
 </body>
 </html>

@@ -57,6 +57,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Dentist-in-Charge</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,6 +68,7 @@
                             <td>{{ $appointment->date->format('Y-m-d') ?? 'N/A' }}</td>
                             <td>{{ \Carbon\Carbon::createFromFormat('H:i:s', $appointment->time)->format('H:i') }}</td>
                             <td>{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                            <td>{{ $appointment->is_active ? 'Active' : 'Inactive' }}</td>
                         </tr>
                     @endforeach
                     </tbody>

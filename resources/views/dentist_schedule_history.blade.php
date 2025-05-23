@@ -34,15 +34,6 @@
 
     <h1><span class="page-title">Appointment History</span></h1>
 
-    <div class="search-bar-wrapper">
-        <div class="search-group">
-            <input type="text" placeholder="Search Patient/Appointment Type" id="searchInput" class="search-input"/>
-            <button class="search-btn" id="searchBtn">
-                <img src="{{ asset('pics/search_icon.png') }}" alt="Search"/>
-            </button>
-        </div>
-    </div>
-
     <div id="searchResults" class="search-results hidden"></div>
 
     <div class="page-wrapper">
@@ -54,7 +45,6 @@
                     <tr>
                         <th>Date</th>
                         <th>Time Start</th>
-                        <th>Time End</th>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Appointment Type</th>
@@ -64,8 +54,7 @@
                     @forelse($appointments as $appointment)
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($appointment->date)->format('m-d-Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($appointment->time_start)->format('h:i A') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($appointment->time_end)->format('h:i A') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($appointment->time)->format('h:i A') }}</td>
                             <td>{{ $appointment->patient->last_name ?? 'N/A' }}</td>
                             <td>{{ $appointment->patient->first_name ?? 'N/A' }}</td>
                             <td>{{ $appointment->appointmentType->name ?? 'N/A' }}</td>

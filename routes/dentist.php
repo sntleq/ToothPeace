@@ -21,14 +21,12 @@ Route::middleware('auth:dentist')
         })->name('dashboard');
 
         Route::get('/schedule', function () {
-            $appointments = Appointment::with(['patient', 'appointmentType'])->get();
+            $appointments = Appointment::where('dentist_id', auth()->id())->where('is_active', true)->get();
             return view('dentist_schedule', compact('appointments'));
         })->name('schedule');
 
         Route::get('/schedule/history', function () {
-            $appointments = Appointment::with(['patient', 'appointmentType'])
-                ->where('is_active', false)
-                ->get();
+            $appointments = Appointment::where('dentist_id', auth()->id())->where('is_active', false)->get();
             return view('dentist_schedule_history', compact('appointments'));
         })->name('schedule.history');
 

@@ -57,8 +57,9 @@
                         <th>Dentist</th>
                         <th>Appointment Type</th>
                         <th>Date</th>
-                        <th>Time Start</th>
-                        <th>Time End</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Created At</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -68,8 +69,9 @@
                             <td>{{ $waitlist->dentist->name ?? 'N/A' }}</td>
                             <td>{{ $waitlist->appointmentType->name ?? 'N/A' }}</td>
                             <td>{{ $waitlist->date->format('Y-m-d') ?? 'N/A' }}</td>
-                            <td>{{ $waitlist->time_start ?? 'N/A' }}</td>
-                            <td>{{ $waitlist->time_end ?? 'N/A' }}</td>
+                            <td>{{ $waitlist->time_start->format('H:i') ?? 'N/A' }}</td>
+                            <td>{{ $waitlist->time_end->format('H:i') ?? 'N/A' }}</td>
+                            <td>{{ $waitlist->created_at->format('Y-m-d H:i') ?? 'N/A' }}</td>
                         </tr>
                     @endforeach
                     </tbody>

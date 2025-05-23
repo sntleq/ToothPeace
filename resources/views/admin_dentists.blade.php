@@ -67,7 +67,6 @@
                         <th>First Name</th>
                         <th>Email</th>
                         <th>Date of Birth</th>
-                        <th>Age</th>
                         <th>Created At</th>
                     </tr>
                     </thead>
@@ -78,7 +77,6 @@
                             <td>{{ $dentist->first_name }}</td>
                             <td>{{ $dentist->email }}</td>
                             <td>{{ $dentist->dob ? $dentist->dob->format('Y-m-d') : '-' }}</td>
-                            <td>{{ $dentist->age }}</td>
                             <td>{{ $dentist->created_at ? $dentist->created_at->format('Y-m-d H:i:s') : '-' }}</td>
                         </tr>
                     @endforeach

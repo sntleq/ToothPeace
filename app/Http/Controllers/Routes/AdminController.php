@@ -22,13 +22,13 @@ class AdminController extends Controller
 
     public function appointments()
     {
-        $appointments = Appointment::with(['patient', 'dentist', 'appointmentType'])->get();
+        $appointments = Appointment::all()->sortByDesc('time')->sortByDesc('date');
         return view('admin_appointments', compact('appointments'));
     }
 
     public function waitlist()
     {
-        $waitlists = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])->get();
+        $waitlists = WaitlistEntry::all()->sortBy('time')->sortBy('created_at')->sortBy('date');
         return view('admin_waitlist', compact('waitlists'));
     }
 

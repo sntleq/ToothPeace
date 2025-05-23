@@ -7,6 +7,7 @@ use App\Models\Availability;
 use App\Models\Dentist;
 use App\Models\WaitlistEntry;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -58,7 +59,10 @@ Route::middleware('auth:patient')
         })->name('profile.edit');
 
         Route::get('/waitlist', function () {
-            $entries = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])->get();
+            $patientId = Auth::id();
+            $entries = WaitlistEntry::with(['patient', 'dentist', 'appointmentType'])
+                ->where('patient_id', $patientId)
+                ->get();
             return view('patient_waitlist', compact('entries'));
         })->name('waitlist');
 

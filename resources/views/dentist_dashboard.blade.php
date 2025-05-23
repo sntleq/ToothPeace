@@ -22,8 +22,6 @@
     <nav>
         <a class="active"><img src="{{ asset('pics/dashboard_icon.png') }}" alt="Dashboard">Dashboard</a>
         <a href="{{ route('dentist.schedule') }}"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-        <a href="{{ route('dentist.availability') }}"><img src="{{ asset('pics/availability_icon.png') }}"
-                                                           alt="Availability">Availability</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out

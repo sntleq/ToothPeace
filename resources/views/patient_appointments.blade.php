@@ -44,6 +44,7 @@
                         <th>Appointment Type</th>
                         <th>Dentist</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,9 @@
                             <td>
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
+                            <td><button class="delete">Delete</button></td>
+
+                        </tr>
                         </tr>
                     @empty
                         <tr>
@@ -71,7 +75,7 @@
         <div class="appointment-buttons-wrapper">
             <button class="book-here-btn"
                     onclick="window.location.href='{{ route('patient.booking') }}'">
-                Book Here!
+                Book Appointment
             </button>
             <button class="appointment-history-btn"
                     onclick="window.location.href='{{ route('patient.appointments.history') }}'">

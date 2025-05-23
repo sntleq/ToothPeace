@@ -109,6 +109,17 @@ Route::middleware('auth:patient')
         })->name('booking.queries');
 
         Route::get('/waitlist/add', function () {
-            return view('patient_waitlistBooking');
+            $categories = AppointmentCategory::with('appointmentTypes')->get();
+            $dentists = Dentist::all();
+
+            $today = Carbon::today();
+
+            $nextMonday = $today->copy()->next('Monday');
+            $nextSaturday = $today->copy()->next('Saturday')->addWeek();
+
+            $minDate = $nextMonday->toDateString();
+            $maxDate = $nextSaturday->toDateString();
+
+            return view('patient_waitlistBooking', compact('categories', 'dentists', 'minDate', 'maxDate'));
         })->name('waitlist.add');
     });

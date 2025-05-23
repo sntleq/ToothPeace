@@ -6,8 +6,7 @@
     <title>ToothPeace - Dentist Schedule</title>
     <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/dentist_availability.css') }}"/>
 </head>
@@ -36,12 +35,12 @@
     @endif
 
     <div class="availability-header">
-        <h1 class="section-title">My Weekly Availability </h1>
+        <h1 class="section-title">My Weekly Availability</h1>
         <button onclick="window.location.href='{{ route('dentist.availability.edit') }}'">Set Next Week Availability</button>
     </div>
 
     <div class="page-wrapper">
-        <h1 class="section-title"></h1>
+        <!-- Current Week Table -->
         <div class="table-container">
             <h1 class="table-header">This Week</h1>
             <div class="table-wrapper">
@@ -55,40 +54,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Monday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Tuesday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Wednesday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Thursday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Friday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Saturday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
+                    @foreach ($thisWeek as $entry)
+                        <tr>
+                            <th>{{ \Carbon\Carbon::parse($entry->date)->format('l') }}</th>
+                            <td>{{ \Carbon\Carbon::parse($entry->date)->format('F d, Y') }}</td>
+                            <td>{{ $entry->start_time ? \Carbon\Carbon::parse($entry->start_time)->format('h:i A') : 'Not Available' }}</td>
+                            <td>{{ $entry->end_time ? \Carbon\Carbon::parse($entry->end_time)->format('h:i A') : 'Not Available' }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <!-- Next Week Table -->
         <div class="table-container">
             <h1 class="table-header">Next Week</h1>
             <div class="table-wrapper">
@@ -102,41 +81,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>Monday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Tuesday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Wednesday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Thursday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Friday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
-                    <tr>
-                        <th>Saturday</th>
-                        <td>Available</td>
-                        <td>Not Available</td>
-                    </tr>
+                    @foreach ($nextWeek as $entry)
+                        <tr>
+                            <th>{{ \Carbon\Carbon::parse($entry->date)->format('l') }}</th>
+                            <td>{{ \Carbon\Carbon::parse($entry->date)->format('F d, Y') }}</td>
+                            <td>{{ $entry->start_time ? \Carbon\Carbon::parse($entry->start_time)->format('h:i A') : 'Not Available' }}</td>
+                            <td>{{ $entry->end_time ? \Carbon\Carbon::parse($entry->end_time)->format('h:i A') : 'Not Available' }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
 </div>
 

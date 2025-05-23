@@ -33,7 +33,17 @@ class DentistAvailabilityController extends Controller
             ->keyBy('day_of_week')
             ->toArray();
 
-        return view('edit_availability'
-        );
+        return view('edit_availability', [
+            'regularAvailability' => array_replace($regularAvailability, $existingRegular),
+            'overrideAvailability' => array_replace($overrideAvailability, $existingOverride),
+            'days' => [
+                1 => 'Monday',
+                2 => 'Tuesday',
+                3 => 'Wednesday',
+                4 => 'Thursday',
+                5 => 'Friday',
+                6 => 'Saturday',
+            ]
+        ]);
     }
 }

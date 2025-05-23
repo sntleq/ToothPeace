@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\AdminControls;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,19 @@ class AdminControlsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'opening_time' => 'required|date_format:H:i',
+            'closing_time' => 'required|date_format:H:i|after:opening_time',
+        ]);
+
+        AdminControls::find('open_time')->update(
+            ['value' => $validated['opening_time']]
+        );
+        AdminControls::find('close_time')->update(
+            ['value' => $validated['closing_time']]
+        );
+
+        return redirect()->back()->with('success', 'Settings saved successfully.');
     }
 
     /**
@@ -53,15 +66,7 @@ class AdminControlsController extends Controller
      */
     public function update(Request $request)
     {
-        $validated = $request->validate([
-            'opening_time' => 'required|date_format:H:i',
-            'closing_time' => 'required|date_format:H:i|after:opening_time',
-        ]);
 
-        AdminControls::setValue('opening_time', $validated['opening_time']);
-        AdminControls::setValue('closing_time', $validated['closing_time']);
-
-        return redirect()->back()->with('success', 'Settings saved successfully.');
     }
 
 

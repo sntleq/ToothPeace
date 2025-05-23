@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Routes;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Appointment;
@@ -40,8 +41,8 @@ class AdminController extends Controller
     public function adminControls()
     {
         $settings = [
-            'opening_time' => AdminControls::getValue('opening_time', ''),
-            'closing_time' => AdminControls::getValue('closing_time', ''),
+            'opening_time' => AdminControls::find('open_time')->value,
+            'closing_time' => AdminControls::find('close_time')->value,
         ];
 
         return view('admin_controls', compact('settings'));

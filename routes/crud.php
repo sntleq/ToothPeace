@@ -14,9 +14,9 @@ Route::resource('patients', PatientController::class);
 Route::resource('dentists', DentistController::class);
 Route::resource('appointments', AppointmentController::class);
 Route::resource('availability', AvailabilityController::class);
-Route::resource('dentist.services', DentistServiceController::class);
+Route::resource('dentist-services', DentistServiceController::class);
 Route::resource('waitlist', WaitlistController::class);
-Route::resource('admin.controls', AdminControlsController::class);
+Route::resource('admin-controls', AdminControlsController::class);
 
 Route::put('patients/{patient}/password-reset', [PatientController::class, 'updatePassword'])
     ->name('patients.update.password');

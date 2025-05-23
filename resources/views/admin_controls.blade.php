@@ -44,9 +44,8 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('admin.controls.update', 1) }}">
+            <form method="POST" action="{{ route('admin-controls.store') }}">
                 @csrf
-                @method('PUT')
                 <div class="control-group">
                     <label for="openingTime">Opening Time:</label>
                     <input

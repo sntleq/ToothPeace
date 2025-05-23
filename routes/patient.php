@@ -68,14 +68,14 @@ Route::middleware('auth:patient')
             $dentists = Dentist::all();
 
             $freeSlots = collect();
-
+            $dates = collect();
             if (old('appointment_type_id')) {
                 $type = old('appointment_type_id');
                 $dentist = old('dentist_id');
 
                 $nextMonday = Carbon::now()->startOfWeek()->addWeek();
-                $dates = collect(range(0,6))
-                    ->map(fn($i) => $nextMonday->copy()->addDays($i)->toDateString())
+                $dates = collect(range(1,6))
+                    ->map(fn($i) => $nextMonday->copy()->addDays($i - 1)->toDateString())
                     ->all();
 
                 $availQ = Availability::whereIn('date', $dates);
@@ -100,7 +100,7 @@ Route::middleware('auth:patient')
 
             }
 
-            return view('patient_booking', compact('categories', 'types', 'dentists', 'freeSlots'));
+            return view('patient_booking', compact('categories', 'types', 'dentists', 'dates', 'freeSlots'));
 
         })->name('booking');
 

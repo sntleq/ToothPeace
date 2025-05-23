@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label for="preferredDentist">Preferred Dentist</label>
                     <select id="preferredDentist" name="dentist_id" value="old('dentist_id')" required>
-                        <option value="0">Any</option>
+                        <option value="">Any</option>
                         @foreach($dentists as $dentist)
                             <option value="{{ $dentist->id }}" {{ old('dentist_id') == $dentist->id ? 'selected' : '' }}>{{ $dentist->name }}</option>
                         @endforeach
@@ -81,8 +81,11 @@
                     <label for="schedule">Pick a Schedule</label>
                     <select id="schedule" name="schedule" required>
                         <option disabled selected hidden>Select schedule</option>
-                        @foreach($freeSlots as $sched)
-                            <option value="{{ $sched->id }}">{{ $sched->day_of_week . ' ' . $sched->start_time }}</option>
+                        @foreach($freeSlots as $slot)
+                            @php
+                                $dt = \Carbon\Carbon::parse("{$dates[$slot->day_of_week - 1]} {$slot->start_time}");
+                            @endphp
+                            <option value="{{ $slot->id }}">{{ $dt->format('l, F j, Y') }} – {{ $dt->format('g:i A') }}</option>
                         @endforeach
                     </select>
                 </div>

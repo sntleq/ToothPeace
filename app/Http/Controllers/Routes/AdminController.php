@@ -37,19 +37,6 @@ class AdminController extends Controller
         return view('admin_dentists', compact('dentists'));
     }
 
-    public function saveSettings(Request $request)
-    {
-        $validated = $request->validate([
-            'opening_time' => 'required|date_format:H:i',
-            'closing_time' => 'required|date_format:H:i|after:opening_time',
-        ]);
-
-        AdminControls::setValue('opening_time', $validated['opening_time']);
-        AdminControls::setValue('closing_time', $validated['closing_time']);
-
-        return redirect()->back()->with('success', 'Settings saved successfully.');
-    }
-
     public function adminControls()
     {
         $settings = [

@@ -3,6 +3,7 @@
 use App\Models\Appointment;
 use App\Models\Availability;
 use App\Models\AvailabilityOverride;
+use App\Models\AvailabilityRecurring;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,18 +19,6 @@ Route::middleware('auth:dentist')
         Route::get('/dashboard', function () {
             return view('dentist_dashboard');
         })->name('dashboard');
-
-        Route::get('/availability/edit', [DentistAvailabilityController::class, 'editAvailability'])
-            ->name('availability.edit');
-
-        Route::get('/availability', [AvailabilityController::class, 'index'])
-            ->name('availability');
-
-        Route::put('/availability/update', [AvailabilityController::class, 'update'])
-            ->name('availability.update');
-
-        Route::put('/availability-override/update', [AvailabilityOverrideController::class, 'update'])
-            ->name('availability.override.update');
 
         Route::get('/schedule', function () {
             $appointments = Appointment::with(['patient', 'appointmentType'])->get();

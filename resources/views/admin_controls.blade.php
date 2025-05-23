@@ -44,14 +44,9 @@
                 </div>
             @endif
 
-            @if ($errors->has('timeslot_size'))
-                <div class="error-message">{{ $errors->first('timeslot_size') }}</div>
-            @endif
-
-
-            <form method="POST" action="{{ route('admin.controls.save') }}">
+            <form method="POST" action="{{ route('admin.controls.update', 1) }}">
                 @csrf
-
+                @method('PUT')
                 <div class="control-group">
                     <label for="openingTime">Opening Time:</label>
                     <input

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminControls;
 use Illuminate\Http\Request;
 
 class AdminControlsController extends Controller
@@ -50,10 +51,19 @@ class AdminControlsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'opening_time' => 'required|date_format:H:i',
+            'closing_time' => 'required|date_format:H:i|after:opening_time',
+        ]);
+
+        AdminControls::setValue('opening_time', $validated['opening_time']);
+        AdminControls::setValue('closing_time', $validated['closing_time']);
+
+        return redirect()->back()->with('success', 'Settings saved successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

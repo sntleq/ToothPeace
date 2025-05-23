@@ -54,8 +54,9 @@ Route::middleware('auth:patient')
             return view('appointment_history', compact('appointments'));
         })->name('appointments.history');
 
-        Route::get('/profile/edit', function(){
-            return view('edit_profile');
+        Route::get('/profile/edit', function() {
+            $patient = auth()->user();
+            return view('edit_profile', compact('patient'));
         })->name('profile.edit');
 
         Route::get('/waitlist', function () {

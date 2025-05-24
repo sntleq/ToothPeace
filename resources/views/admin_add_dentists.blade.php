@@ -20,8 +20,6 @@
 <div class="sidebar">
     <div class="logo">
         <img src="{{ asset('pics/toothpeace_logo.png') }}" alt="ToothPeace Logo"/>
-        <h2><span class="tooth">TOOTH</span><span class="peace">PEACE</span></h2>
-        <p>Discover Peace of Mind, One Appointment at a Time.</p>
     </div>
     <nav>
         <a href="{{ route ('admin.dashboard') }}"><img src="{{ asset('pics/dashboard_icon.png') }}"

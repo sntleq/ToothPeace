@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AppointmentCategory;
+use App\Models\AppointmentType;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordController;
 
@@ -16,7 +18,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/services', function () {
-    return view('services');
+    $categories = AppointmentCategory::all();
+    $types = AppointmentType::all();
+    return view('services', compact('categories', 'types'));
 })->name('services');
 
 Route::get('/login', function () {
@@ -30,15 +34,15 @@ Route::get('/signup', function () {
 })->name('signup');
 
 
-Route::get('/forgot-password', 
-[ForgotPasswordController::class, 
+Route::get('/forgot-password',
+[ForgotPasswordController::class,
 'showForgotPasswordForm'])->name('password.request');
 
-Route::post('/forgot-password/email', 
-[ForgotPasswordController::class, 
+Route::post('/forgot-password/email',
+[ForgotPasswordController::class,
 'sendResetCode'])->name('password.email');
 
-Route::post('/forgot-password/reset', 
-[ForgotPasswordController::class, 
+Route::post('/forgot-password/reset',
+[ForgotPasswordController::class,
 'resetPassword'])->name('password.update');
 

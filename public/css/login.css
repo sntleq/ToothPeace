@@ -2,6 +2,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    --login-primary: var(--primary);
+    --login-secondary: var(--secondary);
+    --login-accent: var(--accent);
+    --login-bg: #f0f7ff;
+    --login-card-bg: #ffffff;
+    --login-text-dark: var(--text-dark);
+    --login-text-light: var(--text-light);
+    --login-transition: var(--transition);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-image: url('../pics/landing_bg.png');
@@ -10,28 +21,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: var(--spacing-xl);
+    color: var(--login-text-dark);
 }
 
 .container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
+    background: var(--login-card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
     position: relative;
     width: 800px;
     max-width: 100%;
     min-height: 550px;
-    overflow: hidden;
+    overflow: auto;
     display: flex;
+    border: 1px solid var(--border);
 }
 
 .form-container {
     position: absolute;
     top: 0;
     height: 100%;
-    transition: all 0.6s ease-in-out;
+    transition: var(--login-transition);
     width: 50%;
+    overflow-y: auto;
 }
 
 .sign-in-container {
@@ -56,127 +69,217 @@ body {
 }
 
 .loginback {
-    padding: 10px 10px;
-    margin: 5px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-xs);
     cursor: pointer;
-    background-color: #1e86c3;
-    color: white;
-    font: bold 1rem 'Montserrat', sans-serif;
-    transition: 0.3s;
-    border: 1px solid #38b6ff;
+    background: linear-gradient(to right, var(--login-primary), var(--login-secondary));
+    color: var(--login-text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--login-transition);
+    border: none;
     border-radius: 25px;
     text-decoration: none;
     margin-left: 0;
+    box-shadow: var(--shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginback:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: var(--login-accent);
 }
 
 form {
-    background: #fff;
+    background: var(--login-card-bg);
+    display: flex;
     flex-direction: column;
-    padding: 30px 30px;
+    padding: var(--spacing-xl);
     width: 100%;
     max-width: 400px;
     text-align: left;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 form h1 {
-    font-weight: bold;
-    margin-top: 5px;
-    color: #004aad;
+    font-weight: 700;
+    margin-top: var(--spacing-xs);
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    display: inline-block;
+    padding-bottom: var(--spacing-xs);
+    font-size: 1.6rem;
+}
+
+form h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, var(--login-primary), var(--login-secondary));
+    border-radius: 2px;
 }
 
 form p {
-    font-size: .8rem;
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-muted);
 }
 
 form h6 {
-    font-size: .8rem;
+    font-size: 0.85rem;
     text-align: center;
     font-weight: normal;
+    color: var(--text-muted);
+    margin: var(--spacing-sm) 0;
 }
 
 form input {
     display: inline-block;
-    background-color: #eee;
-    border: 1px solid #38b6ff;
-    padding: 12px;  
-    margin: 8px 0;
+    background-color: var(--primary-light);
+    border: 1px solid var(--border);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-sm) 0;
     width: 100%;
-    border-radius: 7px;
+    border-radius: var(--radius-md);
+    transition: var(--login-transition);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 134, 195, 0.2);
+    background-color: var(--card-bg);
 }
 
 form button {
-    padding: 10px 10px;
+    padding: var(--spacing-md) var(--spacing-lg);
     cursor: pointer;
-    background-color: #1e86c3;
-    color: white;
-    font: bold 1rem 'Montserrat', sans-serif;
-    transition: 0.3s;
-    border: 1px solid #38b6ff;
-    border-radius: 20px;
-    width: 30%;
+    background: linear-gradient(to right, var(--login-primary), var(--login-secondary));
+    color: var(--login-text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--login-transition);
+    border: none;
+    border-radius: var(--radius-md);
+    width: auto;
+    min-width: 110px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
 }
 
-.btn-login {
-    padding: 10px 10px;
-    margin-left: 20px; /* top, right, bottom, left */
-    border-radius: 20px;
-    transition: 0.3s;
-    font-size: 1rem;
-}
-
-.btn-signup {
-    padding: 10px 10px;
-    margin-left: 120px;
-    border-radius: 20px;
-    transition: 0.3s;
-    font-size: 1rem;
+form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--login-transition);
 }
 
 form button:hover {
-    background-color: #38b6ff;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(to right, var(--login-secondary), var(--login-accent));
+}
+
+form button:hover::before {
+    left: 100%;
+}
+
+.btn-login {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    border-radius: var(--radius-md);
+    transition: var(--login-transition);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.btn-signup {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    border-radius: var(--radius-md);
+    transition: var(--login-transition);
+    font-size: 0.9rem;
+    width: 100%;
 }
 
 .ghost {
-    padding: 10px 20px;
+    padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
-    background-color: #1e86c3;
-    color: white;
-    font: bold 1rem 'Montserrat', sans-serif;
-    transition: 0.3s;
-    border: 1px solid #38b6ff;
-    border-radius: 20px;
-    width: 30%;
+    background: transparent;
+    color: var(--login-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--login-transition);
+    border: 1px solid var(--login-primary);
+    border-radius: var(--radius-md);
+    width: auto;
+    min-width: 150px;
     text-decoration: none;
     white-space: nowrap;
     text-align: center;
+    box-shadow: none;
+}
 
+.ghost:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
 .switch {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
 }
 
 .switch h6 {
     margin: 0;
-    font-size: .8rem;
+    font-size: 0.9rem;
 }
 
 .switch button.ghost {
-    padding: 5px 10px;
+    padding: var(--spacing-xs) var(--spacing-sm);
     cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #0a74da;
-    color: #0a74da;
-    transition: 0.3s;
-    margin-left: 10px;
-    top: 2px;
-    width: 30%;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    transition: var(--login-transition);
+    margin-left: var(--spacing-sm);
+    width: auto;
+    min-width: 100px;
     white-space: nowrap;
     text-align: center;
+    box-shadow: none;
+    font-size: 0.8rem;
+}
+
+.switch button.ghost:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .overlay-container {
@@ -195,10 +298,10 @@ form button:hover {
 }
 
 .overlay {
-    background: #f0f2f5;
+    background: var(--login-bg);
     background-size: cover;
     background-position: center;
-    color: white;
+    color: var(--login-text-light);
     position: absolute;
     left: -100%;
     height: 100%;
@@ -208,6 +311,7 @@ form button:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    overflow: hidden;
 }
 
 .container.right-panel-active .overlay {
@@ -219,78 +323,50 @@ form button:hover {
     align-items: center;
     justify-content: center;
     flex: 1;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .overlay-panel img {
     width: 100%;
     max-width: 500px;
-    height: 550px;
+    max-height: 100%;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
 }
 
 .forget_pass {
-    margin-right: 100px;
     text-decoration: none;
-    color: black;
-    font-size: .8rem;
-    transition: color 0.3s ease;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    transition: var(--login-transition);
+    display: block;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    text-align: right;
+    align-self: flex-end;
 }
 
 .forget_pass:hover {
-    color: #084e8a;
+    color: var(--primary-dark);
+    transform: translateX(-3px);
 }
-
 
 footer p {
-    color: #004aad;
-    font: bold .8rem 'Montserrat', sans-serif;
+    color: var(--primary-dark);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: var(--spacing-lg);
 }
 
-.alert-console {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 25px;
-    border-radius: 5px;
-    z-index: 9999;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    animation: slideDownAndFade 5s ease-in-out forwards;
-}
-
-.alert-console.success {
-    background-color: #e7f3ff;
-    color: #0066cc;
-    border: 1px solid #b3d7ff;
-}
-
-.alert-console.error {
-    background-color: #ffe7e7;
-    color: #cc0000;
-    border: 1px solid #ffb3b3;
-}
-
-@keyframes slideDownAndFade {
-    0% {
-        top: -50px;
-        opacity: 0;
-    }
-    10% {
-        top: 10px;
-        opacity: 1;
-    }
-    90% {
-        top: 10px;
-        opacity: 1;
-    }
-    100% {
-        top: 10px;
-        opacity: 0;
-        visibility: hidden;
-    }
-}
+/* Note: Alert styles are now in shared_layout.css for consistency */
 
 .text-danger {
-    color: red;
-    font-size: 8px;
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: var(--spacing-xs);
+    display: block;
 }

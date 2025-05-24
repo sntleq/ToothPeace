@@ -1,64 +1,112 @@
+/* Admin Add Dentists Styles */
+
 .container {
     max-width: 1100px;
-    margin: 2rem auto;
-    padding: 2rem;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-xl);
     font-family: 'Poppins', sans-serif;
-    color: #003366;
+    color: var(--primary-dark);
 }
 
 .page-title {
     font-size: 2rem;
-    font-weight: 600;
-    border: 3px solid #a259ff;
-    padding: 0.3rem 1.2rem;
+    font-weight: 700;
+    padding: var(--spacing-sm) var(--spacing-lg);
     display: inline-block;
-    background: #f4f4ff;
-    border-radius: 0.8rem;
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+    color: var(--primary-dark);
 }
 
+/* Removed underline
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 3px;
+}
+*/
+
 .back-button {
-    background-color: #003366;
-    color: #ffffff;
+    background: linear-gradient(to right, var(--primary-dark), var(--secondary));
+    color: var(--text-light);
     border: none;
-    border-radius: 2rem;
-    padding: 0.6rem 1.5rem;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
     cursor: pointer;
     font-weight: 600;
-    margin-top: 1.2rem;
+    margin-top: var(--spacing-md);
     display: inline-flex;
     align-items: center;
-    transition: background 0.3s ease;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
 .back-button .icon {
-    margin-right: 0.5rem;
+    margin-right: var(--spacing-sm);
     font-size: 1.2rem;
+    transition: var(--transition);
 }
 
 .back-button:hover {
-    background-color: #002244;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.back-button:hover .icon {
+    transform: translateX(-3px);
 }
 
 .form-container {
-    background-color: #e0f0ff;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    margin-top: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-bg);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.form-container:hover {
+    box-shadow: var(--shadow-lg);
 }
 
 .form-title {
     text-align: center;
     font-weight: 600;
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-xl);
+    color: var(--primary-dark);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
+/* Removed underline
+.form-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+*/
 
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 1.2rem;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .form-group {
@@ -68,105 +116,124 @@
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
     font-weight: 600;
-    color: #003366;
+    color: var(--primary-dark);
+    transition: var(--transition);
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.6rem 1rem;
-    border-radius: 1rem;
-    border: 2px solid #c4d8f0;
-    background-color: #d8eaff;
-    transition: border-color 0.3s ease;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background-color: var(--primary-light);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    font-size: 0.95rem;
+    color: var(--text-dark);
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #a259ff;
-    background-color: #edf4ff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 134, 195, 0.2);
+    background-color: var(--card-bg);
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
 }
 
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
 }
 
 .btn-add, .btn-cancel {
-    background-color: #003366;
-    color: white;
-    padding: 0.6rem 1.8rem;
-    border-radius: 2rem;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-md);
     border: none;
-    cursor: pointer;
+    font-size: 1rem;
     font-weight: 600;
-    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.btn-add {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-add::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition);
 }
 
 .btn-add:hover {
-    background-color: #002244;
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-add:hover::before {
+    left: 100%;
 }
 
 .btn-cancel {
-    background-color: #005c99;
+    background-color: var(--danger);
 }
 
 .btn-cancel:hover {
-    background-color: #004b80;
+    background-color: #c82333;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-add:active, .btn-cancel:active {
     transform: translateY(-1px);
 }
 
 
-.alert-console {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 25px;
-    border-radius: 5px;
-    z-index: 9999;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    animation: slideDownAndFade 5s ease-in-out forwards;
-}
-
-.alert-console.success {
-    background-color: #e7f3ff;
-    color: #0066cc;
-    border: 1px solid #b3d7ff;
-}
-
-.alert-console.error {
-    background-color: #ffe7e7;
-    color: #cc0000;
-    border: 1px solid #ffb3b3;
-}
+/* Note: Alert styles are now in shared_layout.css for consistency */
 
 .text-danger {
-    color: red;
-    font-size: 10px;
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-top: var(--spacing-xs);
+    display: block;
 }
 
-@keyframes slideDownAndFade {
-    0% {
-        top: -50px;
-        opacity: 0;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
     }
-    10% {
-        top: 10px;
-        opacity: 1;
+
+    .form-container {
+        padding: var(--spacing-lg);
     }
-    90% {
-        top: 10px;
-        opacity: 1;
+
+    .form-actions {
+        flex-direction: column-reverse;
     }
-    100% {
-        top: 10px;
-        opacity: 0;
-        visibility: hidden;
+
+    .btn-add, .btn-cancel {
+        width: 100%;
     }
 }

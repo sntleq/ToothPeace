@@ -10,6 +10,7 @@
     <meta property="og:url" content="https://example.com">
 
     <link rel="icon" href="{{ asset('pics/toothpeace_logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/shared_layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     <script src="{{ asset('js/jslanding.js') }}"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -34,7 +35,6 @@
     <p>Discover Peace of Mind, One Appointment at a Time.</p>
     <div class="buttons">
         <button onclick="location.href='{{ route('login') }}'">Proceed to Login</button>
-        <br>
         <button onclick="location.href='{{ route('services') }}'">View Services</button>
     </div>
 </section>

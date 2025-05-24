@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
-            $table->int('attempts')->default(0);
+            $table->integer('attempts')->default(0);
         });
     }
 

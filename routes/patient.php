@@ -45,7 +45,8 @@ Route::middleware('auth:patient')
                 ->where('patient_id', auth()->id())
                 ->where('is_active', true) // Only get active appointments
                 ->get();
-            return view('patient_appointments', compact('appointments'));
+            $appointmentCancelId = 0;
+            return view('patient_appointments', compact('appointments', 'appointmentCancelId'));
         })->name('appointments');
 
         Route::get('/appointments/history', function () {

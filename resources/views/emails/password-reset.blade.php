@@ -61,30 +61,30 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="{{ url('pics/toothpeace_logo.png') }}" alt="ToothPeace Logo" class="logo">
+            <img src="https://i.postimg.cc/pd5vsBKW/toothpeacelogo.png " alt="ToothPeace Logo" class="logo" style="border:0; display:block; max-width:150px;">
             <h1>Password Reset</h1>
         </div>
-        
+
         <p>Hello,</p>
-        
+
         <p>We received a request to reset your password for your ToothPeace Dental Clinic account. Please use the verification code below to complete the password reset process:</p>
-        
+
         <div class="code-container">
             <div class="code">{{ $code }}</div>
         </div>
-        
+
         <p><strong>Important:</strong> This code will expire in 15 minutes for security reasons.</p>
-        
+
         <p>If you did not request this password reset, please ignore this email and ensure your account is secure.</p>
-        
+
         <p>Thank you,<br>
         ToothPeace Dental Clinic Team</p>
-        
+
         <div class="expiry">
             <p>This is an automated email. Please do not reply to this message.</p>
         </div>
     </div>
-    
+
     <div class="footer">
         <p>&copy; 2025 ToothPeace Dental Clinic. All rights reserved.</p>
     </div>

@@ -82,7 +82,7 @@
                                 <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button id="cancellingButton" class="cancel-btn">Cancel</button>
+                                    <button id="cancellingButton" class="cancel-btn" onclick="">Cancel</button>
                                 </form>
                             </td>
 
@@ -129,7 +129,7 @@
     <div class="modal-content">
         <h3>Are you sure you want to cancel?</h3>
         <div class="modal-buttons">
-            <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
+            <form action="{{ route('appointments.cancel', $appointmentCancelId) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <button type="submit" id="confirmCancel" class="confirm-btn">Cancel</button>

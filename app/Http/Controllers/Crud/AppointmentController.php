@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Mail\WaitlistNotification;
+use App\Jobs\NotifyNextWaitlist;
 
 class AppointmentController extends Controller
 {
@@ -120,14 +122,19 @@ class AppointmentController extends Controller
         //
     }
 
-    public function cancel(Request $request, int $id)
+    public function cancel(Request $request, $id)
     {
-        $appointment = Appointment::find($id);
-        $appointment->update([
-            'is_active' => false
-        ]);
+        $appointment = Appointment::findOrFail($id);
+        $appointment->is_active = false;
+        $appointment->save();
 
-        return redirect()->back()->with('success', 'Appointment cancelled successfully!');
+        // Send cancellation email to patient
+        Mail::to($appointment->patient->email)->send(new AppointmentCancelled($appointment));
+
+        // Dispatch waitlist email after 30 minutes
+        NotifyNextWaitlist::dispatch($appointment->id)->delay(now()->addMinutes(30));
+
+        return back()->with('success', 'Appointment cancelled. Waitlist will be notified in 30 minutes.');
     }
 
     /**

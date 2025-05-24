@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Appointment;
-use App\Models\WaitlistEntry;
 use App\Models\Dentist;
 use App\Models\AdminControls;
 
@@ -24,12 +23,6 @@ class AdminController extends Controller
     {
         $appointments = Appointment::all()->sortByDesc('time')->sortByDesc('date');
         return view('admin_appointments', compact('appointments'));
-    }
-
-    public function waitlist()
-    {
-        $waitlists = WaitlistEntry::all()->sortBy('time')->sortBy('created_at')->sortBy('date');
-        return view('admin_waitlist', compact('waitlists'));
     }
 
     public function dentists()

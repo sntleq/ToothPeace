@@ -9,10 +9,9 @@ use App\Models\Timeslot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Mail\WaitlistNotification;
-use App\Jobs\NotifyNextWaitlist;
 
 class AppointmentController extends Controller
 {
@@ -127,12 +126,6 @@ class AppointmentController extends Controller
         $appointment = Appointment::findOrFail($id);
         $appointment->is_active = false;
         $appointment->save();
-
-        // Send cancellation email to patient
-        Mail::to($appointment->patient->email)->send(new AppointmentCancelled($appointment));
-
-        // Dispatch waitlist email after 30 minutes
-        NotifyNextWaitlist::dispatch($appointment->id)->delay(now()->addMinutes(30));
 
         return back()->with('success', 'Appointment cancelled. Waitlist will be notified in 30 minutes.');
     }

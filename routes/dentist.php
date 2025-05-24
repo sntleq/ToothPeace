@@ -1,15 +1,9 @@
 <?php
 
 use App\Models\Appointment;
-use App\Models\Availability;
-use App\Models\AvailabilityOverride;
-use App\Models\AvailabilityRecurring;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Crud\AvailabilityController;
-use App\Http\Controllers\Crud\AvailabilityOverrideController;
-use App\Http\Controllers\Crud\DentistAvailabilityController;
 
 Route::middleware('auth:dentist')
     ->prefix('dentist')

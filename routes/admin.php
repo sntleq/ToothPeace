@@ -38,11 +38,6 @@ Route::prefix('admin')
             [AdminController::class,
                 'adminControls'])->name('controls');
 
-        Route::get('/waitlist',
-            [AdminController::class,
-                'waitlist'])->name('waitlist');
-
-
     });
 
 

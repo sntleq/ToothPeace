@@ -22,7 +22,6 @@
         <a href="{{ route('patient.home') }}"><img src="{{ asset('pics/patient_profile_icon.png') }}" alt="Home">Home</a>
         <a href="{{ route('patient.profile') }}"><img src="{{ asset('pics/patient_icon.png') }}" alt="Profile">Profile</a>
         <a class="active"><img src="{{ asset('pics/appointment_icon.png') }}" alt="Appointments">Appointments</a>
-        <a href="{{ route('patient.waitlist') }}"><img src="{{ asset('pics/waitlist_entry_icon.png') }}" alt="Waitlist Entry">Waitlist Entries</a>
     </nav>
     <a href="#" class="logout" id="logoutButton">
         <img src="{{ asset('pics/logout_icon.png') }}" alt="Logout">Log Out
@@ -79,14 +78,22 @@
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
                             <td>
-                                <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <button id="cancellingButton" class="cancel-btn" onclick="">Cancel</button>
-                                </form>
+                                <button id="cancellingButton" class="cancel-btn" onclick="">Cancel</button>
+                                <div id="cancelModal" class="logout-modal">
+                                    <div class="modal-content">
+                                        <h3>Are you sure you want to cancel?</h3>
+                                        <div class="modal-buttons">
+                                            <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" id="confirmCancel" class="confirm-btn">Cancel</button>
+                                            </form>
+                                            <button id="cancelCancel" class="cancel-btn">No</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
 
-                        </tr>
                         </tr>
                     @empty
                         <tr>
@@ -121,20 +128,6 @@
                 <button type="submit" id="confirmLogout" class="confirm-btn">Yes</button>
             </form>
             <button id="cancelLogout" class="cancel-btn">No</button>
-        </div>
-    </div>
-</div>
-
-<div id="cancelModal" class="logout-modal">
-    <div class="modal-content">
-        <h3>Are you sure you want to cancel?</h3>
-        <div class="modal-buttons">
-            <form action="{{ route('appointments.cancel', $appointmentCancelId) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <button type="submit" id="confirmCancel" class="confirm-btn">Cancel</button>
-            </form>
-            <button id="cancelCancel" class="cancel-btn">No</button>
         </div>
     </div>
 </div>

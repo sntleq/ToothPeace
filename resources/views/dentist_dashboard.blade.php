@@ -54,24 +54,31 @@
                 <div class="schedule-wrapper">
                     <div class="schedule-container">
 
-                        <!-- Items -->
-                        <a href="#"
-                           class="schedule-item col-2 row-2-4">
-                            <p class="title">Tooth Extraction</p>
-                            <p class="meta">Jayson Gabriel Limosnero<br>9:30AM - 10:30AM</p>
-                        </a>
+                        @for ($day = 1; $day <= 6; $day++)
+                            @if($appointments->has($day))
+                                @foreach($appointments[$day] as $appointment)
+                                    @php
+                                        $slotClasses = '';
+                                        foreach ($appointment->timeslots as $slot) {
+                                            // Convert to row class e.g., row-2-4
+                                            $slotStart = intval(Carbon\Carbon::parse($slot->start_time)->format('H')) - 7; // assuming 7am start
+                                            $slotEnd = intval(Carbon\Carbon::parse($slot->end_time)->format('H')) - 7;
+                                            $slotClasses = 'row-' . ($slotStart + 1) . '-' . ($slotEnd + 1);
+                                        }
+                                    @endphp
 
-                        <a href="#"
-                           class="schedule-item col-1 row-8-10">
-                            <p class="title">Data Structures &amp; Algorithms (Lec)</p>
-                            <p class="meta">IT203 · 1:00 PM – 2:00 PM</p>
-                        </a>
+                                    <a href="#"
+                                       class="schedule-item col-{{ $day }} {{ $slotClasses }}">
+                                        <p class="title">{{ $appointment->appointmentType->name ?? 'Appointment' }}</p>
+                                        <p class="meta">{{ $appointment->patient->name ?? 'Unknown Patient' }}<br>
+                                            {{ \Carbon\Carbon::parse($appointment->time)->format('g:i A') }} -
+                                            {{ \Carbon\Carbon::parse($appointment->time)->addMinutes($appointment->appointmentType->duration)->format('g:i A') }}
+                                        </p>
+                                    </a>
+                                @endforeach
+                            @endif
+                        @endfor
 
-                        <a href="#"
-                           class="schedule-item col-2 row-8-11">
-                            <p class="title">Readings in Philippine History</p>
-                            <p class="meta">IT203 · 1:00 PM – 2:00 PM</p>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -90,6 +97,8 @@
             </div>
         </div>
     </div>
+
+</div>
 
     <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
     <script src="{{ asset('js/dentist_dashboard.js') }}"></script>

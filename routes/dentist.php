@@ -11,8 +11,22 @@ Route::middleware('auth:dentist')
     ->group(function () {
 
         Route::get('/dashboard', function () {
-            return view('dentist_dashboard');
+            $startOfWeek = Carbon::now()->startOfWeek(Carbon::MONDAY);
+            $endOfWeek = Carbon::now()->endOfWeek(Carbon::SATURDAY);
+
+            $appointments = Appointment::with(['patient', 'appointmentType'])
+                ->where('dentist_id', auth()->id())
+                ->whereBetween('date', [$startOfWeek, $endOfWeek])
+                ->where('is_active', true)
+                ->get()
+                ->groupBy(function ($appointment) {
+                    return Carbon::parse($appointment->date)->dayOfWeekIso; // 1 (Monday) to 6 (Saturday)
+                });
+
+            return view('dentist_dashboard', compact('appointments'));
         })->name('dashboard');
+
+
 
         Route::get('/schedule', function () {
             $appointments = Appointment::where('dentist_id', auth()->id())->where('is_active', true)->get();

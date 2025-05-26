@@ -78,7 +78,7 @@
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
                             <td>
-                                <button id="cancellingButton" class="cancel-btn" onclick="">Complete</button>
+                                <button class="cancel-btn">Complete</button>
                                 <div id="cancelModal" class="logout-modal">
                                     <div class="modal-content">
                                         <h3>Mark the appointment as completed?</h3>
@@ -100,7 +100,6 @@
                             <td colspan="5" style="text-align: center;">No appointments found.</td>
                         </tr>
                     @endforelse
-
                     </tbody>
                 </table>
             </div>

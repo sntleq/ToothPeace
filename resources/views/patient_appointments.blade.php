@@ -78,7 +78,7 @@
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
                             <td>
-                                <button id="cancellingButton" class="cancel-btn" onclick="">Cancel</button>
+                                <button class="cancel-btn" onclick="">Cancel</button>
                                 <div id="cancelModal" class="logout-modal">
                                     <div class="modal-content">
                                         <h3>Are you sure you want to cancel?</h3>

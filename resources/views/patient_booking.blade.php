@@ -52,13 +52,12 @@
 
             @if ($errors->any())
                 <div class="alert-console error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                    @foreach ($errors->all() as $error)
+                        <div class="error-message">{{ $error }}</div>
+                    @endforeach
                 </div>
             @endif
+
 
             <form action="{{ route('patient.booking.queries') }}" method="POST" class="patient-form">
                 @csrf

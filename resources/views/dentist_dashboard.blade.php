@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,30 +58,37 @@
                 <div class="schedule-wrapper">
                     <div class="schedule-container">
 
-                        @for ($day = 1; $day <= 6; $day++)
-                            @if($appointments->has($day))
-                                @foreach($appointments[$day] as $appointment)
-                                    @php
-                                        $slotClasses = '';
-                                        foreach ($appointment->timeslots as $slot) {
-                                            // Convert to row class e.g., row-2-4
-                                            $slotStart = intval(Carbon\Carbon::parse($slot->start_time)->format('H')) - 7; // assuming 7am start
-                                            $slotEnd = intval(Carbon\Carbon::parse($slot->end_time)->format('H')) - 7;
-                                            $slotClasses = 'row-' . ($slotStart + 1) . '-' . ($slotEnd + 1);
-                                        }
-                                    @endphp
+                        @if($appointments->isEmpty())
+                            <div class="schedule-item" style="grid-column: 1 / 7; grid-row: 1 / 2; text-align:center;">
+                                <p class="title">No Appointments</p>
+                            </div>
+                        @else
+                            @for ($day = 1; $day <= 6; $day++)
+                                @if($appointments->has($day))
+                                    @foreach($appointments[$day] as $appointment)
+                                        @php
+                                            $slotClasses = '';
+                                            foreach ($appointment->timeslots as $slot) {
+                                                $slotStart = intval(Carbon::parse($slot->start_time)->format('H')) - 7;
+                                                $slotEnd = intval(Carbon::parse($slot->end_time)->format('H')) - 7;
+                                                $slotClasses = 'row-' . ($slotStart + 1) . '-' . ($slotEnd + 1);
+                                            }
+                                        @endphp
 
-                                    <a href="#"
-                                       class="schedule-item col-{{ $day }} {{ $slotClasses }}">
-                                        <p class="title">{{ $appointment->appointmentType->name ?? 'Appointment' }}</p>
-                                        <p class="meta">{{ $appointment->patient->name ?? 'Unknown Patient' }}<br>
-                                            {{ \Carbon\Carbon::parse($appointment->time)->format('g:i A') }} -
-                                            {{ \Carbon\Carbon::parse($appointment->time)->addMinutes($appointment->appointmentType->duration)->format('g:i A') }}
-                                        </p>
-                                    </a>
-                                @endforeach
-                            @endif
-                        @endfor
+                                        <a href="#"
+                                           class="schedule-item col-{{ $day }} {{ $slotClasses }}">
+                                            <p class="title">{{ $appointment->appointmentType->name ?? 'Appointment' }}</p>
+                                            <p class="meta">{{ $appointment->patient->name ?? 'Unknown Patient' }}<br>
+                                                {{ Carbon::parse($appointment->time)->format('g:i A') }} -
+                                                {{ Carbon::parse($appointment->time)->addMinutes($appointment->appointmentType->duration)->format('g:i A') }}
+                                            </p>
+                                        </a>
+                                    @endforeach
+                                @endif
+                            @endfor
+                        @endif
+
+
 
                     </div>
                 </div>
@@ -100,7 +111,7 @@
 
 </div>
 
-    <script src="{{ asset('js/dateLinksLogout.js') }}"></script>
-    <script src="{{ asset('js/dentist_dashboard.js') }}"></script>
+<script src="{{ asset('js/dateLinksLogout.js') }}"></script>
+<script src="{{ asset('js/dentist_dashboard.js') }}"></script>
 </body>
 </html>

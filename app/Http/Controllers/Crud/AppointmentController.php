@@ -81,21 +81,43 @@ class AppointmentController extends Controller
         }
 
         $slot = Timeslot::find($request->slot_id);
+
+        // Get next week's Monday
         $nextMonday = Carbon::now()->startOfWeek()->addWeek();
-        $dates = collect(range(1,6))
+
+        // Create an array of dates from Monday (index 0) to Saturday (index 5)
+        $dates = collect(range(1, 6))
             ->map(fn($i) => $nextMonday->copy()->addDays($i - 1)->toDateString())
             ->all();
 
+        $appointmentDate = $dates[$slot->day_of_week - 1];
+        $patientId = auth()->id();
+
+        // Check if patient already has an active appointment on that date
+        $existingAppointment = Appointment::where('patient_id', $patientId)
+            ->where('date', $appointmentDate)
+            ->where('is_active', true)
+            ->first();
+
+        if ($existingAppointment) {
+            return back()->withErrors([
+                'slot_id' => 'You already have an appointment booked on ' . $appointmentDate . '. Only one appointment per day is allowed.'
+            ])->withInput();
+        }
+
         Appointment::create([
-            'date'                  => $dates[$slot->day_of_week - 1],
-            'time'                  => $slot->start_time,
-            'patient_id'            => auth()->id(),
-            'dentist_id'            => $request->dentist_id,
-            'appointment_type_id'   => $request->appointment_type_id,
+            'date' => $appointmentDate,
+            'time' => $slot->start_time,
+            'patient_id' => $patientId,
+            'dentist_id' => $request->dentist_id,
+            'appointment_type_id' => $request->appointment_type_id,
+            'is_active' => true,
         ]);
 
         return redirect()->back()->with('success', 'Appointment booked successfully!');
     }
+
+
 
     /**
      * Display the specified resource.

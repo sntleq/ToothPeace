@@ -21,8 +21,8 @@ class AuthController extends Controller
                 'first_name' => ['required', 'min:3', 'max:20'],
                 'last_name' => ['required', 'min:3', 'max:20'],
                 'signup_email' => [
-                    'required', 
-                    'email', 
+                    'required',
+                    'email',
                     Rule::unique('patients', 'email'),
                     Rule::unique('dentists', 'email'),
                     Rule::unique('admins', 'email')

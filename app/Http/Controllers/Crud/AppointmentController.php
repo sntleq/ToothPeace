@@ -127,7 +127,17 @@ class AppointmentController extends Controller
         $appointment->is_active = false;
         $appointment->save();
 
-        return back()->with('success', 'Appointment cancelled. Waitlist will be notified in 30 minutes.');
+        return back()->with('success', 'Appointment cancelled.');
+    }
+
+
+    public function complete(Request $request, $id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->is_active = false;
+        $appointment->save();
+
+        return back()->with('success', 'Appointment completed. Job well done.');
     }
 
     /**

@@ -21,6 +21,8 @@ Route::put('patients/{patient}/password-reset', [PatientController::class, 'upda
     ->name('patients.update.password');
 Route::put('appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])
     ->name('appointments.cancel');
+Route::put('appointments/{appointment}/complete', [AppointmentController::class, 'complete'])
+    ->name('appointments.complete');
 // Search routes
 Route::get('search/dentists', [DentistController::class, 'search'])->name('dentists.search');
 Route::get('search/patients', [PatientController::class, 'search'])->name('patients.search');

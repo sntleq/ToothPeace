@@ -1,16 +1,20 @@
-const cancelBtn = document.querySelectorAll(".cancel-btn");
-const cancelModal = document.getElementById("cancelModal");
-const cancelCancel = document.getElementById("cancelCancel");
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all buttons that start with "cancelBtn"
+    const openBtns = document.querySelectorAll(".open-modal");
 
-if (cancelBtn && cancelModal && cancelCancel) {
-    cancelBtn.forEach(button => {
+    openBtns.forEach(button => {
+        const id = button.id.replace("cancelBtn", "");
+        const modal = document.getElementById("cancelModal" + id);
+        // now find the “No” button inside _that_ modal
+        const cancelBtn = modal.querySelector(".cancelCancel");
+
         button.addEventListener("click", function (e) {
             e.preventDefault();
-            cancelModal.style.display = "flex";
+            modal.style.display = "flex";
+        });
+
+        cancelBtn.addEventListener("click", function () {
+            modal.style.display = "none";
         });
     });
-
-    cancelCancel.addEventListener("click", function () {
-        cancelModal.style.display = "none";
-    });
-}
+});

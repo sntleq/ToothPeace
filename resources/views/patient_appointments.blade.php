@@ -78,17 +78,36 @@
                                 {{ $appointment->is_active ? 'Active' : 'Inactive' }}
                             </td>
                             <td>
-                                <button class="cancel-btn" onclick="">Cancel</button>
-                                <div id="cancelModal" class="logout-modal">
+                                {{-- open button --}}
+                                <button
+                                    class="cancel-btn open-modal"
+                                    id="cancelBtn{{ $appointment->id }}"
+                                >Cancel</button>
+
+                                {{-- modal (hidden by default) --}}
+                                <div
+                                    id="cancelModal{{ $appointment->id }}"
+                                    class="logout-modal"
+                                    style="display: none;"
+                                >
                                     <div class="modal-content">
-                                        <h3>Are you sure you want to cancel?</h3>
+                                        <h3>Cancel appointment?</h3>
                                         <div class="modal-buttons">
-                                            <form action="{{ route('appointments.cancel', $appointment->id) }}" method="POST">
+                                            <form
+                                                action="{{ route('appointments.complete', $appointment->id) }}"
+                                                method="POST"
+                                            >
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" id="confirmCancel" class="confirm-btn">Cancel</button>
+                                                <button type="submit" class="confirm-btn">
+                                                    Cancel
+                                                </button>
                                             </form>
-                                            <button id="cancelCancel" class="cancel-btn">No</button>
+                                            {{-- close button --}}
+                                            <button
+                                                class="cancelCancel cancel-btn"
+                                                id="cancelCancel{{ $appointment->id }}"
+                                            >No</button>
                                         </div>
                                     </div>
                                 </div>

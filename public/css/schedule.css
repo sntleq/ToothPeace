@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows:
-      repeat(5, 1fr) /* first block of timeslots */
+      repeat(5, 0fr) /* first block of timeslots */
       auto /* optional separator */
       repeat(5, 1fr) /* second block of timeslots */;
     gap: 0.5rem;
